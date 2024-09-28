@@ -1,0 +1,162 @@
+.application-form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff; /* White background for cleanliness */
+  border-radius: 10px; /* More rounded corners */
+}
+
+.application-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #333; /* Darker text for better contrast */
+}
+
+.error-message {
+  display: none;
+  color: red;
+  font-size: 0.8em;
+  margin-top: 5px;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px; /* Added space between rows */
+}
+
+.form-group {
+  flex: 1;
+  padding: 0 10px;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  color: #555; /* Softer label color */
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd; /* Lighter border */
+  border-radius: 10px; /* More rounded corners */
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  transition: border-color 0.3s; /* Smooth transition for focus */
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #007BFF; /* Blue border on focus */
+  outline: none; /* Remove default outline */
+}
+
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 12px; /* Slightly larger padding */
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 10px; /* More rounded corners */
+  font-size: 1em;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  transition: background-color 0.3s; /* Smooth transition on hover */
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+blockquote {
+  font-size: 0.9em;
+  font-style: italic;
+  margin: 10px 0;
+  font-family: 'Montserrat', sans-serif;
+  color: #555; /* Softer text color */
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .form-group {
+    padding: 0;
+    margin-bottom: 15px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+  }
+
+  .application-form {
+    padding: 15px;
+  }
+
+  button[type="submit"] {
+    padding: 15px;
+    font-size: 1.2em;
+  }
+}
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    padding: 0;
+  }
+  
+  .form-group {
+    padding: 0;
+    margin-bottom: 15px;
+    font-size: 24px;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 24px;
+  }
+  
+  .application-form {
+    padding: 15px;
+  }
+  
+  button[type="submit"] {
+    padding: 15px;
+    font-size: 24px;
+  }
+
+  blockquote {
+    font-size: 24px;
+  }
+  p {
+    font-size: 24px;
+  }
+
+  .form-group {
+    margin-bottom: 25px; /* Increase the spacing between form groups */
+  }
+
+}
+
