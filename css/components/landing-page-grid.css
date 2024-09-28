@@ -11,7 +11,7 @@
   display: grid;
   grid-template-columns: 1fr;
   place-items: center;
-  margin-top: -8px;
-  margin-bottom: -35px;
+  margin-top: -12px;
+  margin-bottom: -39px;
   grid-gap: 30px;
 }
