@@ -6,3 +6,12 @@
   margin-bottom: 30px;
   grid-gap: 30px;
 }
+
+.team-page-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+  margin-top: -8px;
+  margin-bottom: -35px;
+  grid-gap: 30px;
+}
