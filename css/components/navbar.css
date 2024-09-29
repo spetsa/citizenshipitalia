@@ -1,3 +1,4 @@
+
 .navbar {
   list-style-type: none;
   margin: 0;
@@ -12,6 +13,11 @@
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
   
+}
+
+/* Hide the hamburger menu by default */
+.menu-toggle {
+  display: none;
 }
 
 .navbar ul {
@@ -94,4 +100,40 @@
     top: 2px;
     height: 50px;
   }
+
+
+  .menu-toggle {
+    display: block; /* Show the hamburger button */
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto; /* Push button to the right */
+    z-index: 1000; /* Ensure it's above other elements */
 }
+
+/* Hide the navigation links on small screens */
+.nav-links {
+  display: none;
+  flex-direction: column;
+  position: fixed; /* Change to fixed to ensure full-screen width */
+  top: 0; /* Align flush to top */
+  left: 0; /* Align flush to left */
+  right: 0; /* Align flush to right */
+  background-color: white; /* Ensure no transparency */
+  width: 100%; /* Full width */
+  margin: 0;
+  padding: 0;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Make sure it's above other elements */
+    top: 30px !important;
+}
+
+/* Display nav links when active */
+.nav-links.active {
+    display: flex;
+}
+}
+
+}
+
