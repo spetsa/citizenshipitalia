@@ -127,13 +127,19 @@
 function checkEligibility() {
     const answer = document.querySelector('input[name="question1"]:checked').value;
 
-    // If the user is eligible, replace the form with Calendly iframe
     if (answer === 'yes1' || answer === 'yes2') {
+        // Replace the form content with a message and the iframe
         const formContainer = document.getElementById('eligibility-form');
-        formContainer.style.display = 'none'; // Hide the form
-        
-        const calendlySection = document.getElementById('calendly-section');
-        calendlySection.style.display = 'block'; // Show Calendly iframe
+        formContainer.innerHTML = `
+            <h3>You're Eligible!</h3>
+            <p>Click below to book a call with us.</p>
+            <iframe
+                src="https://calendly.com/citizenshipitalia/30min" 
+                width="100%" 
+                height="600px" 
+                frameborder="0">
+            </iframe>
+        `;
     } else {
         alert('Based on your answers, you may not be eligible. Please contact us for more details.');
     }
