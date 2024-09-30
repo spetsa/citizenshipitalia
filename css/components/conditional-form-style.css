@@ -3,9 +3,12 @@
 }
 
 .quiz-option {
+
+  font-weight: normal; /* Ensure text is not bold */
+  text-align: left; /* Align text to the left */
   display: flex;
   align-items: flex-start;
-  margin-bottom: 20px; /* Adds spacing between questions */
+  margin-bottom: 15px;
 }
 
 .quiz-option input {
@@ -76,8 +79,35 @@ h3 {
 .quiz-option label {
   text-align: left;
   max-width: calc(100% - 30px); /* Ensure text wraps under label */
+  
 }
 
 /* Media Queries */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
  
+
+  .quiz-container {
+    padding: 15px;
+    max-width: 100%;
+}
+
+.quiz-option {
+    font-size: 30px; /* Increase readability */
+}
+
+.quiz-submit-btn {
+    padding: 12px;
+    font-size: 30px;
+}
+
+#calendly-section iframe {
+    width: 100%; /* Full-width iframe */
+    height: 400px; /* Adjust height for mobile view */
+}
+
+.quiz-option input {
+  transform: scale(1.5); /* Increase size of radio button */
+  margin-right: 15px; /* Adjust spacing for larger button */
+}
+
+}
