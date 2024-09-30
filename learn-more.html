@@ -59,163 +59,44 @@
     <div class="landing-page-grid">
 
 
-      <div class="application-form">
-        <h2>Apply for a Tour</h2>
-        <form id="tour-application" onsubmit="submitForm(event)">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="first-name">First Name:</label>
-              <input type="text" id="first-name" name="entry.401974355" required>
-              <small class="error-message" id="first-name-error">Please enter your first name.</small>
-            </div>
-            <div class="form-group">
-              <label for="last-name">Last Name:</label>
-              <input type="text" id="last-name" name="entry.583600904" required>
-              <small class="error-message" id="last-name-error">Please enter your last name.</small>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="entry.1569114374" required>
-            <small class="error-message" id="email-error">Please enter a valid email address.</small>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="start-date">Available Start Date:</label>
-              <input type="date" id="start-date" name="entry.1391444860" required>
-              <small>Please note: The event lasts one day. Select the dates you are available to attend.</small>
-              <small class="error-message" id="start-date-error">Please select a start date.</small>
-            </div>
-            <div class="form-group">
-              <label for="end-date">Available End Date:</label>
-              <input type="date" id="end-date" name="entry.1625816091" required>
-              <small class="error-message" id="end-date-error">Please select an end date.</small>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>How comfortable are you in new environments?</label>
-            <select name="entry.1033977775" required>
-              <option value="" disabled selected>Select</option>
-              <option value="1">1 - Not comfortable</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5 - Neutral</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10 - Very comfortable</option>
-            </select>
-            <small class="error-message" id="comfort_new_environments-error">Please select an option.</small>
-          </div>
-          <div class="form-group">
-            <label>How comfortable are you trying new foods?</label>
-            <select name="entry.480848696" required>
-              <option value="" disabled selected>Select</option>
-              <option value="1">1 - Not comfortable</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5 - Neutral</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10 - Very comfortable</option>
-            </select>
-            <small class="error-message" id="comfort_new_foods-error">Please select an option.</small>
-          </div>
-          <div class="form-group">
-            <label>How much do you enjoy stepping out of your comfort zone?</label>
-            <select name="entry.724793260" required>
-              <option value="" disabled selected>Select</option>
-              <option value="1">1 - Not at all</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5 - Neutral</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10 - Very much</option>
-            </select>
-            <small class="error-message" id="enjoy_stepping_out_comfort_zone-error">Please select an option.</small>
-          </div>
-          <div class="form-group">
-            <label for="dietary-restrictions">Do you have any dietary restrictions?</label>
-            <textarea id="dietary-restrictions" name="entry.380609884" rows="4" required></textarea>
-            <small class="error-message" id="dietary-restrictions-error">Please enter any dietary restrictions.</small>
-          </div>
-          <div class="form-group">
-            <label>On a scale of 1-10, how much do you identify with the following quote:</label>
-            <blockquote>“Life should not be a journey to the grave with the intention of arriving safely in a pretty and well preserved body, but rather to skid in broadside in a cloud of smoke, thoroughly used up, totally worn out, and loudly proclaiming 'Wow!'</blockquote>
-            <select name="entry.1365496926" required>
-              <option value="" disabled selected>Select</option>
-              <option value="1">1 - Not at all</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5 - Neutral</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10 - Completely</option>
-            </select>
-            <small class="error-message" id="identify_with_quote-error">Please select an option.</small>
-          </div>
-          <div class="form-group checkbox-group">
-            <label for="terms">
-              <input type="checkbox" id="terms" name="terms" required>
-              I agree to the <a href="https://drive.google.com/file/d/11lP2gp9kXNJKvJEbLL8Pu2fHGIqR3MWr/view?usp=sharing" target="_blank">Terms of Service and Privacy Policy</a>
+      <div class="quiz-container">
+        <form id="eligibility-form">
+            <h3>Eligibility Check</h3>
+            <!-- First Set of Questions -->
+            <label class="quiz-option">
+                <input type="radio" name="question1" value="yes1" required>
+                My ancestor was born in Italy and lived past March 17, 1861.
             </label>
-            <small class="error-message" id="terms-error">You must agree to the Terms of Service and Privacy Policy.</small>
-          </div>
-      
-          <div class="form-group checkbox-group">
-            <label for="contact">
-              <input type="checkbox" id="contact" name="contact" required>
-              I agree to be contacted and keep in touch for the trip
+            <label class="quiz-option">
+                <input type="radio" name="question1" value="yes2">
+                I am a descendant of a non-Italian woman who married an Italian citizen before 1983.
             </label>
-            <small class="error-message" id="contact-error">You must agree to be contacted.</small>
-          </div>
-          <button type="submit">Submit Application</button>
+            <label class="quiz-option">
+                <input type="radio" name="question1" value="no">
+                I’m not sure.
+            </label>
+            <button type="button" class="quiz-submit-btn" onclick="checkEligibility()">Check Eligibility</button>
         </form>
-      </div>
-      
-      <script>
-        async function submitForm(event) {
-          event.preventDefault();
-          const form = document.getElementById('tour-application');
-          const formData = new FormData(form);
-      
-          const actionURL = 'https://docs.google.com/forms/d/e/1FAIpQLSfKQxpxc58SEloXDGvj_T3gvQzCyN3SvXBgMor5C5CruB8qjA/formResponse';
-          const params = new URLSearchParams(formData).toString();
-      
-          try {
-            const response = await fetch(actionURL, {
-              method: 'POST',
-              body: params,
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              mode: 'no-cors',
-            });
-      
-            if (response) {
-              window.location.href = 'https://untamedjourneys.com/thank-you';
-            } else {
-              throw new Error('Network response was not ok.');
-            }
-          } catch (error) {
-            alert('There was an error submitting your application. Please try again.');
-          }
-        }
-      </script>
+        
+        <!-- Calendly iframe Section -->
+        <div id="calendly-section" style="display:none; margin-top: 20px;">
+            <h3>You're Eligible!</h3>
+            <p>Click below to book a call with us.</p>
+            <!-- Calendly iframe -->
+            <iframe
+                src="https://calendly.com/citizenshipitalia/30min" 
+                width="100%" 
+                height="600px" 
+                frameborder="0">
+            </iframe>
+        </div>
+    </div>
+    
 
-<div class="quote-card"> </div>
+      <div class="quote-card"> </div>
+
+
+    </div>
       
       
 
@@ -240,6 +121,19 @@
           const navLinks = document.querySelector('.nav-links');
           navLinks.classList.toggle('active');
       }
+    </script>
+
+    <script>
+      function checkEligibility() {
+    const answer = document.querySelector('input[name="question1"]:checked').value;
+
+    // Show Calendly iframe if eligible
+    if (answer === 'yes1' || answer === 'yes2') {
+        document.getElementById('calendly-section').style.display = 'block';
+    } else {
+        alert('Based on your answers, you may not be eligible. Please contact us for more details.');
+    }
+    }
     </script>
 
   </body>
