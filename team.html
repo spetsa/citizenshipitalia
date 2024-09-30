@@ -33,8 +33,9 @@
       
     <!-- navbar CSS can be found in the file "navbar"-->
     <div class="navbar">
-      <ul>
-        <li id="logo"><a href="index.html"><img src="Non_converted_images/logo_01.png" id="logo" /></a></li>
+      <a href="index.html" id="logo"><img src="Non_converted_images/logo_01.png" /></a> <!-- Move logo outside -->
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <ul class="nav-links">
         <li><a href="learn-more.html" id="navbar-learn">Free Consultation</a></li>
         <li><a href="how-it-works.html">how it works</a></li>
         <li><a href="learn-more.html">elgibility check</a></li>
@@ -133,6 +134,8 @@
   
       </div>
 
+      <div class="quote-card"> </div>
+
     </div>
 
 
@@ -141,6 +144,13 @@
       <p>Made with love in 🇮🇹 + 🇨🇦</p>
       <p>© 2024 MediaMade Inc. All rights reserved.</p>
     </div>
+
+    <script>
+      function toggleMenu() {
+          const navLinks = document.querySelector('.nav-links');
+          navLinks.classList.toggle('active');
+      }
+    </script>
 
   </body>
 
