@@ -79,7 +79,7 @@
     </div>
         
         <!-- Calendly iframe Section -->
-        <div id="calendly-section" style="display:none; margin-top: 20px;">
+        <div id="calendly-section" style="display:none;">
             <h3>You're Eligible!</h3>
             <p>Click below to book a call with us.</p>
             <!-- Calendly iframe -->
@@ -124,16 +124,20 @@
     </script>
 
     <script>
-      function checkEligibility() {
+function checkEligibility() {
     const answer = document.querySelector('input[name="question1"]:checked').value;
 
-    // Show Calendly iframe if eligible
+    // If the user is eligible, replace the form with Calendly iframe
     if (answer === 'yes1' || answer === 'yes2') {
-        document.getElementById('calendly-section').style.display = 'block';
+        const formContainer = document.getElementById('eligibility-form');
+        formContainer.style.display = 'none'; // Hide the form
+        
+        const calendlySection = document.getElementById('calendly-section');
+        calendlySection.style.display = 'block'; // Show Calendly iframe
     } else {
         alert('Based on your answers, you may not be eligible. Please contact us for more details.');
     }
-    }
+}
     </script>
 
   </body>
