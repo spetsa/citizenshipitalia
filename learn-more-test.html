@@ -115,7 +115,18 @@
       }
     </script>
 
-    
+<script>
+  function checkEligibility() {
+      const answer = document.querySelector('input[name="question1"]:checked').value;
+
+      // Show Calendly link if eligible
+      if (answer === 'yes1' || answer === 'yes2') {
+          document.getElementById('calendly-section').style.display = 'block';
+      } else {
+          alert('Based on your answers, you may not be eligible. Please contact us for more details.');
+      }
+  }
+</script>
 
   </body>
 </html>
