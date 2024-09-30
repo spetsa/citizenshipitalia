@@ -73,6 +73,7 @@
   text-decoration: none !important;
 }
 
+*
 #logo {
   float: left;
   height: 50px;
@@ -82,7 +83,6 @@
 
 }
 
-
 #logo a:hover {
   float: left;
   outline: none;
@@ -90,10 +90,6 @@
 
 
 @media screen and (max-width: 480px) {
-  display: flex;
-  justify-content: space-between; /* Space between logo and toggle */
-  align-items: center;
-  
   .navbar ul {
     font-size: 22px !important;
     padding-bottom: 10px;
@@ -103,9 +99,8 @@
   }
 
   #logo {
-    position: static; /* Resets any absolute positioning */
-    margin-right: auto; /* Pushes it to the left */
-    margin-left: 10px; /* Optional: add space if needed */
+    top: 2px;
+    height: 50px;
   }
 
 
