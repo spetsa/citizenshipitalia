@@ -1,0 +1,121 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <meta property="og:title" content="Untamed Journeys - Explore Authentic Wine Tasting Adventures in Torino & Alba" />
+    <meta property="og:description" content="Discover authentic wine tasting adventures in Torino & Alba with Untamed Journeys. Experience the local culture, cuisine, and hidden gems of Torino. Join us for an unforgettable journey." />
+    <meta property="og:image" content="Non_converted_images/hills+mountains.jpeg" />
+    <meta property="og:url" content="https://untamedjourneys.com/" />
+    <title>Untamed Journeys — Apply</title>
+    <link rel="icon" type="image/x-icon" href="logos/favicon.ico">
+
+    <!-- Put an Inspectlet code snippet here -->
+
+    <!-- Inspectlet end-->
+
+    <!-- Put a Google Analytics code snippet here -->
+
+    <!-- Google Analytics tag end-->
+      
+    <!-- Put a Google Optimize code snippet here -->
+
+    <!-- Google Optimize tag end-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+
+    <!-- navbar CSS can be found in the file "navbar"-->
+    <div class="navbar">
+      <a href="index.html" id="logo"><img src="Non_converted_images/logo_01.png" /></a> <!-- Move logo outside -->
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <ul class="nav-links">
+        <li><a href="learn-more.html" id="navbar-learn">Free Consultation</a></li>
+        <li><a href="how-it-works.html">how it works</a></li>
+        <li><a href="learn-more.html">elgibility check</a></li>
+       <li><a href="team.html">team</a></li>  
+      </ul>
+    </div>
+
+    <!-- banner-3 CSS can be found in the file "banner"-->
+    <div
+      class="banner"
+      style="
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.4),
+            rgba(0, 0, 0, 0.4)
+          ),
+          url(Non_converted_images/skyline.JPG);">
+
+      <div class="container">
+        <h1>The easiest way to obtain your Italian Citizenship through lineage.</h1>
+      </div>
+    </div>
+
+    <!-- landing-page-grid CSS can be found in the file "landing-page-grid"-->
+    <div class="landing-page-grid">
+
+      <div class="quiz-container">
+        <form id="eligibility-form">
+            <!-- First Set of Questions -->
+            <h3>Eligibility Check</h3>
+            <label class="quiz-option">
+                <input type="radio" name="question1" value="yes1" required>
+                My ancestor was born in Italy and lived past March 17, 1861.
+            </label>
+            <label class="quiz-option">
+                <input type="radio" name="question1" value="yes2">
+                I am a descendant of a non-Italian woman who married an Italian citizen before 1983.
+            </label>
+            <label class="quiz-option">
+                <input type="radio" name="question1" value="no">
+                I’m not sure.
+            </label>
+            <button type="button" class="quiz-submit-btn" onclick="checkEligibility()">Check Eligibility</button>
+        </form>
+        <!-- Calendly Link Section -->
+        <div id="calendly-section">
+            <h3>You're Eligible!</h3>
+            <p>Click below to book a call with us.</p>
+            <a href="https://calendly.com/citizenshipitalia/30min" target="_blank" class="calendly-button">Book a Call on Calendly</a>
+        </div>
+    
+
+
+      <div class="quote-card"> </div>
+
+
+    </div>
+      
+      
+
+
+      <!-- Uncomment the code below for third party form injection -->
+      <!-- <div class="form-card-third-party"> -->
+        <!-- Hubspot Form injection open -->
+        <!-- Hubspot Form injection close -->
+      <!-- </div> -->
+
+
+    <!-- break CSS can be found in the file "page-break"-->
+
+    <!-- footer CSS can be found in the file "footer"-->
+    <div class="footer">
+      <p>Made with love in 🇮🇹</p>
+      <p>© 2024 MediaMade Inc. All rights reserved.</p>
+    </div>
+
+    <script>
+      function toggleMenu() {
+          const navLinks = document.querySelector('.nav-links');
+          navLinks.classList.toggle('active');
+      }
+    </script>
+
+    
+
+  </body>
+</html>

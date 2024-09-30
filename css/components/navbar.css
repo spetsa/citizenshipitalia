@@ -161,3 +161,7 @@
 #navbar-learn {
 border: none;
 }
+
+#navbar-learn:hover {
+  border: none !important;
+}
