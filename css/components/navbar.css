@@ -19,11 +19,12 @@
 /* Hide the hamburger menu by default */
 .menu-toggle {
   display: none;
-  font-size: 32px; /* Increase size as needed */
+  font-size: 40px !important; /* Increase size as needed */
   padding: 10px; /* Optional: Increase clickable area */
   background: none;
   border: none;
   cursor: pointer;
+  padding-right: 13px
 }
 
 .navbar ul {
@@ -112,6 +113,7 @@
  position: static; /* Resets any absolute positioning */
     margin-right: auto; /* Pushes it to the left */
     margin-left: 10px; /* Optional: add space if needed */
+    
   }
 
 
@@ -137,7 +139,7 @@
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   padding: 0 !important;
   margin: 0 !important;
-  top: 50px !important;
+  top: 75px !important;
   max-height: 0; /* Initially hidden */
   overflow: hidden;
   transition: max-height 0.5s ease-out; /* Smooth scroll-down animation */
@@ -148,6 +150,11 @@
     display: flex;
     max-height: 300px; /* Adjust based on content height */
 }
+
+#logo img {
+  height: 72px;
+  width: auto;
+  max-height: 72px;
 }
 
 
