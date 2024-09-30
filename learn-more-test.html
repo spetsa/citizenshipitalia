@@ -58,10 +58,11 @@
     <!-- landing-page-grid CSS can be found in the file "landing-page-grid"-->
     <div class="landing-page-grid">
 
+
       <div class="quiz-container">
         <form id="eligibility-form">
-            <!-- First Set of Questions -->
             <h3>Eligibility Check</h3>
+            <!-- First Set of Questions -->
             <label class="quiz-option">
                 <input type="radio" name="question1" value="yes1" required>
                 My ancestor was born in Italy and lived past March 17, 1861.
@@ -76,14 +77,21 @@
             </label>
             <button type="button" class="quiz-submit-btn" onclick="checkEligibility()">Check Eligibility</button>
         </form>
-        <!-- Calendly Link Section -->
-        <div id="calendly-section">
+        
+        <!-- Calendly iframe Section -->
+        <div id="calendly-section" style="display:none; margin-top: 20px;">
             <h3>You're Eligible!</h3>
             <p>Click below to book a call with us.</p>
-            <a href="https://calendly.com/citizenshipitalia/30min" target="_blank" class="calendly-button">Book a Call on Calendly</a>
+            <!-- Calendly iframe -->
+            <iframe
+                src="https://calendly.com/citizenshipitalia/30min" 
+                width="100%" 
+                height="600px" 
+                frameborder="0">
+            </iframe>
         </div>
+    </div>
     
-
 
       <div class="quote-card"> </div>
 
@@ -115,18 +123,18 @@
       }
     </script>
 
-<script>
-  function checkEligibility() {
-      const answer = document.querySelector('input[name="question1"]:checked').value;
+    <script>
+      function checkEligibility() {
+    const answer = document.querySelector('input[name="question1"]:checked').value;
 
-      // Show Calendly link if eligible
-      if (answer === 'yes1' || answer === 'yes2') {
-          document.getElementById('calendly-section').style.display = 'block';
-      } else {
-          alert('Based on your answers, you may not be eligible. Please contact us for more details.');
-      }
-  }
-</script>
+    // Show Calendly iframe if eligible
+    if (answer === 'yes1' || answer === 'yes2') {
+        document.getElementById('calendly-section').style.display = 'block';
+    } else {
+        alert('Based on your answers, you may not be eligible. Please contact us for more details.');
+    }
+    }
+    </script>
 
   </body>
 </html>
