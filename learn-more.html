@@ -62,21 +62,21 @@
       <div class="quiz-container">
         <form id="eligibility-form">
             <h3>Eligibility Check</h3>
-            <!-- First Set of Questions -->
             <label class="quiz-option">
                 <input type="radio" name="question1" value="yes1" required>
-                My ancestor was born in Italy and lived past March 17, 1861.
+                <span>My ancestor was born in Italy and lived past March 17, 1861.</span>
             </label>
             <label class="quiz-option">
                 <input type="radio" name="question1" value="yes2">
-                I am a descendant of a non-Italian woman who married an Italian citizen before 1983.
+                <span>I am a descendant of a non-Italian woman who married an Italian citizen before 1983.</span>
             </label>
             <label class="quiz-option">
                 <input type="radio" name="question1" value="no">
-                I’m not sure.
+                <span>I’m not sure.</span>
             </label>
             <button type="button" class="quiz-submit-btn" onclick="checkEligibility()">Check Eligibility</button>
         </form>
+    </div>
         
         <!-- Calendly iframe Section -->
         <div id="calendly-section" style="display:none; margin-top: 20px;">

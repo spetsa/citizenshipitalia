@@ -2,6 +2,23 @@
   margin-top: 20px;
 }
 
+.quiz-option {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px; /* Adds spacing between questions */
+}
+
+.quiz-option input {
+  margin-top: 3px; /* Aligns radio button vertically with text */
+  margin-right: 10px; /* Adds spacing between radio button and text */
+}
+
+.quiz-option span {
+  display: inline-block;
+  vertical-align: top;
+  line-height: 1.5; /* Improves readability */
+}
+
 .quiz-container {
   background: #fff;
   padding: 20px;
@@ -19,16 +36,6 @@ h3 {
   font-weight: bold;
 }
 
-.quiz-option {
-  display: block;
-  margin-bottom: 15px;
-  font-size: 16px;
-  color: #555;
-}
-
-.quiz-option input {
-  margin-right: 10px;
-}
 
 .quiz-submit-btn {
   padding: 10px 20px;
@@ -66,6 +73,10 @@ h3 {
   background-color: #218838;
 }
 
+.quiz-option label {
+  text-align: left;
+  max-width: calc(100% - 30px); /* Ensure text wraps under label */
+}
 
 /* Media Queries */
 @media (max-width: 768px) {
