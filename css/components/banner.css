@@ -8,33 +8,39 @@
 		width: 100%;
 	  }
 
-	  .logo-top-right {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%); /* Centers the logo */
-		width: 150px; /* Adjust the size as needed */
+	  .logo-centered {
+		display: block; /* Ensures the image behaves like a block */
+		margin: 0 auto; /* Centers the logo horizontally */
+		width: 150px; /* Adjust the size of the logo as needed */
 		height: auto;
+		margin-bottom: 40px; /* Adds spacing below the logo */
+		margin-top: -50px;
 	}
 	  
 	  .banner h1 {
 		margin: 0;
 		color: white;
-		text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 		font-size: 32px;
 		font-weight: 500;
 		text-align: center;
 		line-height: 1.3;
+		text-shadow: 
+        0px 0px 1px black, /* Darker and slightly thicker outline */
+        0px 0px 5px rgba(0, 0, 0, .8); /* Dark blur around text for more visibility */
 	  }
 	  
 	  .banner p {
 		font-size: 20px;
 		color: white;
 		/* opacity: .7; */
-		text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 		text-align: center;
 		margin-top: 17px;
 		margin-bottom: 24px;
+		text-shadow: 
+        0px 0px 1px black, /* Darker and slightly thicker outline */
+        0px 0px 5px rgba(0, 0, 0, .8); /* Dark blur around text for more visibility */
+
+		
 	  }
 
 
