@@ -30,6 +30,7 @@
   max-width: 500px;
   margin: 20px auto;
   text-align: center;
+  margin-top: 20px !important;
 }
 
 h3 {
