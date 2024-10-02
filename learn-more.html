@@ -9,6 +9,8 @@
     <meta property="og:url" content="https://untamedjourneys.com/" />
     <title>Untamed Journeys — Apply</title>
     <link rel="icon" type="image/x-icon" href="logos/favicon.ico">
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
+
 
     <!-- Put an Inspectlet code snippet here -->
 
@@ -140,14 +142,14 @@ function checkEligibility() {
     </script>
 
     <Script>
-          window.addEventListener('message', function(event) {
-    // Check that the message is from Calendly
-    if (event.origin.includes('calendly.com')) {
-        // Scroll the parent webpage to the top
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth' // Optional: adds smooth scrolling
-        });
+        window.addEventListener('message', function(event) {
+    // Ensure the message is from Calendly
+    if (event.origin === "https://calendly.com") {
+        // Check if the message has height data
+        if (event.data.event && event.data.event === "calendly.resized") {
+            const iframe = document.querySelector('iframe');
+            iframe.style.height = event.data.payload.height + "px";
+        }
     }
 }, false);
       
