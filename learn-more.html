@@ -136,8 +136,22 @@ function checkEligibility() {
     } else {
         alert('Based on your answers, you may not be eligible. Please contact us for more details.');
     }
-}
+    }
     </script>
+
+    <Script>
+          window.addEventListener('message', function(event) {
+    // Check that the message is from Calendly
+    if (event.origin.includes('calendly.com')) {
+        // Scroll the parent webpage to the top
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // Optional: adds smooth scrolling
+        });
+    }
+}, false);
+      
+    </Script>
 
   </body>
 </html>
