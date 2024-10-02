@@ -16,6 +16,15 @@
 		margin-bottom: 40px; /* Adds spacing below the logo */
 		margin-top: -50px;
 	}
+
+	.logo-centered-2 {
+		display: block;
+		margin: 0 auto;
+		width: 212px;
+		height: auto;
+		margin-bottom: -89px;
+		margin-top: -50px;
+	}
 	  
 	  .banner h1 {
 		margin: 0;
