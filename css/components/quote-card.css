@@ -58,4 +58,10 @@
     font-size: 30px !important;
     opacity: 0.7;
   }
+
+  .quote-card img {
+    height: 350px;
+    width: 350px;
+  }
+
 }
