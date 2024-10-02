@@ -12,7 +12,7 @@
   border-radius: 0%;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-  min-width: 670px;
+  min-width: 722px;
   
 }
 
@@ -81,9 +81,9 @@
 
 #logo {
   float: left;
-  height: 50px;
   position: absolute;
-  top: -1px;
+  margin-top: auto !important;
+  margin-bottom: auto !important;
   left: 6px;
 
 }
@@ -95,9 +95,10 @@
 }
 
 #logo img {
-  height: 50px; /* Adjust the height */
+  height: 39px; /* Adjust the height */
   width: auto; /* Maintain aspect ratio */
-  max-height: 50px; /* Prevents it from growing too large */
+  margin-top: 5px !important;
+
 }
 
 @media screen and (max-width: 480px) {
