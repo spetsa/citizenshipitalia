@@ -12,7 +12,7 @@
   border-radius: 0%;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-  min-width: 722px;
+  min-width: 715px;
   
 }
 
@@ -81,10 +81,11 @@
 
 #logo {
   float: left;
-  position: absolute;
   margin-top: auto !important;
   margin-bottom: auto !important;
   left: 6px;
+  z-index: 1;
+  position: relative;
 
 }
 
@@ -98,10 +99,12 @@
   height: 39px; /* Adjust the height */
   width: auto; /* Maintain aspect ratio */
   margin-top: 5px !important;
+  z-index: 1;
+  position: relative;
 
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 720px) {
   .navbar ul {
     font-size: 30px !important;
     padding-bottom: 10px;
@@ -114,18 +117,21 @@
  position: static; /* Resets any absolute positioning */
     margin-right: auto; /* Pushes it to the left */
     margin-left: 10px; /* Optional: add space if needed */
+    z-index: 1;
     
   }
 
 
   .menu-toggle {
-      display: block;
-      margin-left: auto;
-      font-size: 24px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 1000;
+    display: block;
+    font-size: 60px !important;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10000;
+    position: absolute;
+    top: -16px; /* Adjust this value as needed */
+    right: 45px; /* Adjust this value as needed */
 }
 
 /* Hide the navigation links on small screens */
@@ -157,6 +163,7 @@
   height: 72px;
   width: auto;
   max-height: 72px;
+  z-index: 1;
 }
 
 
@@ -166,4 +173,6 @@ border: none;
 
 #navbar-learn:hover {
   border: none !important;
+}
+
 }
