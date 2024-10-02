@@ -113,6 +113,7 @@ h3 {
 
 iframe {
   width: 100%; /* Full-width on mobile */
+  height: 350vh;
   transform: scale(1.6); /* Increase scale to make content larger */
   transform-origin: center top; /* Center horizontally */
   margin: 0 auto; /* Center the iframe within its container */

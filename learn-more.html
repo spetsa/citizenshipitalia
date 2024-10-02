@@ -141,19 +141,5 @@ function checkEligibility() {
     }
     </script>
 
-    <Script>
-        window.addEventListener('message', function(event) {
-    // Ensure the message is from Calendly
-    if (event.origin === "https://calendly.com") {
-        // Check if the message has height data
-        if (event.data.event && event.data.event === "calendly.resized") {
-            const iframe = document.querySelector('iframe');
-            iframe.style.height = event.data.payload.height + "px";
-        }
-    }
-}, false);
-      
-    </Script>
-
   </body>
 </html>
