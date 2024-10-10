@@ -156,7 +156,7 @@
 /* Display nav links when active */
 .nav-links.active {
     display: flex;
-    max-height: 300px; /* Adjust based on content height */
+    max-height: 380px; /* Adjust based on content height */
 }
 
 #logo img {
