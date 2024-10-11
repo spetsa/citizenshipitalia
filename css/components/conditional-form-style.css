@@ -104,8 +104,9 @@ h3 {
 }
 
 .quiz-option input {
-  transform: 30px; /* Increase size of radio button */
+  transform: 50px; /* Increase size of radio button */
   margin-right: 15px; /* Adjust spacing for larger button */
+  margin-top: 16px;
 }
 
 .quiz-option {

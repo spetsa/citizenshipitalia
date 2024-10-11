@@ -39,6 +39,11 @@ h1, h2, h3 {
   font-family: "Montserrat";
 }
 
+.header
+{
+  line-height: 50px;
+}
+
 
 @media screen and (max-width: 660px) 
 {
