@@ -85,14 +85,24 @@
 /* Responsive Design */
 @media screen and (max-width: 768px) {
     .banner-faq h1 {
-        font-size: 32px;
+        font-size: 40px;
     }
 
     .faq-item h3 {
-        font-size: 20px;
+        font-size: 35px;
     }
 
     .faq-item p {
-        font-size: 18px;
+        font-size: 28px;
+        margin-top: 20px
+    }
+
+    .center {
+        font-size: 28px;
+    }
+
+    .faq-ul {
+        font-size: 26px;
+        margin-top: 20px
     }
 }
