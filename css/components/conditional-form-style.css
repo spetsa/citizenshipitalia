@@ -40,7 +40,11 @@ h3 {
   font-weight: bold;
 }
 
-
+iframe {
+  height: 100vh;
+  transform-origin: center top; /* Center horizontally */
+  margin: 0 auto; /* Center the iframe within its container */
+}
 .quiz-submit-btn {
   padding: 10px 20px;
   font-size: 16px;
