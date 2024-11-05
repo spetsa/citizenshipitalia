@@ -1,4 +1,28 @@
+# Allow all search engines full access to the site
 User-agent: *
 Allow: /
 
-Sitemap: https://www.citizenshipitalia.com/sitemap.xml
+# Disallow any unnecessary or temporary directories (example placeholders)
+Disallow: /private/
+Disallow: /temp/
+Disallow: /drafts/
+
+# Sitemap reference for easy indexing
+Sitemap: https://citizenshipitalia.com/sitemap.xml
+
+# Googlebot directives (optional, but allows finer control if needed)
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 10          # Only if server load is a concern
+
+# Bingbot directives (optional)
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 10          # Helps reduce load if Bing is aggressively crawling
+
+# Set additional disallowed directories for all bots if needed
+User-agent: *
+Disallow: /temporary/     # Example of additional restricted directory
+
+# Repeat sitemap reference for clarity
+Sitemap: https://citizenshipitalia.com/sitemap.xml
