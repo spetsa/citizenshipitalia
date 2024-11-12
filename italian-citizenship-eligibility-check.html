@@ -86,44 +86,56 @@
 
 
 
-      <div class="quiz-container">
-        <form id="eligibility-form">
-            <h2>Eligibility Check</h2>
-            <br>
-            <h2>Which answer applies to you.</h2>
-            <br>
-            <br>
-            <label class="quiz-option">
-                <input type="radio" name="question1" value="yes1" required>
-                <span>My ancestor was born in Italy and passed away outside of Italy after March 17, 1861.</span>
-            </label>
-            <label class="quiz-option">
+        <div class="quiz-container">
+          <form id="eligibility-form">
+              <h2>Eligibility Check</h2>
+              <br>
+              <h2>Which answer applies to you.</h2>
+              <br>
+              <br>
+              <label class="quiz-option">
+                  <input type="radio" name="question1" value="yes1" required>
+                  <span>My ancestor was born in Italy and passed away outside of Italy after March 17, 1861.</span>
+              </label>
+              <label class="quiz-option">
+                  <input type="radio" name="question1" value="yes2">
+                  <span>I am a descendant of a non-Italian woman who married an Italian citizen before 1983.</span>
+              </label>
+              <label class="quiz-option">
                 <input type="radio" name="question1" value="yes2">
-                <span>I am a descendant of a non-Italian woman who married an Italian citizen before 1983.</span>
+                <span>
+                  One of my female ancestors (Italian or with Italian ancestry) gave birth to a son or daughter before 1948.</span>
             </label>
-            <label class="quiz-option">
-              <input type="radio" name="question1" value="yes2">
-              <span>
-                One of my female ancestors (Italian or with Italian ancestry) gave birth to a son or daughter before 1948.</span>
-          </label>
-            <label class="quiz-option">
-                <input type="radio" name="question1" value="no">
-                <span>I’m not sure or none of the above answers apply to me.</span>
-            </label>
-            <button type="button" class="btn-medium" onclick="checkEligibility()">Check Eligibility</button>
-        </form>
-    </div>
-    
-
-      <div class="quote-card"> </div>
+              <label class="quiz-option">
+                  <input type="radio" name="question1" value="no">
+                  <span>I’m not sure or none of the above answers apply to me.</span>
+              </label>
+              <button type="button" class="btn-medium" onclick="checkEligibility()">Check Eligibility</button>
+          </form>
+      </div>
 
 
-    </div>
 
-    <br><br><br><br>
+      <br><br><br><br>
+        
+        
+            <!-- quote-card CSS can be found in the file "quote-card"-->
+            <div class="quote-card">
+              <img src="webp-conversions/Mailen Quirino.webp" alt="Testimonial from Mailen Quirino" width="220" height="220" />
+              <div class="quote-card-infos">
+                <h2>“They helped me from the initial review of my case to assisting with all the 
+                      required documents to its translation. I’m very grateful for their 
+                        support in this complex process. They were always available to answer 
+                          my questions with great professionalism and kindness.”
       
-      
-
+                </h2>
+                <p class="quote-card-name">Mailen Quirino</p>
+                <div class="quote-card-title">
+                  <p>Customer & Dual Italian Citizen</p>
+                </div>
+              </div>
+            </div>
+      </div>
 
       <!-- Uncomment the code below for third party form injection -->
       <!-- <div class="form-card-third-party"> -->
