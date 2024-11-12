@@ -73,20 +73,25 @@
         {
           "@context": "https://schema.org",
           "@type": "Service",
-          "serviceType": "Italian Citizenship Eligibility Check",
+          "serviceType": "Italian Citizenship Eligibility Check & Consultation",
           "provider": {
             "@type": "Organization",
             "name": "Citizenship Italia",
-            "url": "https://citizenshipitalia.com/",
-            "logo": "https://citizenshipitalia.com//logos/LOGO%203.webp"
+            "url": "https://citizenshipitalia.com",
+            "logo": "https://citizenshipitalia.com/logos/LOGO%203.webp",
+            "description": "Citizenship Italia offers a free online eligibility check for Italian citizenship through descent and provides a free consultation to guide you through the process."
           },
-          "description": "Free Italian citizenship eligibility check and consultation to assist with reclaiming dual Italian citizenship through descent.",
+          "areaServed": {
+            "@type": "Place",
+            "name": "Canada, USA"
+          },
+          "description": "Free Italian citizenship eligibility check and consultation to assist Americans and Canadians in reclaiming dual Italian citizenship through descent.",
           "offers": {
             "@type": "Offer",
             "url": "https://citizenshipitalia.com/italian-citizenship-eligibility-check",
             "price": "0",
             "priceCurrency": "USD",
-            "description": "Free consultation service to determine eligibility for dual Italian citizenship for Americans and Canadians."
+            "description": "Free consultation and eligibility check for Italian citizenship"
           },
           "review": {
             "@type": "Review",
@@ -101,6 +106,39 @@
               "bestRating": "5"
             }
           }
+        }
+        </script>
+        
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How can I check if I qualify for Italian citizenship?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You can use our free online eligibility tool to see if you may qualify for Italian citizenship by descent. The tool takes only a few minutes to complete."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What happens after I complete the eligibility check?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "If you qualify, you will be able to book a free consultation with our team to discuss your case in more detail and begin the citizenship process."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is the consultation truly free?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, the consultation is completely free. During the consultation, we will discuss your eligibility and outline the next steps for obtaining Italian citizenship."
+              }
+            }
+          ]
         }
         </script>
         
