@@ -35,6 +35,13 @@
   padding: 16px;
 }
 
+.list {
+  font-size: 18px;
+}
+
+.head2 {
+  font-size: none;
+}
 
 @media screen and (max-width: 660px) {
   .card-product {
@@ -48,6 +55,10 @@
     margin-left: auto;
     margin-right: auto;
     border-radius: 6px;
+  }
+
+  .list {
+    font-size: 24px;
   }
 
   .card-product img {
@@ -84,5 +95,9 @@
     text-align: left;
     padding: 16px; /* Keep consistent padding */
     width: 100%; /* Ensure full width within container */
+  }
+
+  .head2 {
+    font-size: 35px;
   }
 }
