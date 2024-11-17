@@ -76,11 +76,62 @@
   background-color: #0056b3;
 }
 
+/* Collapsible Pricing Tables */
+.category-toggle {
+  width: 100%;
+  background-color: #f4f4f4;
+  padding: 1.2em;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+.category-toggle:hover {
+  background-color: #e0e0e0;
+}
+
+.category-toggle .arrow {
+  position: absolute;
+  right: 20px;
+  font-size: 1em;
+  transition: transform 0.3s ease;
+}
+
+.category-toggle.active .arrow {
+  transform: rotate(180deg); /* Rotate arrow when active */
+}
+
+.pricing-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.pricing-content.open {
+  max-height: 1000px; /* Large enough to accommodate content */
+}
+
+.pricing-category {
+  margin-bottom: 2em;
+}
+
+/* Spacing between headers */
+.pricing-section .pricing-category + .pricing-category {
+  margin-top: 2em;
+}
+
+
+
 
 /* For larger screens */
 @media (min-width: 1200px) {
   .service p {
-    font-size: 40px;
+    font-size: 1.2em;
   }
 
   .service strong {
