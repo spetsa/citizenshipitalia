@@ -1,0 +1,162 @@
+.pricing-section {
+  text-align: center;
+  padding: 2em;
+  background-color: #f9f9f9;
+}
+
+.pricing-table {
+  display: table;
+  width: 100%;
+  max-width: 800px;
+  margin: 2em auto;
+  border-collapse: collapse;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.pricing-row {
+  display: table-row;
+}
+
+.service,
+.price {
+  display: table-cell;
+  padding: 1em;
+  border-bottom: 1px solid #ddd; /* Consistent bottom border */
+  vertical-align: middle; /* Aligns content vertically */
+}
+
+.service {
+  text-align: left;
+  width: 70%; /* Assign width to keep layout consistent */
+}
+
+.service strong {
+  font-size: 1.2em;
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.service p {
+  font-size: 0.95em;
+  color: #555;
+  margin: 0;
+}
+
+.price {
+  text-align: right;
+  font-size: 1.2em;
+  color: #007BFF;
+}
+
+.pricing-row:last-child .service,
+.pricing-row:last-child .price {
+  border-bottom: none; /* Remove border for the last row */
+}
+
+.note {
+  font-size: 0.9em;
+  color: #777;
+  margin-top: 1em;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 0.8em 1.5em;
+  color: #fff;
+  background-color: #007BFF;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1em;
+  margin-top: 1em;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}
+
+
+/* For larger screens */
+@media (min-width: 1200px) {
+  .service p {
+    font-size: 40px;
+  }
+
+  .service strong {
+    font-size: 1.5em; /* Scales up the title */
+  }
+
+  .price {
+    font-size: 1.5em;
+  }
+
+  .cta-button {
+    font-size: 1.2em;
+    padding: 1em 2em;
+  }
+}
+
+/* For medium screens (e.g., tablets in landscape mode) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .service p {
+    font-size: 22px;
+  }
+
+  .service strong {
+    font-size: 1.4em; /* Slightly smaller title */
+  }
+
+  .price {
+    font-size: 1.4em;
+  }
+
+  .cta-button {
+    font-size: 1.1em;
+    padding: 0.9em 1.8em;
+  }
+}
+
+/* For tablets in portrait mode or smaller devices */
+@media (min-width: 768px) and (max-width: 991px) {
+  .service p {
+    font-size: 24px;
+  }
+
+  .service strong {
+    font-size: 26px;
+  }
+
+  .price {
+    font-size: 26px;
+  }
+
+  .cta-button {
+    font-size: 1em;
+    padding: 0.8em 1.5em;
+  }
+}
+
+/* For small mobile devices */
+@media (max-width: 767px) {
+  .service p {
+    font-size: 24px;
+  }
+
+  .service strong {
+    font-size: 26px;
+  }
+
+  .price {
+    font-size: 26px;
+  }
+
+  .cta-button {
+    font-size: 0.9em;
+    padding: 0.7em 1.3em;
+  }
+
+  .pricing-table {
+    width: 95%; /* Reduce the table width to fit smaller screens */
+  }
+}
