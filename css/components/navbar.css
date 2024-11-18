@@ -12,7 +12,7 @@
   border-radius: 0%;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-  min-width: 865px;
+  min-width: 949px;
   
 }
 
@@ -104,7 +104,7 @@
 
 }
 
-@media screen and (max-width: 864px) {
+@media screen and (max-width: 937px) {
   .navbar ul {
     font-size: 30px !important;
     padding-bottom: 10px;
