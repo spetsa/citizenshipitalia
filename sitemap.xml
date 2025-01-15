@@ -5,45 +5,60 @@
   
   <!-- Homepage -->
   <url>
-    <loc>https://citizenshipitalia.com/</loc>
-    <lastmod>2024-11-12T00:00:00+00:00</lastmod>
+    <loc>https://citizenshipitalia.com/index.html</loc>
+    <lastmod>2025-01-14T22:33:03+00:00</lastmod>
     <priority>1.00</priority>
   </url>
 
   <!-- Eligibility Check Page -->
   <url>
     <loc>https://citizenshipitalia.com/italian-citizenship-eligibility-check.html</loc>
-    <lastmod>2024-11-12T00:00:00+00:00</lastmod>
-    <priority>0.90</priority>
-  </url>
-
-  <!-- FAQ Page -->
-  <url>
-    <loc>https://citizenshipitalia.com/italian-citizenship-by-descent-faq.html</loc>
-    <lastmod>2024-11-12T00:00:00+00:00</lastmod>
-    <priority>0.85</priority>
-  </url>
-
-  <!-- Citizenship Process Page -->
-  <url>
-    <loc>https://citizenshipitalia.com/italian-dual-citizenship-process.html</loc>
-    <lastmod>2024-11-12T00:00:00+00:00</lastmod>
-    <priority>0.85</priority>
-  </url>
-
-  <!-- Pricing Page -->
-  <url>
-    <loc>https://citizenshipitalia.com/italian-citizenship-by-descent-pricing.html</loc>
-    <lastmod>2024-11-12T00:00:00+00:00</lastmod>
-    <priority>0.85</priority>
+    <lastmod>2025-01-14T22:33:03+00:00</lastmod>
+    <priority>0.80</priority>
   </url>
 
   <!-- Our Team Page -->
   <url>
     <loc>https://citizenshipitalia.com/our-team.html</loc>
-    <lastmod>2024-11-12T00:00:00+00:00</lastmod>
+    <lastmod>2025-01-14T22:33:03+00:00</lastmod>
     <priority>0.80</priority>
   </url>
+
+  <!-- Citizenship Process Page -->
+  <url>
+    <loc>https://citizenshipitalia.com/italian-dual-citizenship-process.html</loc>
+    <lastmod>2025-01-14T22:33:03+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Information and Resources Page -->
+  <url>
+    <loc>https://citizenshipitalia.com/italian-citizenship-information-and-resources.html</loc>
+    <lastmod>2025-01-14T22:33:03+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Pricing Page -->
+  <url>
+    <loc>https://citizenshipitalia.com/italian-citizenship-by-descent-pricing.html</loc>
+    <lastmod>2025-01-14T22:33:03+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- FAQ Page -->
+  <url>
+    <loc>https://citizenshipitalia.com/italian-citizenship-by-descent-faq.html</loc>
+    <lastmod>2025-01-14T22:33:03+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+
+  <!-- Relocation and Application Page -->
+  <url>
+    <loc>https://citizenshipitalia.com/italian-citizenship-by-descent-how-to-relocate-and-apply-from-italy.html</loc>
+    <lastmod>2025-01-14T22:33:03+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+
 </urlset>
 
 
