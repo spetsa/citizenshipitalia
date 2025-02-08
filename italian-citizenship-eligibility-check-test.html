@@ -241,45 +241,68 @@
       }
     </script>
 
-    <script>
-        function checkEligibility() {
-    const selectedOption = document.querySelector('input[name="question1"]:checked');
+<script>
+  function checkEligibility() {
+      const selectedOption = document.querySelector('input[name="question1"]:checked');
 
-    // Check if no option is selected
-    if (!selectedOption) {
-        alert('Please select an answer.');
-        return; // Stop function execution if no option is selected
-    }
+      // Check if no option is selected
+      if (!selectedOption) {
+          alert('Please select an answer.');
+          return;
+      }
 
-    const answer = selectedOption.value;
+      const answer = selectedOption.value;
+      const formContainer = document.getElementById('eligibility-form');
 
-    // If user selects "I'm not sure"
-    if (answer === 'no') {
-        // Replace the form content with a message stating ineligibility
-        const formContainer = document.getElementById('eligibility-form');
-        formContainer.innerHTML = `
-            <h2>Sorry, unfortunately you're not eligible for a free consultation.</h2>
-        `;
-    } 
-    // If user selects any eligible option
-    else if (answer === 'yes1' || answer === 'yes2') {
-        // Replace the form content with a message and the iframe
-        const formContainer = document.getElementById('eligibility-form');
-        formContainer.innerHTML = `
-            <h2>You may be eligible for an Italian Citizenship!</h2>
-            <br>
-            <h3> Book a Free Consultation with us by waiting for our scheduling tool to load.</h3>
-            <iframe
-                src="https://calendly.com/citizenshipitalia/30min" 
-                width="100%" 
-                height="100%" 
-                frameborder="0"
-                scrolling="yes">
-            </iframe>
-        `;
-    }
-}
-  </script>
+      // If user selects "I'm not sure"
+      if (answer === 'no') {
+          formContainer.innerHTML = `
+              <h2>Sorry, unfortunately you're not eligible for a free consultation.</h2>
+          `;
+      } 
+      // If user is eligible, show Calendly
+      else if (answer === 'yes1' || answer === 'yes2') {
+          formContainer.innerHTML = `
+              <h2>You may be eligible for an Italian Citizenship!</h2>
+              <br>
+              <h3>Book a Free Consultation with us by waiting for our scheduling tool to load.</h3>
+              <iframe
+                  id="calendly-iframe"
+                  src="https://calendly.com/citizenshipitalia/30min?embed_domain=${window.location.hostname}&embed_type=Inline"
+                  width="100%" 
+                  height="630px"
+                  frameborder="0"
+                  scrolling="no">
+              </iframe>
+          `;
+
+          // Ensure the listener is attached after the iframe loads
+          setTimeout(() => {
+              attachCalendlyListener();
+          }, 2000);
+      }
+  }
+
+  function attachCalendlyListener() {
+      // Ensure event listener is attached once
+      if (!window.calendlyListenerAttached) {
+          window.addEventListener("message", function(event) {
+              console.log("Received event from: ", event.origin);
+              console.log("Event Data: ", event.data);
+
+              // Ensure message is from Calendly
+              if (event.origin.includes("calendly.com") && event.data.event === "calendly.event_scheduled") {
+                  console.log("Calendly Event Detected: Redirecting to Thank You page...");
+                  window.location.href = "https://citizenshipitalia.com/thank-you.html";
+              }
+          });
+
+          console.log("✅ Calendly Event Listener Attached");
+          window.calendlyListenerAttached = true;
+      }
+  }
+</script>
+
   
 
     <!-- Reddit Pixel -->
