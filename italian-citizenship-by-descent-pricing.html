@@ -397,6 +397,38 @@
         <p style="text-align: center; margin-left: 15px; margin-right: 15px;">* Additional fees may include taxes, government charges, and shipping costs. Any fee set by the Italian government is subject to change. All prices are in USD unless otherwise noted.</p>
 
 
+        <h1 class="header" style="text-align: center; margin-right: 20px; margin-LEFT: 20px;">Book a Call With our Team</h2>
+        </h1>
+
+        <div class="quiz-container">
+          <form id="eligibility-form">
+              <h2>Free Consultation Eligibility Check</h2>
+              <br>
+              <h2>Which answer applies to you.</h2>
+              <br>
+              <br>
+              <label class="quiz-option">
+                  <input type="radio" name="question1" value="yes1" required>
+                  <span>My ancestor was born in Italy and passed away outside of Italy after March 17, 1861.</span>
+              </label>
+              <label class="quiz-option">
+                  <input type="radio" name="question1" value="yes2">
+                  <span>I am a descendant of a non-Italian woman who married an Italian citizen before 1983.</span>
+              </label>
+              <label class="quiz-option">
+                <input type="radio" name="question1" value="yes2">
+                <span>
+                  I have an Italian female ancestor who had a child before 1948. I am a descendent of that woman and child. 
+                </span>
+            </label>
+              <label class="quiz-option">
+                  <input type="radio" name="question1" value="no">
+                  <span>I’m not sure or none of the above answers apply to me.</span>
+              </label>
+              <button type="button" class="btn-medium" onclick="checkEligibility()">Check Eligibility</button>
+          </form>
+      </div>
+
       
       
     <div class="quote-card"> </div>
@@ -428,6 +460,68 @@
           navLinks.classList.toggle('active');
       }
     </script>
+
+<script>
+  function checkEligibility() {
+      const selectedOption = document.querySelector('input[name="question1"]:checked');
+
+      // Check if no option is selected
+      if (!selectedOption) {
+          alert('Please select an answer.');
+          return;
+      }
+
+      const answer = selectedOption.value;
+      const formContainer = document.getElementById('eligibility-form');
+
+      // If user selects "I'm not sure"
+      if (answer === 'no') {
+          formContainer.innerHTML = `
+              <h2>Sorry, unfortunately you're not eligible for a free consultation.</h2>
+          `;
+      } 
+      // If user is eligible, show Calendly
+      else if (answer === 'yes1' || answer === 'yes2') {
+          formContainer.innerHTML = `
+              <h2>You may be eligible for an Italian Citizenship!</h2>
+              <br>
+              <h3>Book a Free Consultation with us by waiting for our scheduling tool to load.</h3>
+              <iframe
+                  id="calendly-iframe"
+                  src="https://calendly.com/citizenshipitalia/30min?embed_domain=${window.location.hostname}&embed_type=Inline"
+                width="100%" 
+                height="100%" 
+                frameborder="0"
+                scrolling="yes">
+              </iframe>
+          `;
+
+          // Ensure the listener is attached after the iframe loads
+          setTimeout(() => {
+              attachCalendlyListener();
+          }, 2000);
+      }
+  }
+
+  function attachCalendlyListener() {
+      // Ensure event listener is attached once
+      if (!window.calendlyListenerAttached) {
+          window.addEventListener("message", function(event) {
+              console.log("Received event from: ", event.origin);
+              console.log("Event Data: ", event.data);
+
+              // Ensure message is from Calendly
+              if (event.origin.includes("calendly.com") && event.data.event === "calendly.event_scheduled") {
+                  console.log("Calendly Event Detected: Redirecting to Thank You page...");
+                  window.location.href = "https://citizenshipitalia.com/thank-you.html";
+              }
+          });
+
+          console.log("✅ Calendly Event Listener Attached");
+          window.calendlyListenerAttached = true;
+      }
+  }
+</script>
       
       <!-- Reddit Pixel -->
 <script>
