@@ -144,7 +144,33 @@
         </div>
       </div>
       
-      
+      <div class="quiz-container">
+        <form id="eligibility-form">
+            <h2>Free Consultation Eligibility Check</h2>
+            <br>
+            <h3>Do you know the name of your Italian ancestor, their birth date, and place of birth?</h3>
+            <br>
+            <br>
+            <label class="quiz-option">
+                <input type="radio" name="question1" value="yes1" required>
+                <span>Yes, I know their name, birth date, and place of birth.</span>
+            </label>
+            <label class="quiz-option">
+                <input type="radio" name="question1" value="yes2">
+                <span>I know two of the above</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="question1" value="no">
+              <span>I know one of the above</span>
+          </label>
+          </label>
+            <label class="quiz-option">
+                <input type="radio" name="question1" value="no">
+                <span>I don't have any information.</span>
+            </label>
+            <button type="button" class="btn-medium" onclick="checkEligibility()">Check Eligibility</button>
+        </form>
+    </div>
       
     <div class="quote-card"> 
       

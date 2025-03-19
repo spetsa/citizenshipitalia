@@ -216,34 +216,33 @@
 
 
 
-        <div class="quiz-container">
-          <form id="eligibility-form">
-              <h2 style="font-weight: bold;">Free Consultation Eligibility Check</h2>
-              <br>
-              <h2>Which answer applies to you.</h2>
-              <br>
-              <br>
-              <label class="quiz-option">
-                  <input type="radio" name="question1" value="yes1" required>
-                  <span>My ancestor was born in Italy and passed away outside of Italy after March 17, 1861.</span>
-              </label>
-              <label class="quiz-option">
-                  <input type="radio" name="question1" value="yes2">
-                  <span>I am a descendant of a non-Italian woman who married an Italian citizen before 1983.</span>
-              </label>
-              <label class="quiz-option">
-                <input type="radio" name="question1" value="yes2">
-                <span>
-                  I have an Italian female ancestor who had a child before 1948. I am a descendent of that woman and child. 
-                </span>
+      <div class="quiz-container">
+        <form id="eligibility-form">
+            <h2>Free Consultation Eligibility Check</h2>
+            <br>
+            <h3>Do you know the name of your Italian ancestor, their birth date, and place of birth?</h3>
+            <br>
+            <br>
+            <label class="quiz-option">
+                <input type="radio" name="question1" value="yes1" required>
+                <span>Yes, I know their name, birth date, and place of birth.</span>
             </label>
-              <label class="quiz-option">
-                  <input type="radio" name="question1" value="no">
-                  <span>I’m not sure or none of the above answers apply to me.</span>
-              </label>
-              <button type="button" class="btn-medium" onclick="checkEligibility()">Check Eligibility</button>
-          </form>
-      </div>
+            <label class="quiz-option">
+                <input type="radio" name="question1" value="yes2">
+                <span>I know two of the above</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="question1" value="no">
+              <span>I know one of the above</span>
+          </label>
+          </label>
+            <label class="quiz-option">
+                <input type="radio" name="question1" value="no">
+                <span>I don't have any information.</span>
+            </label>
+            <button type="button" class="btn-medium" onclick="checkEligibility()">Check Eligibility</button>
+        </form>
+    </div>
 
       <div class="card-product">
         <div class="card-product-infos">
@@ -561,7 +560,7 @@
                 <h3>Book a Consultation with us by waiting for our scheduling tool to load.</h3>
                 <iframe
                     id="calendly-iframe"
-                    src="https://calendly.com/d/crqj-c5d-v5v?embed_domain=${window.location.hostname}&embed_type=Inline"
+                    src="https://calendly.com/citizenshipitalia/30min?embed_domain=${window.location.hostname}&embed_type=Inline"
                   width="100%" 
                   height="100%" 
                   frameborder="0"
