@@ -182,25 +182,34 @@
               <form id="eligibility-form">
                   <h2>Free Consultation Eligibility Check</h2>
                   <br>
-                  <h3>Do you know the name of your Italian ancestor, their birth date, and place of birth?</h3>
+                  <h3>Select the answer that best describes your situation</h3>
                   <br>
                   <br>
                   <label class="quiz-option">
                       <input type="radio" name="question1" value="yes1" required>
-                      <span>Yes, I know their name, birth date, and place of birth.</span>
+                      <span>My parent(s) or grandparent(s) were born in Italy and never became U.S. citizens.</span>
+                  </label>
+                  <label class="quiz-option">
+                    <input type="radio" name="question1" value="yes1" required>
+                    <span>My parent(s) or grandparent(s) were born in Italy and naturalized as U.S. citizens after August 15, 1992.
+                    </span>
                   </label>
                   <label class="quiz-option">
                       <input type="radio" name="question1" value="yes2">
-                      <span>I know two of the above</span>
+                      <span>My Italian born parent(s) or grandparent(s) only became U.S. citizens after their child (my parent or me) turned 21.</span>
+                  </label>
+                  <label class="quiz-option">
+                    <input type="radio" name="question1" value="yes2">
+                    <span>My parent(s) or grandparent(s) were recognized as Italian citizens through Jure Sanguinis.</span>
                   </label>
                   <label class="quiz-option">
                     <input type="radio" name="question1" value="no">
-                    <span>I know one of the above</span>
-                </label>
+                    <span>I need to apply through my great-grandparents, as neither my parents nor my grandparents were Italian citizens.</span>
+                  </label>
                 </label>
                   <label class="quiz-option">
                       <input type="radio" name="question1" value="no">
-                      <span>I don't have any information.</span>
+                      <span>None of the above or I’m not sure.</span>
                   </label>
                   <button type="button" class="btn-medium" onclick="checkEligibility()">Check Eligibility</button>
               </form>
