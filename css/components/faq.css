@@ -82,6 +82,13 @@
     font-size: 16px;
 }
 
+.text-no-inherit {
+    /* either force left‑align: */
+    text-align: left !important;
+    /* or reset to the browser default: */
+    /* text-align: initial !important; */
+  }
+
 .hyperlink {
     color: blue  !important;
     text-decoration: underline !important;
@@ -118,6 +125,50 @@
   .eligibility-table tbody tr:hover {
     background-color: #fafafa;
   }
+
+  /* ===== BLOG IMAGES ===== */
+
+/* Figure wrapper for standalone images */
+.blog-figure {
+    margin: 2rem 0;
+    text-align: center;
+  }
+  
+  /* Main responsive image */
+  .blog-figure .blog-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  /* Caption styling */
+  .blog-figure .blog-caption {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.5rem;
+    line-height: 1.4;
+  }
+  
+  /* Inline images that float alongside text */
+  .blog-img-inline {
+    max-width: 45%;
+    height: auto;
+    margin: 0 1.5rem 1.5rem 0;
+    float: left;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  
+  /* Clearfix to ensure container expands around floats */
+  .blog-content::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  
   
 
 /* Responsive Design */
@@ -146,6 +197,13 @@
 
     .eligibility-table {
         font-size: 28px; 
+      }
+
+      .blog-img-inline {
+        float: none;
+        display: block;
+        max-width: 100%;
+        margin: 1.5rem auto;
       }
     
 }
