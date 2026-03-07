@@ -1,0 +1,49 @@
+.breadcrumb {
+    max-width: 1200px;
+    margin: 22px auto 8px auto;
+    padding: 0 15px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #666 !important;
+	background: transparent !important;
+}
+
+.breadcrumb a {
+    font-size: inherit;
+    text-decoration: underline;
+    color: #666 !important;   /* fix */
+}
+
+.breadcrumb [aria-current="page"] {
+    color: #444 !important;
+}
+
+.breadcrumb-separator {
+    margin: 0 6px;
+    color: #999;
+}
+
+@media screen and (max-width: 768px) {
+    .breadcrumb {
+        font-size: 13px;
+        margin: 18px auto 6px auto;
+        padding: 0 15px;
+    }
+
+    .breadcrumb-separator {
+        margin: 0 5px;
+    }
+}
+
+	@media screen and (max-width: 768px) {
+    .breadcrumb {
+        font-size: 22px;
+        margin: 18px auto 6px auto;
+        padding: 0 15px;
+    }
+
+    .breadcrumb-separator {
+        margin: 0 5px;
+    }
+}
+			
