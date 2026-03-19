@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+<urlset 
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
                       http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
   <!-- Homepage -->
   <url>
     <loc>https://citizenshipitalia.com/</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.00</priority>
   </url>
 
-  <!-- Core Service Pages -->
+  <!-- Core Pages -->
   <url>
     <loc>https://citizenshipitalia.com/italian-citizenship-eligibility-check</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
 
   <url>
     <loc>https://citizenshipitalia.com/italian-dual-citizenship-process</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
 
   <url>
     <loc>https://citizenshipitalia.com/italian-citizenship-by-descent-pricing</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://citizenshipitalia.com/our-team</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
@@ -45,60 +45,149 @@
   <!-- Resource Hub -->
   <url>
     <loc>https://citizenshipitalia.com/italian-citizenship-information-and-resources</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- Resource Articles -->
+  <!-- Legal Authority Pages -->
+  <url>
+    <loc>https://citizenshipitalia.com/italian-citizenship-law-74-2025</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://citizenshipitalia.com/italian-citizenship-eligibility</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://citizenshipitalia.com/1948-italian-citizenship-cases</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://citizenshipitalia.com/italian-citizenship-minor-rule</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Eligibility Pages -->
+  <url>
+    <loc>https://citizenshipitalia.com/italian-citizenship-through-grandparents</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://citizenshipitalia.com/italian-citizenship-through-parents</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://citizenshipitalia.com/italian-citizenship-great-grandparents</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://citizenshipitalia.com/italian-citizenship-family-tree-examples</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://citizenshipitalia.com/italian-citizenship-naturalization-rules</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <!-- Process Pages -->
+  <url>
+    <loc>https://citizenshipitalia.com/cost-of-italian-citizenship</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://citizenshipitalia.com/italian-citizenship-timeline</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://citizenshipitalia.com/italian-citizenship-consulate-vs-court</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://citizenshipitalia.com/apply-for-italian-citizenship-in-italy</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Existing Resource Articles -->
   <url>
     <loc>https://citizenshipitalia.com/italian-citizenship-information-and-resources/how-to-get-started-with-dual-us-italian-citizenship</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://citizenshipitalia.com/italian-citizenship-information-and-resources/what-is-jure-sanguinis-and-how-can-it-be-applied-for</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
 
   <url>
-    <loc>https://citizenshipitalia.com/italian-citizenship-information-and-resources/documents-you-will-need-to-obtain-dual-us-italian-citizenship</loc>
-    <lastmod>2026-03-16</lastmod>
+    <loc>https://citizenshipitalia.com/italian-citizenship-information-and-resources/documents-needed-for-italian-citizenship</loc>
+    <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
 
   <url>
-    <loc>https://citizenshipitalia.com/italian-citizenship-information-and-resources/getting-dual-italian-citizenship-through-great-grandparents-gandparents-or-parents</loc>
-    <lastmod>2026-03-16</lastmod>
+    <loc>https://citizenshipitalia.com/italian-citizenship-information-and-resources/citizenship-through-grandparents-or-parents</loc>
+    <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
 
   <url>
-    <loc>https://citizenshipitalia.com/italian-citizenship-information-and-resources/italian-citizenship-by-descent-how-to-relocate-and-apply-from-italy</loc>
-    <lastmod>2026-03-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
-  </url>
-
-  <url>
-    <loc>https://citizenshipitalia.com/italian-citizenship-information-and-resources/italian-citizenship-by-descent-faq</loc>
-    <lastmod>2026-03-16</lastmod>
+    <loc>https://citizenshipitalia.com/italian-citizenship-information-and-resources/apply-from-italy</loc>
+    <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
 
   <!-- Legal -->
   <url>
-    <loc>https://citizenshipitalia.com/TOS</loc>
-    <lastmod>2026-03-16</lastmod>
+    <loc>https://citizenshipitalia.com/terms-of-service</loc>
+    <lastmod>2026-03-07</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.30</priority>
+    <priority>0.40</priority>
   </url>
 
 </urlset>
+
+
