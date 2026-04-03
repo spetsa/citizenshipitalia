@@ -1,28 +1,31 @@
-# Allow all search engines full access to the site
+# Citizenship Italia — robots.txt
+# https://citizenshipitalia.com
+
+# Allow all search engines and AI crawlers full access
 User-agent: *
 Allow: /
-
-# Disallow any unnecessary or temporary directories (example placeholders)
 Disallow: /private/
 Disallow: /temp/
 Disallow: /drafts/
 
-# Sitemap reference for easy indexing
-Sitemap: https://citizenshipitalia.com/sitemap.xml
-
-# Googlebot directives (optional, but allows finer control if needed)
-User-agent: Googlebot
+# Allow AI crawlers explicitly for AIEO
+User-agent: GPTBot
 Allow: /
-Crawl-delay: 10          # Only if server load is a concern
 
-# Bingbot directives (optional)
-User-agent: Bingbot
+User-agent: ChatGPT-User
 Allow: /
-Crawl-delay: 10          # Helps reduce load if Bing is aggressively crawling
 
-# Set additional disallowed directories for all bots if needed
-User-agent: *
-Disallow: /temporary/     # Example of additional restricted directory
+User-agent: Google-Extended
+Allow: /
 
-# Repeat sitemap reference for clarity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Sitemap
 Sitemap: https://citizenshipitalia.com/sitemap.xml
