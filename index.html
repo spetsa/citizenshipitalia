@@ -289,63 +289,39 @@
 </section>
 
 <!-- ============================================================
-     ELIGIBILITY CHECK CTA (Quiz intro)
+     ELIGIBILITY QUIZ (inline on homepage)
 ============================================================ -->
 <section class="section section--dark" id="eligibility">
   <div class="container">
-    <div class="grid grid--2" style="align-items: center; gap: var(--space-3xl);">
+    <div class="grid grid--2" style="align-items: start; gap: var(--space-3xl);">
       <div>
         <p class="eyebrow" style="color: var(--gold-light);">Eligibility Check</p>
-        <h2 style="color: var(--white); margin-bottom: var(--space-lg);">Not sure if you qualify?<br>Find out in 2 minutes.</h2>
-        <p style="color: rgba(255,255,255,0.75); margin-bottom: var(--space-xl);">Our 4-question quiz walks through the key eligibility factors under Law 74/2025 — which ancestor, naturalization timing, maternal line, and your location. We'll tell you which route fits your case and what to expect next.</p>
+        <h2 style="color: var(--white); margin-bottom: var(--space-lg);">Find out if you qualify<br>in 2 minutes.</h2>
+        <p style="color: rgba(255,255,255,0.75); margin-bottom: var(--space-xl);">Answer a few quick questions and we'll tell you your recommended route — consulate, court, or 1948 case — and whether you're ready to book a free consultation.</p>
         <ul style="display: flex; flex-direction: column; gap: var(--space-md); margin-bottom: var(--space-2xl);">
           <li style="display: flex; align-items: center; gap: var(--space-sm); color: rgba(255,255,255,0.75); font-size: 0.9375rem;">
             <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="var(--gold)" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            4 questions, 2 minutes
+            Free — no signup required
           </li>
           <li style="display: flex; align-items: center; gap: var(--space-sm); color: rgba(255,255,255,0.75); font-size: 0.9375rem;">
             <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="var(--gold)" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            Personalized route recommendation
+            Accounts for Law 74/2025 restrictions
           </li>
           <li style="display: flex; align-items: center; gap: var(--space-sm); color: rgba(255,255,255,0.75); font-size: 0.9375rem;">
             <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="var(--gold)" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            Ends with a free consultation booking
+            Book your free consultation at the end
           </li>
         </ul>
-        <a href="check-eligibility.html" class="btn btn--gold btn--lg">Take the Eligibility Quiz →</a>
       </div>
 
-      <div style="background-color: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-xl); overflow: hidden;">
-        <div style="padding: var(--space-xl); border-bottom: 1px solid rgba(255,255,255,0.1);">
-          <p style="color: var(--gold-light); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-sm);">Quick Preview</p>
-          <h3 style="color: var(--white); font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 4px;">Which ancestor was born in Italy?</h3>
-          <p style="font-size: 0.85rem; color: rgba(255,255,255,0.55);">Your eligibility route depends on the generation of your Italian ancestor.</p>
-        </div>
-        <div style="padding: var(--space-lg);">
-          <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
-            <div style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); cursor: pointer;">
-              <span style="font-size: 1.3rem;">👨‍👩‍👧</span>
-              <div>
-                <p style="font-weight: 600; color: var(--white); font-size: 0.9rem; margin:0;">Parent</p>
-                <p style="font-size: 0.78rem; color: rgba(255,255,255,0.5); margin:0;">My mother or father was born in Italy</p>
-              </div>
-            </div>
-            <div style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); cursor: pointer;">
-              <span style="font-size: 1.3rem;">👴</span>
-              <div>
-                <p style="font-weight: 600; color: var(--white); font-size: 0.9rem; margin:0;">Grandparent</p>
-                <p style="font-size: 0.78rem; color: rgba(255,255,255,0.5); margin:0;">My grandmother or grandfather was born in Italy</p>
-              </div>
-            </div>
-            <div style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); cursor: pointer;">
-              <span style="font-size: 1.3rem;">📜</span>
-              <div>
-                <p style="font-weight: 600; color: var(--white); font-size: 0.9rem; margin:0;">Great-grandparent or earlier</p>
-                <p style="font-size: 0.78rem; color: rgba(255,255,255,0.5); margin:0;">My Italian ancestor is 3+ generations back</p>
-              </div>
-            </div>
+      <div id="eligibility-quiz" class="homepage-quiz-card">
+        <div class="quiz-wrapper">
+          <div class="quiz-progress">
+            <div class="quiz-progress__bar" style="width: 20%;"></div>
           </div>
-          <a href="check-eligibility.html" class="btn btn--gold" style="width: 100%; justify-content: center; margin-top: var(--space-lg);">Start the Real Quiz →</a>
+          <div id="quiz-dynamic">
+            <!-- Rendered by JS -->
+          </div>
         </div>
       </div>
     </div>

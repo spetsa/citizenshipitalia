@@ -71,6 +71,9 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  /* clip horizontal overflow at the viewport level — avoids iOS scroll-lock bug
+     that occurs when overflow-x: hidden is set directly on body */
+  overflow-x: clip;
 }
 
 body {
@@ -81,7 +84,6 @@ body {
   background-color: var(--ivory);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 
 img {
@@ -498,21 +500,42 @@ p {
 }
 
 .mobile-nav {
-  display: none;
+  display: flex;
+  flex-direction: column;
   position: fixed;
   top: 72px;
   left: 0;
   right: 0;
   background-color: var(--green-dark);
-  padding: var(--space-md) var(--space-lg) var(--space-xl);
-  box-shadow: var(--shadow-lg);
+  padding: 0 var(--space-lg);
   z-index: 99;
-  flex-direction: column;
   gap: 2px;
   border-top: 1px solid rgba(255,255,255,0.08);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition:
+    max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s ease,
+    padding 0.35s ease,
+    visibility 0s linear 0.35s;
 }
 
-.mobile-nav.open { display: flex; }
+.mobile-nav.open {
+  max-height: 480px;
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  padding: var(--space-md) var(--space-lg) var(--space-xl);
+  box-shadow: var(--shadow-lg);
+  transition:
+    max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s ease,
+    padding 0.35s ease,
+    visibility 0s linear 0s;
+}
 
 .mobile-nav a {
   display: block;
@@ -1397,6 +1420,38 @@ p {
   color: var(--charcoal);
 }
 
+/* --- Homepage inline quiz card --- */
+/* Resets dark-section colour inheritance so quiz text is legible on white card */
+.homepage-quiz-card .quiz-wrapper {
+  max-width: 100%;
+  margin: 0;
+  overflow: visible; /* don't create a scroll sub-context on the homepage */
+}
+
+.homepage-quiz-card,
+.homepage-quiz-card p,
+.homepage-quiz-card h2,
+.homepage-quiz-card h3,
+.homepage-quiz-card h4,
+.homepage-quiz-card span,
+.homepage-quiz-card li,
+.homepage-quiz-card label {
+  color: var(--charcoal);
+}
+
+.homepage-quiz-card .quiz-step-label {
+  color: var(--gray-500);
+}
+
+.homepage-quiz-card .quiz-option__sublabel,
+.homepage-quiz-card .color-muted {
+  color: var(--gray-500);
+}
+
+.homepage-quiz-card .quiz-result__icon--green { background: #e8f5e9; }
+.homepage-quiz-card .quiz-result__icon--amber { background: #fff8e1; }
+.homepage-quiz-card .quiz-result__icon--red   { background: #ffebee; }
+
 /* --- Calendly iframe section (outside quiz-wrapper, full width) --- */
 .calendly-embed-section {
   margin-top: var(--space-2xl);
@@ -1624,8 +1679,11 @@ p {
 /* --- Page Header (interior pages) --- */
 .page-header {
   background-color: var(--green-dark);
+  background-image:
+    linear-gradient(135deg, rgba(27,58,42,0.85) 0%, rgba(27,58,42,0.60) 55%, rgba(196,150,90,0.18) 100%),
+    url('../webp-conversions/italy_sea_2_op.webp');
   background-size: cover;
-  background-position: center;
+  background-position: center 40%;
   background-repeat: no-repeat;
   padding: calc(72px + var(--space-3xl)) 0 var(--space-3xl);
 }
@@ -1924,6 +1982,7 @@ p {
 
   .page-header {
     padding: calc(72px + var(--space-2xl)) 0 var(--space-2xl);
+    background-position: center 30%;
   }
 
   .page-header h1 {
@@ -2030,6 +2089,7 @@ p {
 
   .page-header {
     padding: calc(72px + var(--space-lg)) 0 var(--space-lg);
+    background-position: center 25%;
   }
 
   .page-header h1 {
