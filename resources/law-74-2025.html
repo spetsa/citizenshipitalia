@@ -13,8 +13,11 @@
   <link rel="icon" type="image/x-icon" href="../logos/italy_32x32.webp">
   <link rel="canonical" href="https://citizenshipitalia.com/resources/law-74-2025.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <!-- Fonts: async load to avoid render-blocking -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
   <link rel="stylesheet" href="../css/styles.css">
   <script type="application/ld+json">
   {
@@ -42,7 +45,7 @@
 <nav class="navbar navbar--solid" id="navbar">
   <div class="navbar__inner">
     <a href="../index.html" class="navbar__logo">
-      <img src="../logos/logo-text-white.webp" alt="Citizenship Italia">
+      <img src="../logos/logo-text-white.webp" alt="Citizenship Italia" width="220" height="43">
     </a>
     <ul class="navbar__nav" role="list">
       <li><a href="../check-eligibility.html" class="nav-link">Check Eligibility</a></li>
@@ -68,6 +71,7 @@
   <a href="../check-eligibility.html" class="btn btn--primary">Check Eligibility →</a>
 </div>
 
+<main id="main-content">
 <div class="page-header">
   <div class="container">
     <nav aria-label="Breadcrumb" style="margin-bottom: var(--space-lg);">
@@ -132,7 +136,7 @@
       </ul>
       <p>If your claim falls into any of these categories, the new law does not restrict your application. The standard Jure Sanguinis requirements still apply (citizenship transmission not interrupted, ancestor did not naturalize before transmitting citizenship, etc.), but there is no new generational barrier for you.</p>
 
-      <img src="../webp-conversions/court1.webp" alt="Italian court — Law 74/2025 opens new court-based pathways for citizenship by descent" class="article-img" style="object-position: center 30%" loading="lazy">
+      <img src="../webp-conversions/court1.webp" alt="Italian court — Law 74/2025 opens new court-based pathways for citizenship by descent" class="article-img" style="object-position: center 30%" loading="lazy" width="2048" height="1366">
 
       <h2>What about 1948 cases?</h2>
       <p>1948 cases — where Italian citizenship was transmitted through a woman in the lineage before 1948 — are subject to the same generational limit under Law 74/2025. If the female ancestor in your 1948 case is a grandparent, the new law does not affect your eligibility. If she is a great-grandparent or earlier, the generational restriction applies.</p>
@@ -202,11 +206,13 @@
   </div>
 </section>
 
+</main>
+
 <footer class="footer">
   <div class="container">
     <div class="footer__grid">
       <div class="footer__brand">
-        <img src="../logos/logo-text-white.webp" alt="Citizenship Italia">
+        <img src="../logos/logo-text-white.webp" alt="Citizenship Italia" width="220" height="43">
         <p>Expert Italian citizenship by descent services. Consulate, court, and 1948 routes for Americans and Canadians.</p>
         <p style="margin-top: var(--space-md);">📞 <a href="tel:+14375627327" class="footer__link">+1 437-562-7327</a></p>
         <p style="margin-top: var(--space-sm);">📧 <a href="mailto:team@citizenshipitalia.com" class="footer__link">team@citizenshipitalia.com</a></p>

@@ -4,8 +4,6 @@
    ============================================================ */
 
 /* --- Google Fonts --- */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
-
 /* --- Custom Properties --- */
 :root {
   /* Color Palette */
@@ -22,6 +20,7 @@
   --gray-700:    #3D3D3D;
   --gray-500:    #6B6B6B;
   --gray-300:    #BDBDBD;
+  --gray-400:    #767676;
   --gray-100:    #F2F0EC;
   --white:       #FFFFFF;
   --red-soft:    #C0392B;
@@ -174,7 +173,7 @@ p {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--green-dark);
 }
 
 /* --- Layout --- */
@@ -261,7 +260,7 @@ p {
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  transition: all var(--dur) var(--ease);
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
   border: 2px solid transparent;
   white-space: nowrap;
   cursor: pointer;
@@ -282,13 +281,15 @@ p {
 
 .btn--gold {
   background-color: var(--gold);
-  color: var(--white);
+  color: var(--green-dark);
   border-color: var(--gold);
+  font-weight: 700;
 }
 
 .btn--gold:hover {
   background-color: #b3854d;
   border-color: #b3854d;
+  color: var(--green-dark);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }

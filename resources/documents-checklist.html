@@ -13,8 +13,11 @@
   <link rel="icon" type="image/x-icon" href="../logos/italy_32x32.webp">
   <link rel="canonical" href="https://citizenshipitalia.com/resources/documents-checklist.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <!-- Fonts: async load to avoid render-blocking -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
   <link rel="stylesheet" href="../css/styles.css">
 
   <script type="application/ld+json">
@@ -92,7 +95,7 @@
 <nav class="navbar navbar--solid" id="navbar">
   <div class="navbar__inner">
     <a href="../index.html" class="navbar__logo">
-      <img src="../logos/logo-text-white.webp" alt="Citizenship Italia">
+      <img src="../logos/logo-text-white.webp" alt="Citizenship Italia" width="220" height="43">
     </a>
     <ul class="navbar__nav" role="list">
       <li><a href="../check-eligibility.html" class="nav-link">Check Eligibility</a></li>
@@ -118,6 +121,7 @@
   <a href="../check-eligibility.html" class="btn btn--primary">Check Eligibility →</a>
 </div>
 
+<main id="main-content">
 <div class="page-header">
   <div class="container">
     <nav aria-label="Breadcrumb" style="margin-bottom: var(--space-lg);">
@@ -168,7 +172,7 @@
         <li><strong>U.S. Naturalization Document</strong> — if the relevant ancestor did naturalize, the actual naturalization certificate is required to establish the date</li>
       </ul>
 
-      <img src="../webp_blog_images/italianBC.webp" alt="Italian birth certificate — one of the key documents required for Jure Sanguinis" class="article-img" style="object-position: center center" loading="lazy">
+      <img src="../webp_blog_images/italianBC.webp" alt="Italian birth certificate — one of the key documents required for Jure Sanguinis" class="article-img" style="object-position: center center" loading="lazy" width="881" height="1191">
 
       <h2>Region-dependent documents (consulate applications)</h2>
       <p>If you are applying through an Italian consulate, requirements vary significantly by jurisdiction. Many consulates require documentation not only for direct ancestors but also for their spouses — which means you may need to provide birth, marriage, and death certificates for people who are not technically in your direct Italian lineage (such as your Italian ancestor's spouse who was not Italian).</p>
@@ -324,11 +328,13 @@
   </div>
 </section>
 
+</main>
+
 <footer class="footer">
   <div class="container">
     <div class="footer__grid">
       <div class="footer__brand">
-        <img src="../logos/logo-text-white.webp" alt="Citizenship Italia">
+        <img src="../logos/logo-text-white.webp" alt="Citizenship Italia" width="220" height="43">
         <p>Expert Italian citizenship by descent services. Consulate, court, and 1948 routes for Americans and Canadians.</p>
         <p style="margin-top: var(--space-md);">📞 <a href="tel:+14375627327" class="footer__link">+1 437-562-7327</a></p>
         <p style="margin-top: var(--space-sm);">📧 <a href="mailto:team@citizenshipitalia.com" class="footer__link">team@citizenshipitalia.com</a></p>

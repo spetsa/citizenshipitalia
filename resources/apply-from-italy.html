@@ -13,8 +13,11 @@
   <link rel="icon" type="image/x-icon" href="../logos/italy_32x32.webp">
   <link rel="canonical" href="https://citizenshipitalia.com/resources/apply-from-italy.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <!-- Fonts: async load to avoid render-blocking -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
   <link rel="stylesheet" href="../css/styles.css">
 
   <script type="application/ld+json">
@@ -98,7 +101,7 @@
 <nav class="navbar navbar--solid" id="navbar">
   <div class="navbar__inner">
     <a href="../index.html" class="navbar__logo">
-      <img src="../logos/logo-text-white.webp" alt="Citizenship Italia">
+      <img src="../logos/logo-text-white.webp" alt="Citizenship Italia" width="220" height="43">
     </a>
     <ul class="navbar__nav" role="list">
       <li><a href="../check-eligibility.html" class="nav-link">Check Eligibility</a></li>
@@ -124,6 +127,7 @@
   <a href="../check-eligibility.html" class="btn btn--primary">Check Eligibility →</a>
 </div>
 
+<main id="main-content">
 <div class="page-header">
   <div class="container">
     <nav aria-label="Breadcrumb" style="margin-bottom: var(--space-lg);">
@@ -148,7 +152,7 @@
         <p style="margin: 0; color: var(--charcoal);">This guide is based on my personal experience relocating to Italy and obtaining my Italian passport through Jure Sanguinis. While it offers valuable guidance, it's essential that you conduct your own research for the specific municipality you'll be living in — steps and requirements vary by region, and immigration is a serious matter that demands thorough preparation.</p>
       </div>
 
-      <img src="../webp_blog_images/ItalianApartment.webp" alt="An Italian apartment — relocating to Italy means finding accommodation during your application" class="article-img" style="object-position: center 40%" loading="lazy">
+      <img src="../webp_blog_images/ItalianApartment.webp" alt="An Italian apartment — relocating to Italy means finding accommodation during your application" class="article-img" style="object-position: center 40%" loading="lazy" width="1500" height="1001">
 
       <h2>Why apply from Italy?</h2>
       <p>The consulate route is the most common path for North Americans pursuing Italian citizenship by descent, but it comes with one significant drawback: wait times of 3–5 years are common, and some consulates have backlogs stretching even longer.</p>
@@ -211,7 +215,7 @@
 
       <p><strong>Important:</strong> Keep a photo of your receipt and passport on your phone at all times. Police checks are common, especially at train stations, and you could be detained if you cannot prove your legal right to be in the country.</p>
 
-      <img src="../webp_blog_images/Questura_Line.webp" alt="Waiting at the Questura — registering your residency is a key step when applying from Italy" class="article-img" style="object-position: center 25%" loading="lazy">
+      <img src="../webp_blog_images/Questura_Line.webp" alt="Waiting at the Questura — registering your residency is a key step when applying from Italy" class="article-img" style="object-position: center 25%" loading="lazy" width="1200" height="600">
 
       <h2>Step 8: Schedule and attend your Jure Sanguinis appointment</h2>
       <p>Once you have your certificato di residenza, contact the Ufficio di Stato Civile at your comune — usually by email or through an online appointment system — to schedule your Jure Sanguinis citizenship appointment. Provide your residency certificate and confirm the list of documents your specific comune requires.</p>
@@ -314,11 +318,13 @@
   </div>
 </section>
 
+</main>
+
 <footer class="footer">
   <div class="container">
     <div class="footer__grid">
       <div class="footer__brand">
-        <img src="../logos/logo-text-white.webp" alt="Citizenship Italia">
+        <img src="../logos/logo-text-white.webp" alt="Citizenship Italia" width="220" height="43">
         <p>Expert Italian citizenship by descent services. Consulate, court, and 1948 routes for Americans and Canadians.</p>
         <p style="margin-top: var(--space-md);">📞 <a href="tel:+14375627327" class="footer__link">+1 437-562-7327</a></p>
         <p style="margin-top: var(--space-sm);">📧 <a href="mailto:team@citizenshipitalia.com" class="footer__link">team@citizenshipitalia.com</a></p>
