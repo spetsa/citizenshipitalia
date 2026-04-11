@@ -596,12 +596,14 @@ p {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(27, 58, 42, 0.82) 0%,
-    rgba(27, 58, 42, 0.55) 50%,
-    rgba(196, 150, 90, 0.15) 100%
-  );
+  background:
+    linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.45) 100%),
+    linear-gradient(
+      135deg,
+      rgba(27, 58, 42, 0.82) 0%,
+      rgba(27, 58, 42, 0.55) 50%,
+      rgba(196, 150, 90, 0.15) 100%
+    );
 }
 
 .hero__content {
@@ -672,13 +674,15 @@ p {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-  color: rgba(255,255,255,0.75);
+  color: rgba(255,255,255,0.95);
   font-size: 0.875rem;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.55);
 }
 
 .hero__trust-item svg {
   color: var(--gold);
   flex-shrink: 0;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.4));
 }
 
 /* --- Alert Banner --- */
@@ -1986,7 +1990,7 @@ p {
   .hero__headline { font-size: clamp(2rem, 6vw, 3rem); }
   .hero__subhead { font-size: clamp(0.9rem, 2vw, 1.1rem); }
   .hero__trust { gap: var(--space-md); }
-  .hero__trust-item { font-size: 0.8rem; }
+  .hero__trust-item { font-size: 0.85rem; }
 
   .page-header {
     padding: calc(72px + var(--space-2xl)) 0 var(--space-2xl);
@@ -2094,7 +2098,8 @@ p {
   .hero__headline { font-size: clamp(1.6rem, 5vw, 2.5rem); }
   .hero__subhead { font-size: 0.95rem; }
   .hero__kicker { font-size: 0.65rem; padding: 4px 10px; }
-  .hero__trust { flex-direction: column; align-items: flex-start; gap: var(--space-sm); }
+  .hero__trust { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .hero__trust-item { font-size: 0.9rem; }
 
   .page-header {
     padding: calc(72px + var(--space-lg)) 0 var(--space-lg);
