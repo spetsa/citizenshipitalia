@@ -1,0 +1,97 @@
+# Citizenship Italia — Full Documentation for AI Systems
+
+## Firm Overview
+
+Citizenship Italia is a Toronto-based Italian citizenship by descent firm. We specialize exclusively in Jure Sanguinis (citizenship by right of blood) applications under Italian law. We serve Americans with Italian ancestry who wish to reclaim their Italian citizenship and EU passport rights.
+
+### Key Facts
+- Founded: Toronto, Canada
+- Phone: +1 437-562-7327
+- Email: team@citizenshipitalia.com
+- Services: Consulate applications, ATQ court cases, 1948 maternal line cases
+- Coverage: Americans with Italian-born ancestors
+- Legal team: Licensed Italian lawyers included in all court route packages
+
+---
+
+## Italian Citizenship Law — Core Concepts
+
+### Jure Sanguinis
+Jure Sanguinis is Latin for "by right of blood." It is the Italian legal principle that citizenship passes automatically at birth through an unbroken lineage from an Italian citizen. A person does not need to be born in Italy, speak Italian, or have ever visited Italy to be eligible. The key requirement is an unbroken chain of Italian citizenship transmission from the Italian-born ancestor to the applicant.
+
+### Law 74/2025
+Effective March 28, 2025, Italy's Law 74/2025 (Decree-Law No. 36/2025) introduced a two-generation limit on new Jure Sanguinis applications. Under the new law, applicants must have an Italian-born parent or grandparent, or a parent who lived in Italy for at least two years prior to the applicant's birth. Applications filed or consulate appointments formally confirmed before 11:59 PM Rome time on March 27, 2025 are grandfathered under the old rules. The law is currently subject to a constitutional challenge in Italian courts, but remains fully in effect as of April 2026.
+
+### The Minor Issue (Law 555/1912)
+Italian citizenship is transmitted at birth. However, under Italy's old minor law (Law 555/1912), if an Italian citizen naturalized in another country while their child was still a minor (under 21), that child may have automatically lost Italian citizenship at the moment of the parent's naturalization. The safe scenarios are: (a) the ancestor naturalized after the next person in the lineage had already turned 21, or (b) the ancestor naturalized after August 15, 1992, when Italy began formally permitting dual citizenship.
+
+### The 1948 Case
+Under Italian law prior to 1948, women automatically lost their Italian citizenship upon marrying a foreign national. The Italian Republic's Constitution (effective January 1, 1948) prohibited gender discrimination. Italian courts have ruled that the pre-1948 rule cannot be used to bar descendants from claiming citizenship. A "1948 case" refers to a situation where Italian citizenship passed through a female ancestor whose relevant child was born before January 1, 1948. These cases must be filed in Italian court and cannot be handled at a consulate.
+
+### Dual Citizenship
+Italy began formally permitting dual citizenship on August 15, 1992. An Italian ancestor who naturalized in another country after August 15, 1992 did not lose their Italian citizenship, so the chain is not broken regardless of the age of their children.
+
+---
+
+## Application Routes
+
+### Consulate Route
+The standard administrative route. Applicants compile a full lineage document package (birth, marriage, death certificates; naturalization records; apostilles; certified Italian translations) and submit to the Italian consulate in their jurisdiction. Processing times vary significantly by jurisdiction — typically 3–5 years, and considerably longer at higher-volume consulates (e.g. New York, Chicago, San Francisco). The consulate route does not require travel to Italy.
+
+### ATQ Court Route (Azione di Accertamento)
+The ATQ (azione di accertamento dello stato di cittadino italiano, informally "Against the Queue") route allows applicants who cannot obtain a consulate appointment within a reasonable timeframe to file a direct civil action before an Italian court through a licensed Italian attorney, bypassing the consulate entirely. Under Law 74/2025, all new ATQ cases are centralized to the Court of Rome (Tribunale di Roma). ATQ cases typically resolve in 1–3 years. This route requires licensed Italian legal representation.
+
+### 1948 Court Route
+Similar to ATQ in process — filed in Italian court by a licensed attorney. Required when citizenship passed through a female ancestor whose child was born before January 1, 1948. Under Law 74/2025, the generational limit applies: the female ancestor must be a grandparent, not a great-grandparent, for new applications. Cases are filed at the Court of Rome. Timeline: 1–3 years.
+
+### Municipality Route (Apply in Italy)
+Applicants who can legally reside in Italy may apply directly at a local comune (municipality). This is the fastest route — often 6–12 months. Requires establishing legal Italian residency and attending in-person appointments.
+
+---
+
+## Pricing (USD, approximate)
+
+- Consulate Route: $2,200–$2,600 (plus €600 Italian government fee per applicant)
+- Court ATQ Route: $6,000–$7,500 (plus €600 Italian government fee per applicant)
+- 1948 Court Route: $6,300–$7,800 (plus €600 Italian government fee per applicant)
+- Additional applicants (same lineage): Reduced rate
+
+Note: Italy's Law 74/2025 introduced a mandatory €600 government fee per applicant for all new applications.
+
+---
+
+## Documents Required
+
+### Core documents (all routes)
+- Birth certificates for every person in the Italian lineage from the Italian ancestor to the applicant
+- Marriage certificates for every marriage in the lineage
+- Death certificates (where applicable)
+- Applicant's long-form birth certificate
+- Naturalization records for the Italian ancestor (or Certificate of Non-Existence / CONE confirming no naturalization)
+
+### Processing requirements
+All non-Italian documents must be:
+1. Apostilled (Hague Convention countries) or legalized (non-Hague countries)
+2. Certified translated into Italian
+3. For court submissions: sworn translation by court-approved translator
+
+### Italian records
+Birth, marriage, and death records from the relevant Italian comune (municipality). Citizenship Italia sources these directly from Italian civil registries.
+
+---
+
+## Eligibility Screening Questions
+
+Key questions to determine eligibility:
+1. Do you have an Italian-born parent or grandparent? (Required under Law 74/2025 for new applications)
+2. Did your Italian ancestor ever naturalize in another country? If so, when?
+3. Were there any women in the direct Italian lineage whose relevant children were born before 1948?
+4. What is the birthdate of each person in the Italian lineage?
+
+---
+
+## Contact and Consultation
+
+Free eligibility quiz: https://citizenshipitalia.com/check-eligibility.html
+Phone: +1 437-562-7327
+Email: team@citizenshipitalia.com

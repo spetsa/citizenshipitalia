@@ -12,6 +12,9 @@
   <meta property="og:image" content="https://citizenshipitalia.com/webp-conversions/italy_sea_2_op.webp">
   <link rel="icon" type="image/x-icon" href="logos/italy_32x32.webp">
   <link rel="canonical" href="https://citizenshipitalia.com/pricing.html">
+  <meta name="author" content="Citizenship Italia">
+  <meta name="publish_date" content="2025-01-01">
+  <meta name="last-modified" content="2026-04-11">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <!-- Fonts: async load to avoid render-blocking -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +26,7 @@
   <link rel="dns-prefetch" href="https://www.redditstatic.com">
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 </head>
-<body>
+<body class="has-sticky-cta">
 
 <nav class="navbar navbar--solid" id="navbar">
   <div class="navbar__inner">
@@ -38,7 +41,7 @@
       <li><a href="resources.html" class="nav-link">Resources</a></li>
     </ul>
     <div class="navbar__cta">
-      <a href="check-eligibility.html" class="btn btn--primary btn--sm">Free Consultation</a>
+      <a href="check-eligibility.html" class="btn btn--gold btn--sm">Free Consultation</a>
     </div>
     <button class="navbar__toggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -51,7 +54,7 @@
   <a href="pricing.html">Pricing</a>
   <a href="our-team.html">Our Team</a>
   <a href="resources.html">Resources</a>
-  <a href="check-eligibility.html" class="btn btn--primary">Free Consultation →</a>
+  <a href="check-eligibility.html" class="btn btn--gold">Free Consultation</a>
 </div>
 
 <main id="main-content">
@@ -409,13 +412,14 @@
 <!-- CTA -->
 <section class="cta-banner">
   <div class="container">
-    <p class="eyebrow" style="color: var(--gold-light);">Get an Accurate Quote</p>
-    <h2>Start with a free eligibility check.</h2>
-    <p>We'll confirm your route, what's included, and give you an exact quote — before you commit to anything.</p>
+    <p class="eyebrow" style="color: var(--gold-light);">Get an Exact Quote</p>
+    <h2>Not sure which route is right for you?<br><em>That's what the free call is for.</em></h2>
+    <p>In 30 minutes, our team will confirm your eligibility, identify your route, and give you an itemized quote — before you commit to anything.</p>
     <div class="btn-group">
-      <a href="check-eligibility.html" class="btn btn--gold btn--lg">Free Consultation</a>
-      <a href="check-eligibility.html" class="btn btn--outline-white">Book a Free Call</a>
+      <a href="check-eligibility.html" class="btn btn--gold btn--lg">Free Consultation →</a>
+      <a href="check-eligibility.html" class="btn btn--outline-white">Check My Eligibility First</a>
     </div>
+    <p style="color: rgba(255,255,255,0.5); font-size: 0.8125rem; margin-top: var(--space-lg); margin-bottom: 0;">No obligation. Final pricing always confirmed before you commit.</p>
   </div>
 </section>
 
@@ -426,16 +430,16 @@
     <div class="footer__grid">
       <div class="footer__brand">
         <img src="logos/logo-text-white.webp" alt="Citizenship Italia" width="220" height="43">
-        <p>Expert Italian citizenship by descent services. Consulate, court, and 1948 routes for Americans and Canadians.</p>
+        <p>Expert Italian citizenship by descent services. Consulate, court, and 1948 routes for Americans.</p>
         <p style="margin-top: var(--space-md);">📞 <a href="tel:+14375627327" class="footer__link">+1 437-562-7327</a></p>
         <p style="margin-top: var(--space-sm);">📧 <a href="mailto:team@citizenshipitalia.com" class="footer__link">team@citizenshipitalia.com</a></p>
       </div>
       <div>
-        <p class="footer__col-title">Services</p>
+        <p class="footer__col-title">Routes</p>
         <ul class="footer__links">
           <li><a href="pricing.html#consulate" class="footer__link">Consulate Route</a></li>
-          <li><a href="pricing.html#court" class="footer__link">Court Route (ATQ)</a></li>
-          <li><a href="pricing.html#court-1948" class="footer__link">1948 Cases</a></li>
+          <li><a href="routes/court-atq/index.html" class="footer__link">Court Route (ATQ)</a></li>
+          <li><a href="routes/1948-cases/index.html" class="footer__link">1948 Cases</a></li>
         </ul>
       </div>
       <div>
@@ -460,6 +464,17 @@
     </div>
   </div>
 </footer>
+
+<!-- Sticky Mobile CTA Bar -->
+<div class="sticky-cta-bar" id="sticky-cta" aria-label="Book a consultation">
+  <div class="sticky-cta-bar__inner">
+    <div class="sticky-cta-bar__text">
+      <strong>Ready to get started?</strong>
+      Free consultation
+    </div>
+    <a href="check-eligibility.html" class="btn btn--gold btn--sm sticky-cta-bar__btn">Free Consultation</a>
+  </div>
+</div>
 
 <script src="js/main.js" defer></script>
 
