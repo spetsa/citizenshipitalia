@@ -2395,6 +2395,9 @@ p {
   .sticky-cta-bar__close {
     display: block;
   }
+  .sticky-cta-bar__inner {
+    padding-right: 36px;
+  }
 }
 
 @media (max-width: 767px) {
