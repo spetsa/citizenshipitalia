@@ -1694,6 +1694,7 @@ p {
 .page-header {
   background-color: var(--green-dark);
   background-image:
+    linear-gradient(to bottom, transparent 45%, rgba(0,0,0,0.45) 100%),
     linear-gradient(135deg, rgba(27,58,42,0.85) 0%, rgba(27,58,42,0.60) 55%, rgba(196,150,90,0.18) 100%),
     url('../webp-conversions/italy_sea_2_op.webp');
   background-size: cover;
@@ -1720,12 +1721,14 @@ p {
   color: var(--white);
   max-width: 700px;
   margin-bottom: var(--space-md);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.45);
 }
 
 .page-header p {
-  color: rgba(255,255,255,0.75);
+  color: rgba(255,255,255,0.92);
   max-width: 560px;
   font-size: 1.1rem;
+  text-shadow: 0 1px 5px rgba(0,0,0,0.4);
 }
 
 /* --- Rich Text (blog / resources) --- */
@@ -2366,6 +2369,34 @@ p {
   flex-shrink: 0;
 }
 
+.sticky-cta-bar__close {
+  display: none;
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 6px;
+  transition: color var(--dur) var(--ease);
+}
+.sticky-cta-bar__close:hover {
+  color: rgba(255,255,255,0.9);
+}
+
+.sticky-cta-bar--dismissed {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  .sticky-cta-bar__close {
+    display: block;
+  }
+}
+
 @media (max-width: 767px) {
   .sticky-cta-bar {
     display: block;
@@ -2508,4 +2539,149 @@ p {
   .testimonial-cta { padding: var(--space-lg); }
   .authority-strip__inner { gap: var(--space-lg); }
   .authority-item { font-size: 0.75rem; }
+}
+
+/* ============================================================
+   MOBILE OPTIMIZATIONS v3
+   All rules are mobile-only and do not affect desktop layout.
+   ============================================================ */
+
+/* 1. Hero: reduce height so trust signals peek above fold
+   Report §2.1 — "Reduce mobile hero height to ~65vh" */
+@media (max-width: 767px) {
+  .hero { min-height: 65vh; }
+}
+
+/* 2. Check-eligibility page header: compact on mobile so quiz is
+   near the fold. Target via a class added to that page's header.
+   Report §3.1 — "Dramatically reduce hero on eligibility page" */
+.page-header--quiz-compact {
+  padding: calc(72px + var(--space-sm)) 0 var(--space-sm) !important;
+}
+@media (max-width: 767px) {
+  .page-header--quiz-compact h1 {
+    font-size: clamp(1.25rem, 4vw, 1.6rem);
+    margin-bottom: var(--space-xs);
+  }
+  .page-header--quiz-compact p {
+    font-size: 0.875rem;
+    margin-bottom: 0;
+    display: none; /* hide description — quiz itself is self-explanatory on mobile */
+  }
+}
+
+/* 3. Quiz option cards: minimum 56px tap target, generous padding
+   Report §3.2 — "Min height 56px, full-width, clear tap feedback" */
+@media (max-width: 767px) {
+  .quiz-option {
+    min-height: 56px;
+    padding: 14px var(--space-md);
+    gap: var(--space-sm);
+    align-items: center;
+  }
+  .quiz-option__icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+  .quiz-option__label { font-size: 0.9rem; }
+  .quiz-option__sublabel { font-size: 0.8rem; }
+}
+
+/* 4. Pricing cards: horizontal scroll on mobile so all 3 are
+   accessible without extreme scroll depth.
+   Report §4.1 — "Tabbed or scrollable pricing on mobile" */
+@media (max-width: 767px) {
+  .pricing-grid--scroll {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    gap: var(--space-md);
+    padding-bottom: var(--space-sm);
+    /* Show scroll hint via partial next card */
+    padding-right: 24px;
+  }
+  .pricing-grid--scroll .pricing-card {
+    min-width: min(300px, 85vw);
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+  /* Scroll hint label */
+  .pricing-scroll-hint {
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--gray-500);
+    margin-top: var(--space-sm);
+  }
+}
+@media (min-width: 768px) {
+  .pricing-scroll-hint { display: none; }
+}
+
+/* 5. Form inputs: 16px minimum to prevent iOS auto-zoom on focus
+   Report §5.4 — "All inputs font-size at least 16px, min-height 48px" */
+@media (max-width: 767px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="search"],
+  select,
+  textarea {
+    font-size: 16px !important;
+    min-height: 48px;
+  }
+}
+
+/* 6. Resource / article pages: slightly larger body text on mobile
+   Report §6.1 — "Body text 17-18px, line-height 1.6-1.7" */
+@media (max-width: 767px) {
+  .section--article p,
+  .article-content p,
+  .resource-body p {
+    font-size: 1.0625rem; /* 17px */
+    line-height: 1.72;
+  }
+  .section--article p + p,
+  .article-content p + p {
+    margin-top: 1.25rem;
+  }
+}
+
+/* 7. Post-fee-breakdown CTA block on pricing page (mobile emphasis)
+   Report §4.3 — "Full-width CTA block after fee breakdown" */
+.post-fee-cta {
+  background: var(--ivory);
+  border: 1px solid var(--gold-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl) var(--space-2xl);
+  text-align: center;
+  margin-top: var(--space-2xl);
+}
+.post-fee-cta h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  margin-bottom: var(--space-sm);
+  color: var(--charcoal);
+}
+.post-fee-cta p {
+  color: var(--gray-600);
+  font-size: 0.9375rem;
+  margin-bottom: var(--space-lg);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.post-fee-cta .trust-note {
+  margin-top: var(--space-md);
+  font-size: 0.8125rem;
+  color: var(--gray-500);
+  margin-bottom: 0;
+}
+@media (max-width: 767px) {
+  .post-fee-cta { padding: var(--space-lg); }
+  .post-fee-cta .btn { width: 100%; display: block; }
 }
