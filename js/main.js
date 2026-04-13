@@ -481,11 +481,73 @@
     };
   }
 
+  // --- Dynamic lineage labels (based on step-1 ancestor selection) ---
+  function getLineageTerms() {
+    switch (answers[1]) {
+      case 'parent':
+        return {
+          step2_q:      'Did your parent naturalize as a foreign citizen?',
+          step2_after:  { label: 'Yes — but after you were born',  sub: 'They naturalized after you were born' },
+          step2_before: { label: 'Yes — before you were born',     sub: 'They naturalized before you were born' },
+          minor_q:      'Were you a minor when your parent naturalized?',
+          minor_no:     { label: 'No — I was an adult (21 or older)', sub: 'I was 21 or older at the time of naturalization' },
+          minor_yes:    { label: 'Yes — I was a minor (under 21)',    sub: 'I was under 21 when my parent naturalized' }
+        };
+      case 'grandparent':
+        return {
+          step2_q:      'Did your grandparent naturalize as a foreign citizen?',
+          step2_after:  { label: 'Yes — but after your parent was born',  sub: 'They naturalized after your parent was born' },
+          step2_before: { label: 'Yes — before your parent was born',     sub: 'They naturalized before your parent was born' },
+          minor_q:      'Was your parent a minor when your grandparent naturalized?',
+          minor_no:     { label: 'No — my parent was an adult (21 or older)', sub: 'My parent was 21 or older at the time of naturalization' },
+          minor_yes:    { label: 'Yes — my parent was a minor (under 21)',    sub: 'My parent was under 21 when my grandparent naturalized' }
+        };
+      case 'greatgrandparent':
+        return {
+          step2_q:      'Did your great-grandparent naturalize as a foreign citizen?',
+          step2_after:  { label: 'Yes — but after your grandparent was born',  sub: 'They naturalized after your grandparent was born' },
+          step2_before: { label: 'Yes — before your grandparent was born',     sub: 'They naturalized before your grandparent was born' },
+          minor_q:      'Was your grandparent a minor when your great-grandparent naturalized?',
+          minor_no:     { label: 'No — my grandparent was an adult (21 or older)', sub: 'My grandparent was 21 or older at the time of naturalization' },
+          minor_yes:    { label: 'Yes — my grandparent was a minor (under 21)',    sub: 'My grandparent was under 21 when my great-grandparent naturalized' }
+        };
+      default:
+        return null;
+    }
+  }
+
   // --- Render ---
   function renderStep(stepKey) {
     var data = quizData[stepKey];
     var container = document.getElementById('quiz-dynamic');
     if (!container || !data) return;
+
+    // Resolve dynamic question/option text based on ancestor selection
+    var lt = getLineageTerms();
+    if (lt) {
+      if (stepKey === 2) {
+        data = {
+          question: lt.step2_q,
+          sublabel: data.sublabel,
+          options: [
+            data.options[0], // No — they never naturalized (unchanged)
+            { id: 'after',  icon: '📅', label: lt.step2_after.label,  sub: lt.step2_after.sub },
+            { id: 'before', icon: '⚠️', label: lt.step2_before.label, sub: lt.step2_before.sub },
+            data.options[3]  // Not sure (unchanged)
+          ]
+        };
+      } else if (stepKey === 'minor_law') {
+        data = {
+          question: lt.minor_q,
+          sublabel: data.sublabel,
+          options: [
+            { id: 'no',     icon: '✅', label: lt.minor_no.label,  sub: lt.minor_no.sub },
+            { id: 'yes',    icon: '⚠️', label: lt.minor_yes.label, sub: lt.minor_yes.sub },
+            data.options[2]  // Not sure (unchanged)
+          ]
+        };
+      }
+    }
 
     var optionsHTML = data.options.map(function (opt) {
       return '<button class="quiz-option" data-value="' + opt.id + '" type="button">' +
