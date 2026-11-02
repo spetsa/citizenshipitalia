@@ -243,6 +243,8 @@ p {
 
 .grid--2 { grid-template-columns: repeat(2, 1fr); }
 .grid--3 { grid-template-columns: repeat(3, 1fr); }
+/* Let grid columns shrink instead of overflowing the screen on tablets */
+.grid > * { min-width: 0; }
 .grid--4 { grid-template-columns: repeat(4, 1fr); }
 
 .flex {
@@ -1411,6 +1413,50 @@ p {
   justify-content: center;
 }
 
+.result-email {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: var(--space-xs);
+}
+
+.result-email__label {
+  font-size: 0.8rem;
+  color: var(--gray-400);
+}
+
+.result-email__row {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.result-email__address {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--green-dark);
+  user-select: all;
+  word-break: break-all;
+}
+
+.result-email__copy {
+  background: none;
+  border: 1px solid var(--gray-300);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--gray-500);
+  cursor: pointer;
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.result-email__copy:hover { border-color: var(--green-dark); color: var(--green-dark); }
+.result-email__copy.is-copied { border-color: var(--green-light); color: var(--green-dark); }
+
 .result-booking-card__note {
   font-size: 0.8rem;
   color: var(--gray-400);
@@ -1955,6 +2001,17 @@ p {
 }
 
 /* --- Responsive --- */
+@media (max-width: 1024px) {
+  .card--feature { padding: var(--space-xl) var(--space-lg); }
+}
+
+/* Collapse header to hamburger before the links get crowded (full menu needs ~1150px) */
+@media (max-width: 1150px) {
+  .navbar__nav,
+  .navbar__cta { display: none; }
+  .navbar__toggle { display: flex; }
+}
+
 @media (max-width: 1024px) {
   .grid--4    { grid-template-columns: repeat(2, 1fr); }
   .footer__grid { grid-template-columns: 1fr 1fr; }

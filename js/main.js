@@ -82,443 +82,208 @@
   var answers = {};
   var stepHistory = [];
 
-  // Quiz data — 'minor_law' is a conditional step shown only when ancestor naturalized after/unsure
+  // Quiz data — built around Article 3-bis of Law 91/1992 (as amended by Law 74/2025), updated November 2026.
+  // Entries may be functions so question text can adapt to earlier answers.
+  function rel() { return answers.ancestor === 'grandparent' ? 'grandparent' : 'parent'; }
+
   var quizData = {
-    1: {
-      question: 'Which Italian-born ancestor are you claiming through?',
-      sublabel: 'Your eligibility route depends on which generation your Italian ancestor belongs to.',
+    ancestor: {
+      question: 'Who is your closest Italian ancestor?',
+      sublabel: 'Choose the closest person in your direct line who is (or was) an Italian citizen. They don\'t need to have been born in Italy.',
       options: [
-        { id: 'parent',           icon: '👨‍👩‍👧', label: 'Parent',                    sub: 'My mother or father was born in Italy' },
-        { id: 'grandparent',      icon: '👴',      label: 'Grandparent',               sub: 'My grandmother or grandfather was born in Italy' },
-        { id: 'greatgrandparent', icon: '📜',      label: 'Great-grandparent or earlier', sub: 'My Italian ancestor is 3+ generations back' }
+        { id: 'parent',           icon: '👨‍👩‍👧', label: 'Parent',                       sub: 'My mother or father is (or was) Italian' },
+        { id: 'grandparent',      icon: '👴',      label: 'Grandparent',                  sub: 'My grandmother or grandfather is (or was) Italian' },
+        { id: 'greatgrandparent', icon: '📜',      label: 'Great-grandparent or earlier', sub: 'My closest Italian ancestor is 3+ generations back' }
       ]
     },
-    2: {
-      question: 'Did your Italian ancestor naturalize as a U.S. or Canadian citizen?',
-      sublabel: 'Naturalization timing is critical — it determines whether Italian citizenship was passed down.',
+    other_cit: function () {
+      var r = rel();
+      return {
+        question: 'Did your ' + r + ' ever become a citizen of another country?',
+        sublabel: 'Since 2025, the parent or grandparent you rely on must have held only Italian citizenship when you were born (or when they died, if earlier). For example, becoming a U.S. or Canadian citizen.',
+        options: [
+          { id: 'never',  icon: '✅', label: 'No — Italian citizenship only',  sub: 'They never held any other citizenship' },
+          { id: 'after',  icon: '📅', label: 'Yes — but only after I was born', sub: 'They became a citizen elsewhere after my birth' },
+          { id: 'before', icon: '⚠️', label: 'Yes — before I was born',         sub: 'They already held another citizenship when I was born' },
+          { id: 'unsure', icon: '🔍', label: 'Not sure',                        sub: 'I don\'t have their naturalization records yet' }
+        ]
+      };
+    },
+    gp_check: {
+      question: 'Did your Italian grandparent on that side hold only Italian citizenship?',
+      sublabel: 'If your parent held another citizenship, a grandparent may still qualify you — if that grandparent never held another citizenship before your birth (or before their death).',
       options: [
-        { id: 'no',     icon: '✅', label: 'No — they never naturalized',           sub: 'They kept Italian citizenship throughout their life' },
-        { id: 'after',  icon: '📅', label: 'Yes — but after their child was born',  sub: 'They naturalized after the next person in my lineage was born' },
-        { id: 'before', icon: '⚠️', label: 'Yes — before their child was born',     sub: 'They naturalized before the next person in my lineage was born' },
-        { id: 'unsure', icon: '🔍', label: 'Not sure',                              sub: 'I don\'t have full records yet' }
+        { id: 'yes',    icon: '✅', label: 'Yes — Italian citizenship only', sub: 'My grandparent never became a citizen of another country before my birth' },
+        { id: 'no',     icon: '❌', label: 'No',                             sub: 'My grandparent also held another citizenship, or wasn\'t Italian' },
+        { id: 'unsure', icon: '🔍', label: 'Not sure',                       sub: 'I don\'t know yet' }
       ]
     },
-    minor_law: {
-      question: 'Was the next person in your lineage a minor when your ancestor naturalized?',
-      sublabel: 'Under Italian law, minor children under 21 automatically lost citizenship when their parent naturalized as a foreign citizen.',
+    parent_res: {
+      question: 'Did your parent live in Italy for at least two continuous years after becoming an Italian citizen, and before you were born?',
+      sublabel: 'This is a separate route under the 2025 rules. It applies only to a parent (not a grandparent), and the two years must come after they became a citizen.',
       options: [
-        { id: 'no',     icon: '✅', label: 'No — they were an adult (21 or older)', sub: 'The next person in my lineage was over 21 at the time of naturalization' },
-        { id: 'yes',    icon: '⚠️', label: 'Yes — they were a minor (under 21)',    sub: 'The next person in my lineage was under 21 when naturalization occurred' },
-        { id: 'unsure', icon: '🔍', label: 'Not sure',                              sub: 'I don\'t know their exact ages at that time' }
+        { id: 'yes',    icon: '🏠', label: 'Yes',      sub: 'My parent lived in Italy for 2+ continuous years as a citizen before my birth' },
+        { id: 'no',     icon: '❌', label: 'No',       sub: 'They did not, or my parent was not an Italian citizen' },
+        { id: 'unsure', icon: '🔍', label: 'Not sure', sub: 'I don\'t have records of where they lived' }
       ]
     },
-    3: {
-      question: 'Is your Italian lineage through your mother\'s side?',
-      sublabel: 'If your claim passes through a female ancestor before 1948, a special court route may apply.',
+    started: {
+      question: 'By March 27, 2025, had you already started a citizenship case?',
+      sublabel: 'Cases started by 11:59 PM Rome time on March 27, 2025 are assessed under the old rules (no generational limit).',
       options: [
-        { id: 'no',          icon: '👨', label: 'No — paternal line only',                    sub: 'My Italian ancestor is on my father\'s side' },
-        { id: 'yes_post48',  icon: '👩', label: 'Yes — mother born after 1948',               sub: 'My female Italian ancestor was born in 1948 or later' },
-        { id: 'yes_pre48',   icon: '⚖️', label: 'Yes — and there\'s a pre-1948 woman in the chain', sub: 'A woman in my lineage transmitted citizenship before 1948' }
+        { id: 'filed',    icon: '📋', label: 'Yes — application submitted or court case filed', sub: 'A complete application was submitted, or a court case was filed, by the cutoff' },
+        { id: 'appt',     icon: '📅', label: 'Yes — I had been given an appointment date',      sub: 'The consulate or municipality had communicated my appointment date by the cutoff' },
+        { id: 'waitlist', icon: '⏳', label: 'Only requested an appointment or joined a waitlist', sub: 'I had not been given an appointment date' },
+        { id: 'no',       icon: '❌', label: 'No',                                                sub: 'I had not started' }
       ]
     },
-    nat_year: {
-      question: 'When did your Italian ancestor naturalize in a foreign country?',
-      sublabel: 'Italy\'s Law 91/1992 introduced dual citizenship from August 1992 onwards. If your ancestor naturalized in 1992 or later, they may have retained Italian citizenship — and could still have passed it to children born after that date.',
+    chain: {
+      question: 'Did any Italian ancestor in your line become a citizen of another country before the next person in your line was born?',
+      sublabel: 'Under the old rules, the citizenship chain must be unbroken. A naturalization before the next generation was born generally breaks it.',
       options: [
-        { id: 'post1992', icon: '📅', label: 'In or after 1992',  sub: 'They naturalized in August 1992 or later' },
-        { id: 'pre1992',  icon: '⚠️', label: 'Before 1992',       sub: 'They naturalized before August 1992' },
-        { id: 'unsure',   icon: '🔍', label: 'Not sure',           sub: 'I don\'t know the exact year of naturalization' }
+        { id: 'no',     icon: '✅', label: 'No',       sub: 'Each naturalization (if any) happened after the next person was born' },
+        { id: 'yes',    icon: '⚠️', label: 'Yes',      sub: 'At least one ancestor naturalized before their child in my line was born' },
+        { id: 'unsure', icon: '🔍', label: 'Not sure', sub: 'I don\'t have all the naturalization dates yet' }
       ]
     },
-    minor_nat_year: {
-      question: 'When did your Italian ancestor naturalize in a foreign country?',
-      sublabel: 'Italy\'s Law 91/1992 introduced dual citizenship. If your ancestor naturalized in 1992 or later, they retained Italian citizenship — meaning the minor-child rule (automatic loss of citizenship) no longer applied, and citizenship could still pass to you.',
+    line1948: {
+      question: 'Does your line pass through an Italian woman whose child was born before January 1, 1948?',
+      sublabel: 'Consulates don\'t recognize citizenship passed from a mother to a child born before 1948. These "1948 cases" are decided by Italian courts.',
       options: [
-        { id: 'post1992', icon: '📅', label: 'In or after 1992',  sub: 'They naturalized in August 1992 or later' },
-        { id: 'pre1992',  icon: '⚠️', label: 'Before 1992',       sub: 'They naturalized before August 1992' },
-        { id: 'unsure',   icon: '🔍', label: 'Not sure',           sub: 'I don\'t know the exact year of naturalization' }
-      ]
-    },
-    italy_residence: {
-      question: 'Did your Italian ancestor live in Italy for at least 2 years before you were born?',
-      sublabel: 'Under Italian citizenship law, a child born abroad to an Italian parent who was a citizen and had resided in Italy for at least 2 years prior to the child\'s birth may still be eligible to claim citizenship.',
-      options: [
-        { id: 'yes',    icon: '🏠', label: 'Yes — at least 2 years',  sub: 'They were an Italian citizen living in Italy for 2+ years before my birth' },
-        { id: 'no',     icon: '❌', label: 'No',                       sub: 'They did not reside in Italy for 2 years before I was born' },
-        { id: 'unsure', icon: '🔍', label: 'Not sure',                 sub: 'I don\'t have records of where they lived before my birth' }
-      ]
-    },
-    ggp_italy_residence: {
-      question: 'Did your parent live in Italy for at least 2 years before you were born?',
-      sublabel: 'Even where a great-grandparent claim is restricted under Law 74/2025, Italian law may provide an alternative route if your direct parent was an Italian citizen and resided in Italy for at least 2 years prior to your birth.',
-      options: [
-        { id: 'yes',    icon: '🏠', label: 'Yes — at least 2 years',  sub: 'My parent was an Italian citizen and lived in Italy for 2+ years before I was born' },
-        { id: 'no',     icon: '❌', label: 'No',                       sub: 'My parent did not reside in Italy for 2 years before I was born' },
-        { id: 'unsure', icon: '🔍', label: 'Not sure',                 sub: 'I don\'t have records of where my parent lived before my birth' }
-      ]
-    },
-    pre_law: {
-      question: 'Were you already in the process of applying before January 2025?',
-      sublabel: 'Italy\'s Law 74/2025 restricted claims to parent and grandparent lines. However, people who were already formally in the process before the law came into effect may have options through an Italian court.',
-      options: [
-        { id: 'yes',    icon: '📋', label: 'Yes — I have evidence of this',     sub: 'e.g. a consulate appointment booked, submitted paperwork, or other documentation showing an application was in progress' },
-        { id: 'unsure', icon: '🔍', label: 'Not sure — I may have taken steps', sub: 'I started looking into it but don\'t know if it qualifies as formal evidence' },
-        { id: 'no',     icon: '❌', label: 'No — I had not yet started',         sub: 'I was not in the application process before January 2025' }
+        { id: 'no',     icon: '👨', label: 'No',       sub: 'My line passes only through men before 1948, or every child was born in 1948 or later' },
+        { id: 'yes',    icon: '⚖️', label: 'Yes',      sub: 'An Italian woman in my line had her child (my ancestor) before 1948' },
+        { id: 'unsure', icon: '🔍', label: 'Not sure', sub: 'I\'m not sure' }
       ]
     }
   };
 
   // --- Routing ---
   function getNextStep(stepKey, answer) {
-    var ancestor = answers[1];
-    var isGGP    = (ancestor === 'greatgrandparent');
-
-    if (stepKey === 1) return 2;
-
-    if (stepKey === 2) {
-      if (answer === 'before') return 'nat_year';  // need to know when — 1992 law may allow dual citizenship
-      if (answer === 'no')     return isGGP ? 'ggp_italy_residence' : 3;  // never naturalized
-      return 'minor_law';                          // after/unsure — must check minor law
+    if (stepKey === 'ancestor') {
+      return answer === 'greatgrandparent' ? 'started' : 'other_cit';
     }
-
-    if (stepKey === 'nat_year') {
-      if (answer === 'pre1992') return 'italy_residence'; // one more check — 2-year Italy residency rule
-      return isGGP ? 'ggp_italy_residence' : 3;               // post1992 or unsure — dual citizenship may apply, continue
+    if (stepKey === 'other_cit') {
+      if (answer === 'never' || answer === 'after') return 'line1948';  // Article 3-bis(c) likely met
+      if (answer === 'unsure') return 'line1948';                        // amber result, still screen 1948
+      // 'before': this person fails 3-bis(c)
+      return answers.ancestor === 'parent' ? 'gp_check' : 'parent_res';
     }
-
-    if (stepKey === 'italy_residence') {
-      if (answer === 'no') return 'done';          // hard stop — neither 1992 rule nor residency rule applies
-      return isGGP ? 'ggp_italy_residence' : 3;               // yes or unsure — residency route may apply, continue
+    if (stepKey === 'gp_check') {
+      if (answer === 'yes' || answer === 'unsure') return 'line1948';
+      return 'parent_res';
     }
-
-    if (stepKey === 'minor_law') {
-      if (answer === 'yes') return 'minor_nat_year'; // check year — 1992 dual citizenship may override minor rule
-      return isGGP ? 'ggp_italy_residence' : 3;
+    if (stepKey === 'parent_res') {
+      if (answer === 'yes' || answer === 'unsure') return 'line1948';
+      return 'started';
     }
-
-    if (stepKey === 'minor_nat_year') {
-      if (answer === 'pre1992') return 'done';     // hard stop — minor law applies, citizenship lost
-      if (answer === 'post1992') return isGGP ? 'ggp_italy_residence' : 3; // dual citizenship: parent kept it, passes through
-      return 'done';                               // unsure — needs review (amber result)
+    if (stepKey === 'started') {
+      if (answer === 'filed' || answer === 'appt') return 'chain';
+      if (answers.ancestor === 'greatgrandparent' && answer !== 'waitlist' && answer !== 'no') return 'chain';
+      if (answers.ancestor === 'greatgrandparent') return 'ggp_parent_res';
+      return 'done';
     }
-
-    if (stepKey === 'ggp_italy_residence') {
-      if (answer === 'no') return 'pre_law';       // no residency route — check Law 74/2025 pre-law activity
-      return 'done';                               // yes or unsure — residency route may apply
+    if (stepKey === 'ggp_parent_res') {
+      if (answer === 'yes' || answer === 'unsure') return 'line1948';
+      return 'done';
     }
-
-    if (stepKey === 'pre_law') return 'done';      // pre-law question always leads to result
-
-    if (stepKey === 3) return 'done';
+    if (stepKey === 'chain') return 'line1948';
     return 'done';
   }
+  quizData.ggp_parent_res = quizData.parent_res;
 
   function getPrevStep(stepKey) {
     var idx = stepHistory.indexOf(stepKey);
     return idx > 0 ? stepHistory[idx - 1] : null;
   }
 
-  function hasMinorLawStep() {
-    return stepHistory.indexOf('minor_law') !== -1;
-  }
-
-  function hasPreLawStep() {
-    return stepHistory.indexOf('pre_law') !== -1;
-  }
-
   // --- Labels / Progress ---
-  // Dynamic: use position in actual stepHistory so all path variants display correctly
   function stepIndex(stepKey) {
     var idx = stepHistory.indexOf(stepKey);
     return idx !== -1 ? idx + 1 : 1;
   }
-
-  function hasNatYearStep() {
-    return stepHistory.indexOf('nat_year') !== -1;
-  }
-
-  function hasItalyResidenceStep() {
-    return stepHistory.indexOf('italy_residence') !== -1;
-  }
-
-  function hasMinorNatYearStep() {
-    return stepHistory.indexOf('minor_nat_year') !== -1;
-  }
-
-  function hasGGPResidenceStep() {
-    return stepHistory.indexOf('ggp_italy_residence') !== -1;
-  }
-
-  function totalSteps() {
-    var ancestor       = answers[1];
-    var hasMinor       = hasMinorLawStep();
-    var hasNatYear     = hasNatYearStep();
-    var hasItalyRes    = hasItalyResidenceStep();
-    var hasMinorNatYr  = hasMinorNatYearStep();
-    var hasGGPRes      = hasGGPResidenceStep();
-    var extraSteps = (hasMinor ? 1 : 0) + (hasNatYear ? 1 : 0) + (hasItalyRes ? 1 : 0) + (hasMinorNatYr ? 1 : 0) + (hasGGPRes ? 1 : 0);
-    // GGP path ends at ggp_italy_residence or pre_law
-    if (ancestor === 'greatgrandparent') return 3 + extraSteps;
-    // All other paths end at step 3
-    return 3 + extraSteps;
-  }
-
-  function stepLabel(stepKey) {
-    return 'Step ' + stepIndex(stepKey) + ' of ' + totalSteps();
-  }
-
-  function stepCounter(stepKey) {
-    return stepIndex(stepKey) + ' / ' + totalSteps();
-  }
-
-  function updateProgress(pct) {
-    if (progressBar) progressBar.style.width = pct + '%';
-  }
-
-  function progressPct(stepKey) {
-    return (stepIndex(stepKey) / (totalSteps() + 1)) * 100;
-  }
+  function stepLabel(stepKey)   { return 'Question ' + stepIndex(stepKey); }
+  function stepCounter(stepKey) { return 'Question ' + stepIndex(stepKey); }
+  function updateProgress(pct)  { if (progressBar) progressBar.style.width = pct + '%'; }
+  function progressPct(stepKey) { return Math.min(90, stepIndex(stepKey) * 18); }
 
   // --- Result logic ---
+  var NOTE_REVIEW = ' Eligibility always depends on dates and documents, which we confirm on the call.';
+  var NOTE_1948   = ' Because your line passes through an Italian woman to a child born before 1948, this would be a 1948 case, which must be decided by an Italian court rather than a consulate.';
+
   function getResult() {
-    var ancestor  = answers[1];
-    var nat       = answers[2];
-    var minorLaw  = answers['minor_law'];
+    var a = answers;
+    var is1948 = a.line1948 === 'yes';
+    var unsure1948 = a.line1948 === 'unsure';
+    var routeLabel = is1948 ? '1948 Court Route' : 'Consulate Route (or municipality, if you relocate to Italy)';
 
-    // Great-grandparent or earlier — Law 74/2025 applies; check parent Italy residency first
-    if (ancestor === 'greatgrandparent') {
-      var ggpRes = answers['ggp_italy_residence'];
-
-      if (ggpRes === 'yes') {
-        return {
-          type: 'green', bookable: true,
-          icon: '✅',
-          title: 'You may still be eligible',
-          body: 'Even though your Italian lineage runs through a great-grandparent — which is normally restricted under Law 74/2025 — Italian law provides an alternative route: if your direct parent was an Italian citizen and resided in Italy for at least 2 years before you were born, citizenship may be claimable through that parental connection. Your case appears to meet that threshold. Book a free consultation and we\'ll confirm the details with your documentation.',
-          route: 'Consulate Route (parental residency-based transmission)',
-          cta: 'Book Your Free Consultation'
-        };
+    // 1. Grandfathered: case started by March 27, 2025 (old rules)
+    if (a.started === 'filed' || a.started === 'appt') {
+      var apptNote = a.started === 'appt'
+        ? ' Note: an appointment counts only if the consulate or municipality had communicated the date to you by 11:59 PM Rome time on March 27, 2025, and you submit your complete application on that date.'
+        : '';
+      if (a.chain === 'yes') {
+        return { type: 'amber', bookable: true, icon: '🔍',
+          title: 'Your case may follow the old rules — but the chain needs review',
+          body: 'Because your case was started before the March 27, 2025 cutoff, it may be assessed under the pre-2025 rules, with no generational limit. However, a naturalization before the next generation was born usually breaks the citizenship chain, so we need to look at the exact dates and whether another line in your family works.' + apptNote,
+          cta: 'Book a Free Case Review' };
       }
-
-      if (ggpRes === 'unsure') {
-        return {
-          type: 'amber', bookable: true,
-          icon: '🔍',
-          title: 'Possibly eligible — parental residency records needed',
-          body: 'Italian law may provide an alternative route for great-grandparent claims where the direct parent was an Italian citizen who resided in Italy for at least 2 years before the child was born. Whether you qualify depends on confirming that residency. Book a free call and we\'ll look at what records are available.',
-          cta: 'Book a Free Case Review'
-        };
-      }
-
-      // ggpRes === 'no' — fall through to Law 74/2025 pre-law check
-      var preLaw = answers['pre_law'];
-
-      if (preLaw === 'yes') {
-        return {
-          type: 'green', bookable: true,
-          icon: '⚖️',
-          title: 'Potentially eligible — Court Route Only',
-          body: 'Italy\'s Law 74/2025 (January 2025) restricted citizenship by descent to parent and grandparent lines. However, because you were already in the process before the law changed, there may be a court route available to you. This is a complex area and we can\'t guarantee an outcome, but it\'s worth a detailed review. Please note: a consulate application is not an option here — any viable path would go through an Italian court. Book a free call and we\'ll look at your documentation together.',
-          route: 'Court Route (Law 74/2025 transitional)',
-          cta: 'Book Your Free Consultation'
-        };
-      }
-
-      if (preLaw === 'unsure') {
-        return {
-          type: 'amber', bookable: true,
-          icon: '🔍',
-          title: 'Possibly eligible — depends on your evidence',
-          body: 'Italy\'s Law 74/2025 restricted claims through great-grandparents, but applicants who were formally in the process before January 2025 may still have options via a court petition. Whether your situation qualifies depends on the type and strength of evidence you have. We can\'t make promises, but it\'s worth a conversation. A consulate route is not available for this type of case — only a court petition. Book a free call and we\'ll review what you have.',
-          route: 'Court Route (subject to evidence review)',
-          cta: 'Book a Free Case Review'
-        };
-      }
-
-      // preLaw === 'no'
-      return {
-        type: 'red', bookable: false,
-        icon: '⚖️',
-        title: 'Unfortunately not eligible under current Italian law',
-        body: 'Italy\'s Law 74/2025 (effective January 2025) limited citizenship by descent to parent and grandparent lines. Applications through great-grandparents or earlier generations are no longer accepted — and because you were not already in the process before the law changed, there is currently no available route for your case. If your circumstances change, feel free to reach out.'
-      };
+      return { type: a.chain === 'unsure' || unsure1948 ? 'amber' : 'green', bookable: true, icon: '📋',
+        title: 'Your case may be assessed under the pre-2025 rules',
+        body: 'Because your case was started before the March 27, 2025 cutoff, it may follow the old rules, with no generational limit. Since the Court of Cassation\'s July 2026 ruling, an ancestor\'s naturalization while their child was a minor is also much less likely to be an obstacle.' + (is1948 ? NOTE_1948 : '') + apptNote + NOTE_REVIEW,
+        route: is1948 ? '1948 Court Route' : 'Pre-2025 rules (transitional)',
+        cta: 'Book Your Free Consultation' };
     }
 
-    // Naturalized before child was born — outcome depends on year (Law 91/1992)
-    if (nat === 'before') {
-      var natYear = answers['nat_year'];
-
-      if (natYear === 'pre1992') {
-        var italyRes = answers['italy_residence'];
-
-        if (italyRes === 'yes') {
-          return {
-            type: 'green', bookable: true,
-            icon: '✅',
-            title: 'You may still be eligible',
-            body: 'Even though your ancestor naturalized before 1992, Italian law recognizes an alternative pathway: if a parent was an Italian citizen and resided in Italy for at least 2 years before the child was born, citizenship can still be transmitted. Your case appears to meet that threshold. Book a free consultation and we\'ll confirm the details with your documentation.',
-            route: 'Consulate Route (residency-based transmission)',
-            cta: 'Book Your Free Consultation'
-          };
-        }
-
-        if (italyRes === 'unsure') {
-          return {
-            type: 'amber', bookable: true,
-            icon: '🔍',
-            title: 'Possibly eligible — residency records needed',
-            body: 'Italian law provides a pathway for children whose parent was an Italian citizen and resided in Italy for at least 2 years before their birth — even if the parent later naturalized abroad before 1992. Whether you qualify depends on confirming that residency. Book a free call and we\'ll review what records are available.',
-            cta: 'Book a Free Case Review'
-          };
-        }
-
-        // italyRes === 'no'
-        return {
-          type: 'red', bookable: false,
-          icon: '❌',
-          title: 'Unfortunately, we\'re unable to take on your case',
-          body: 'When an Italian ancestor naturalized before 1992 and before the next person in the lineage was born, Italian citizenship was not transmitted — naturalization at that time meant automatic loss of Italian citizenship. The 2-year Italy residency provision also does not apply here. We only take on cases where we can confirm citizenship passed down, so we\'re not able to move forward with this application.'
-        };
-      }
-
-      if (natYear === 'post1992') {
-        // Italy's Law 91/1992 introduced dual citizenship: naturalization no longer meant losing Italian citizenship.
-        // The ancestor retained Italian citizenship and could pass it to children born after naturalization.
-        return {
-          type: 'green', bookable: true,
-          icon: '✅',
-          title: 'You may still be eligible',
-          body: 'Italy\'s Law 91/1992 (effective August 1992) introduced dual citizenship — naturalizing in a foreign country no longer meant automatically losing Italian citizenship. If your ancestor naturalized in 1992 or later, they likely retained Italian citizenship and could have passed it to children born after that date. Your case is worth reviewing. Book a free consultation and we\'ll confirm the details.',
-          route: 'Consulate Route (subject to lineage confirmation)',
-          cta: 'Book Your Free Consultation'
-        };
-      }
-
-      // natYear === 'unsure'
-      return {
-        type: 'amber', bookable: true,
-        icon: '🔍',
-        title: 'Possibly eligible — one date needs confirming',
-        body: 'Whether your ancestor naturalized before or after August 1992 is critical. Italy\'s Law 91/1992 introduced dual citizenship, meaning naturalization from 1992 onwards no longer broke the citizenship chain. We\'d need to verify the naturalization date before we can confirm eligibility. Book a free call and we\'ll work through the records with you.',
-        cta: 'Book a Free Case Review'
-      };
+    // 2. Article 3-bis(c): parent or grandparent with exclusively Italian citizenship
+    var meetsC = a.other_cit === 'never' || a.other_cit === 'after' || a.gp_check === 'yes';
+    var maybeC = a.other_cit === 'unsure' || a.gp_check === 'unsure';
+    if (meetsC) {
+      var who = a.gp_check === 'yes' ? 'grandparent' : rel();
+      var afterNote = (a.other_cit === 'after' && a.gp_check !== 'yes')
+        ? ' Because your ' + who + ' took another citizenship only after you were born, we\'ll confirm how the consulate assesses the dates in your case.'
+        : '';
+      return { type: unsure1948 ? 'amber' : 'green', bookable: true, icon: is1948 ? '⚖️' : '✅',
+        title: is1948 ? 'You may be eligible — 1948 court route' : 'You appear to meet the 2025 rules',
+        body: 'Under Article 3-bis (Law 74/2025), a ' + who + ' who held only Italian citizenship when you were born can qualify you, provided the citizenship chain down to you is unbroken.' + afterNote + (is1948 ? NOTE_1948 : '') + (unsure1948 ? ' We\'ll also check whether your line involves a 1948 case.' : '') + NOTE_REVIEW,
+        route: routeLabel,
+        cta: 'Book Your Free Consultation' };
     }
 
-    // Minor law — child was under 21 at time of parent's naturalization
-    if (minorLaw === 'yes') {
-      var minorNatYr = answers['minor_nat_year'];
-
-      if (minorNatYr === 'post1992') {
-        // 1992 dual citizenship: parent retained Italian citizenship, minor rule doesn't apply
-        // Quiz already continued past this point — result handled by later steps' logic below
-      } else if (minorNatYr === 'unsure') {
-        return {
-          type: 'amber', bookable: true,
-          icon: '🔍',
-          title: 'Possibly eligible — one date needs confirming',
-          body: 'The minor-child rule (automatic citizenship loss for children under 21) only applies to naturalisations before 1992. Italy\'s Law 91/1992 introduced dual citizenship — if your ancestor naturalised in August 1992 or later, they retained Italian citizenship and the minor rule does not apply. We need to confirm the naturalization year before we can give you a definitive answer. Book a free call and we\'ll review the records with you.',
-          cta: 'Book a Free Case Review'
-        };
-      } else {
-        // pre1992 or no answer — hard stop
-        return {
-          type: 'red', bookable: false,
-          icon: '❌',
-          title: 'Unfortunately, we\'re unable to take on your case',
-          body: 'Under Italian law (Law 555/1912), minor children under 21 automatically lost Italian citizenship when their parent naturalized as a foreign citizen before 1992. Because the next person in your lineage was a minor at the time of a pre-1992 naturalisation, citizenship did not pass through. We\'re not able to take on this case.'
-        };
-      }
+    // 3. Article 3-bis(d): parent two-year residence
+    var res = a.parent_res || a.ggp_parent_res;
+    if (res === 'yes') {
+      return { type: 'green', bookable: true, icon: '🏠',
+        title: 'You may qualify through your parent\'s residence in Italy',
+        body: 'Under Article 3-bis(d), a parent who lived in Italy for at least two continuous years after becoming an Italian citizen, and before you were born, can qualify you. We\'ll confirm this with residence records (such as a certificato storico di residenza).' + (is1948 ? NOTE_1948 : '') + NOTE_REVIEW,
+        route: routeLabel,
+        cta: 'Book Your Free Consultation' };
     }
 
-    // Minor law unsure — flag it but still allow a consultation
-    if (minorLaw === 'unsure') {
-      return {
-        type: 'amber', bookable: true,
-        icon: '🔍',
-        title: 'Possibly eligible — one detail needs checking',
-        body: 'Your case looks promising, but we need to confirm one thing: whether the next person in your lineage was an adult (21+) when your ancestor naturalized. If they were a minor at the time, citizenship may not have passed through. Book a free call and we\'ll review the exact dates with you.',
-        cta: 'Book a Free Case Review'
-      };
+    // 4. Uncertain answers — worth a review
+    if (maybeC || res === 'unsure') {
+      return { type: 'amber', bookable: true, icon: '🔍',
+        title: 'Possibly eligible — a few dates need confirming',
+        body: 'Your eligibility under the 2025 rules depends on details we can check together: whether your parent or grandparent ever held another citizenship before your birth, or whether your parent lived in Italy for two years after becoming a citizen. Book a free call and we\'ll review the records with you.',
+        cta: 'Book a Free Case Review' };
     }
 
-    // 1948 maternal case — court ONLY
-    if (answers[3] === 'yes_pre48') {
-      return {
-        type: 'green', bookable: true,
-        icon: '⚖️',
-        title: 'Eligible — 1948 Court Route Only',
-        body: 'Your lineage passes through a woman who transmitted citizenship before 1948. Under Italian law, this type of case cannot be filed at a consulate — it must go through an Italian court petition. This is a specialised route that requires formal legal representation before an Italian court. Book a free call to review your lineage and get started.',
-        route: '1948 Court Route (consulate filing not available)',
-        cta: 'Book Your Free Consultation'
-      };
-    }
-
-    // General eligible
-    if (nat === 'no' || nat === 'after' || nat === 'unsure') {
-      var route = 'Consulate Route';
-
-      var bodyText = ancestor === 'grandparent'
-        ? 'Based on your answers, you appear eligible for Italian citizenship through your grandparent. Italy\'s Law 74/2025 (passed January 2025) now limits claims to parent and grandparent lines — your case falls within the eligible range. Book a free consultation to confirm your lineage, review your documents, and map out your route.'
-        : 'Based on your answers, you appear eligible for Italian citizenship through your parent. The next step is a free consultation to confirm your lineage, review documents, and map out your application route.';
-
-      return {
-        type: 'green', bookable: true,
-        icon: '✅',
-        title: 'You appear eligible',
-        body: bodyText,
-        route: route,
-        cta: 'Book Your Free Consultation'
-      };
-    }
-
-    // Default
-    return {
-      type: 'amber', bookable: true,
-      icon: '🔍',
-      title: 'Let\'s review your case',
-      body: 'Your situation has some nuances worth reviewing in person. Note that Italy\'s Law 74/2025 now limits citizenship by descent to parent and grandparent lines — claims through earlier generations are no longer accepted. Book a free consultation and our team will analyse your lineage and confirm whether you fall within the eligible window.',
-      cta: 'Book a Free Consultation'
+    // 5. Not eligible under current law — explain honestly, point to what may change
+    var waitNote = a.started === 'waitlist'
+      ? ' Requesting an appointment or joining a waitlist before the cutoff does not, by itself, qualify for the old rules.'
+      : '';
+    return { type: 'red', bookable: false, icon: '⚖️',
+      title: 'Not eligible for a new application under current law',
+      body: 'Based on your answers, you don\'t appear to meet Article 3-bis, which since 2025 requires a parent or grandparent who held only Italian citizenship, or a parent who lived in Italy for two years after becoming a citizen.' + waitNote +
+        ' Two things could still matter: the EU Court of Justice is reviewing the law (case C-816/26), and former citizens born in Italy who lost citizenship before August 15, 1992 can reacquire it by declaration until December 31, 2027. If either may apply to your family, email us and we\'ll let you know where you stand.'
     };
   }
 
-  // --- Dynamic lineage labels (based on step-1 ancestor selection) ---
-  function getLineageTerms() {
-    switch (answers[1]) {
-      case 'parent':
-        return {
-          step2_q:      'Did your parent naturalize as a foreign citizen?',
-          step2_after:  { label: 'Yes — but after you were born',  sub: 'They naturalized after you were born' },
-          step2_before: { label: 'Yes — before you were born',     sub: 'They naturalized before you were born' },
-          minor_q:      'Were you a minor when your parent naturalized?',
-          minor_no:     { label: 'No — I was an adult (21 or older)', sub: 'I was 21 or older at the time of naturalization' },
-          minor_yes:    { label: 'Yes — I was a minor (under 21)',    sub: 'I was under 21 when my parent naturalized' }
-        };
-      case 'grandparent':
-        return {
-          step2_q:      'Did your grandparent naturalize as a foreign citizen?',
-          step2_after:  { label: 'Yes — but after your parent was born',  sub: 'They naturalized after your parent was born' },
-          step2_before: { label: 'Yes — before your parent was born',     sub: 'They naturalized before your parent was born' },
-          minor_q:      'Was your parent a minor when your grandparent naturalized?',
-          minor_no:     { label: 'No — my parent was an adult (21 or older)', sub: 'My parent was 21 or older at the time of naturalization' },
-          minor_yes:    { label: 'Yes — my parent was a minor (under 21)',    sub: 'My parent was under 21 when my grandparent naturalized' }
-        };
-      case 'greatgrandparent':
-        return {
-          step2_q:      'Did your great-grandparent naturalize as a foreign citizen?',
-          step2_after:  { label: 'Yes — but after your grandparent was born',  sub: 'They naturalized after your grandparent was born' },
-          step2_before: { label: 'Yes — before your grandparent was born',     sub: 'They naturalized before your grandparent was born' },
-          minor_q:      'Was your grandparent a minor when your great-grandparent naturalized?',
-          minor_no:     { label: 'No — my grandparent was an adult (21 or older)', sub: 'My grandparent was 21 or older at the time of naturalization' },
-          minor_yes:    { label: 'Yes — my grandparent was a minor (under 21)',    sub: 'My grandparent was under 21 when my great-grandparent naturalized' }
-        };
-      default:
-        return null;
-    }
-  }
+  // Lineage terms are now built into the question functions above.
+  function getLineageTerms() { return null; }
 
   // --- Render ---
   function renderStep(stepKey) {
-    var data = quizData[stepKey];
+    var data = typeof quizData[stepKey] === 'function' ? quizData[stepKey]() : quizData[stepKey];
     var container = document.getElementById('quiz-dynamic');
     if (!container || !data) return;
 
@@ -581,6 +346,8 @@
     container.querySelectorAll('.quiz-option').forEach(function (btn) {
       btn.addEventListener('click', function () {
         answers[stepKey] = this.dataset.value;
+        var idxNow = stepHistory.indexOf(stepKey);
+        stepHistory.slice(idxNow + 1).forEach(function (k) { delete answers[k]; });
         var next = getNextStep(stepKey, this.dataset.value);
         if (next === 'done') {
           updateProgress(100);
@@ -624,6 +391,13 @@
         '<div class="result-booking-card">' +
           '<p style="font-size:0.875rem; color:var(--gray-700); text-align:center; margin:0 0 var(--space-sm);">If you believe there\'s an error in your answers or have additional context to share, feel free to reach out.</p>' +
           '<a href="mailto:team@citizenshipitalia.com" class="btn btn--outline result-booking-card__btn">Contact Us by Email →</a>' +
+          '<div class="result-email">' +
+            '<span class="result-email__label">Or write to us at</span>' +
+            '<span class="result-email__row">' +
+              '<span class="result-email__address">team@citizenshipitalia.com</span>' +
+              '<button type="button" class="result-email__copy" id="quiz-copy-email" aria-label="Copy email address">Copy</button>' +
+            '</span>' +
+          '</div>' +
         '</div>';
     } else {
       var ctaLabel    = result.type === 'green' ? 'Book Your Free Consultation →' : result.cta + ' →';
@@ -673,24 +447,45 @@
       window._calendlyListenerAttached = true;
     }
 
+    var copyBtn = container.querySelector('#quiz-copy-email');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function () {
+        var addr = 'team@citizenshipitalia.com';
+        var done = function () {
+          copyBtn.textContent = 'Copied';
+          copyBtn.classList.add('is-copied');
+          setTimeout(function () { copyBtn.textContent = 'Copy'; copyBtn.classList.remove('is-copied'); }, 2000);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(addr).then(done, function () { selectAddress(); });
+        } else { selectAddress(); }
+        function selectAddress() {
+          var el = container.querySelector('.result-email__address');
+          var range = document.createRange(); range.selectNodeContents(el);
+          var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+          try { if (document.execCommand('copy')) done(); } catch (e) {}
+        }
+      });
+    }
+
     var restartBtn = container.querySelector('#quiz-restart');
     if (restartBtn) {
       restartBtn.addEventListener('click', function () {
         answers = {};
-        stepHistory = [1];
-        currentStep = 1;
-        updateProgress(progressPct(1));
+        stepHistory = ['ancestor'];
+        currentStep = 'ancestor';
+        updateProgress(progressPct('ancestor'));
         if (calendlySection) calendlySection.innerHTML = '';
-        renderStep(1);
+        renderStep('ancestor');
       });
     }
   }
 
   // Init
-  stepHistory = [1];
-  currentStep = 1;
-  updateProgress(progressPct(1));
-  renderStep(1);
+  stepHistory = ['ancestor'];
+  currentStep = 'ancestor';
+  updateProgress(progressPct('ancestor'));
+  renderStep('ancestor');
 })();
 
 // --- Process steps mobile accordion ---

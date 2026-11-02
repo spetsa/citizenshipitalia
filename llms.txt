@@ -1,6 +1,6 @@
 # Citizenship Italia
 
-> Citizenship Italia is a Toronto-based Italian citizenship by descent firm serving Americans. We offer end-to-end services for consulate applications, court (ATQ) cases, and 1948 maternal line cases. Licensed Italian legal representation included.
+> Citizenship Italia is an Italian citizenship by descent firm serving Americans, with offices in Toronto and its legal team based in Turin, Italy. We offer end-to-end services for consulate applications, court (ATQ) cases, and 1948 maternal line cases. Licensed Italian legal representation included.
 
 ## Core Services
 
@@ -11,14 +11,14 @@
 
 ## Application Routes
 
-- [Against the Queue (ATQ) Court Route](https://citizenshipitalia.com/routes/court-atq/) — How to bypass consulate backlogs via direct Italian court filing (azione di accertamento)
+- [Against the Queue (ATQ) Court Route](https://citizenshipitalia.com/routes/court-atq/) — When a court action (azione di accertamento) may be appropriate, how it works, and its risks
 - [1948 Maternal Line Cases](https://citizenshipitalia.com/routes/1948-cases/) — Court route for citizenship transmitted through a female ancestor before 1948
 
 ## Key Legal Guides
 
 - [What is Jure Sanguinis?](https://citizenshipitalia.com/resources/what-is-jure-sanguinis.html) — Complete guide to Italian citizenship by right of blood
-- [Law 74/2025 Explained](https://citizenshipitalia.com/resources/law-74-2025.html) — Italy's 2025 generational limit law: who is affected and what changed
-- [The Minor Issue Risk](https://citizenshipitalia.com/resources/minor-issue/) — How a naturalisation event can break the Italian citizenship line (Law 555/1912)
+- [Law 74/2025 Explained](https://citizenshipitalia.com/resources/law-74-2025.html) — Article 3-bis and the exclusive-citizenship test, grandfathering, and the 2026 court rulings
+- [The Minor Issue Risk](https://citizenshipitalia.com/resources/minor-issue/) — The Minor Issue after Court of Cassation Judgment 24045/2026 (Law 555/1912)
 - [Court vs Consulate Comparison](https://citizenshipitalia.com/resources/court-vs-consulate/) — Side-by-side comparison of application routes with timelines and costs
 - [How to Get Started](https://citizenshipitalia.com/resources/how-to-get-started.html) — Step-by-step guide to beginning a Jure Sanguinis application
 
@@ -51,6 +51,6 @@
 
 ## About
 
-Citizenship Italia helps Americans of Italian descent reclaim their Italian (EU) citizenship. We provide end-to-end services including lineage verification, document procurement, certified translation, apostille processing, and licensed Italian legal representation for all three application routes: consulate, ATQ court, and 1948 cases. All court filings since Law 74/2025 are centralized at the Court of Rome.
+Citizenship Italia helps Americans of Italian descent reclaim their Italian (EU) citizenship. We provide end-to-end services including lineage verification, document procurement, certified translation, apostille processing, and licensed Italian legal representation for all three application routes: consulate, ATQ court, and 1948 cases. Court cases are filed with the competent Italian court, generally the one for the area where the Italian ancestor was born.
 
 For comprehensive documentation, see: https://citizenshipitalia.com/llms-full.txt
