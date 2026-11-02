@@ -1486,6 +1486,7 @@ p {
   max-width: 100%;
   margin: 0;
   overflow: visible; /* don't create a scroll sub-context on the homepage */
+  overflow: clip;    /* trim the progress strip to the rounded corners without creating a scroll container */
 }
 
 .homepage-quiz-card,
