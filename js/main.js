@@ -82,6 +82,10 @@
   var answers = {};
   var stepHistory = [];
 
+  // EU Court update signup: paste a form endpoint here (e.g. a Formspree form URL like
+  // 'https://formspree.io/f/xxxxxxx'). While it is empty, the form falls back to a pre-filled email.
+  var SIGNUP_ENDPOINT = '';
+
   // Quiz data — built around Article 3-bis of Law 91/1992 (as amended by Law 74/2025), updated November 2026.
   // Entries may be functions so question text can adapt to earlier answers.
   function rel() { return answers.ancestor === 'grandparent' ? 'grandparent' : 'parent'; }
@@ -398,7 +402,17 @@
               '<button type="button" class="result-email__copy" id="quiz-copy-email" aria-label="Copy email address">Copy</button>' +
             '</span>' +
           '</div>' +
-        '</div>';
+        '</div>' +
+        '<form class="result-signup" id="quiz-signup" novalidate>' +
+          '<p class="result-signup__title">Get notified if the EU Court ruling changes this</p>' +
+          '<p class="result-signup__text">The EU Court of Justice is reviewing the 2025 law (case C-816/26). Leave your email and we\'ll let you know if the ruling opens a path for your family.</p>' +
+          '<div class="result-signup__row">' +
+            '<label for="quiz-signup-email" class="visually-hidden">Email address</label>' +
+            '<input type="email" id="quiz-signup-email" name="email" required autocomplete="email" placeholder="you@example.com">' +
+            '<button type="submit" class="btn btn--gold btn--sm">Notify me</button>' +
+          '</div>' +
+          '<p class="result-signup__status" role="status" aria-live="polite"></p>' +
+        '</form>';
     } else {
       var ctaLabel    = result.type === 'green' ? 'Book Your Free Consultation →' : result.cta + ' →';
       var ctaSubtitle = result.type === 'green'
@@ -413,17 +427,25 @@
         '</div>';
     }
 
+    var outcome = result.type === 'red' ? 'Not eligible under current law'
+      : /pre-2025|old rules/i.test(result.title) ? 'Transitional case'
+      : result.type === 'amber' ? 'Needs legal review'
+      : 'Likely eligible';
+
     container.innerHTML =
       '<div class="quiz-result">' +
         '<div class="quiz-result__icon ' + iconClass + '">' + result.icon + '</div>' +
+        '<span class="quiz-result__outcome quiz-result__outcome--' + result.type + '">' + outcome + '</span>' +
         '<h3>' + result.title + '</h3>' +
         '<p>' + result.body + '</p>' +
+        '<p class="quiz-result__disclaimer">This is a preliminary screening, not a final legal determination. Cases involving naturalization dates, a maternal line before 1948, filings before March 27, 2025 or other exceptions may need a full legal review.</p>' +
         ctaBlock +
         '<button class="quiz-result__restart" id="quiz-restart" type="button">↺ Start over</button>' +
       '</div>';
 
-    // Calendly iframe — only for bookable green results on desktop
-    if (result.bookable && result.type === 'green' && window.innerWidth >= 680 && calendlySection) {
+    // Calendly iframe — for bookable green results on all screen sizes (taller on phones)
+    if (result.bookable && result.type === 'green' && calendlySection) {
+      var calHeight = window.innerWidth < 680 ? 1050 : 700;
       var domain = window.location.hostname || 'citizenshipitalia.com';
       calendlySection.innerHTML =
         '<div class="calendly-embed-section">' +
@@ -431,7 +453,7 @@
           '<div class="calendly-embed-section__frame">' +
             '<iframe' +
               ' src="https://calendly.com/citizenshipitalia/30min?embed_domain=' + domain + '&embed_type=Inline&hide_gdpr_banner=1"' +
-              ' width="100%" height="700" frameborder="0" scrolling="yes"' +
+              ' width="100%" height="' + calHeight + '" style="min-height:' + calHeight + 'px" frameborder="0" scrolling="yes"' +
               ' title="Book a free consultation with Citizenship Italia">' +
             '</iframe>' +
           '</div>' +
@@ -445,6 +467,45 @@
         }
       });
       window._calendlyListenerAttached = true;
+    }
+
+    var signup = container.querySelector('#quiz-signup');
+    if (signup) {
+      signup.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var input = signup.querySelector('input[type="email"]');
+        var status = signup.querySelector('.result-signup__status');
+        var email = (input.value || '').trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          status.textContent = 'Please enter a valid email address.';
+          input.focus();
+          return;
+        }
+        var subject = 'EU Court update request (quiz: not eligible)';
+        if (!SIGNUP_ENDPOINT) {
+          window.location.href = 'mailto:team@citizenshipitalia.com?subject=' + encodeURIComponent(subject) +
+            '&body=' + encodeURIComponent('Please let me know if the EU Court ruling (case C-816/26) changes my eligibility. My email: ' + email);
+          status.textContent = 'Your email app should open with the request ready to send.';
+          return;
+        }
+        var data = new FormData();
+        data.append('email', email);
+        data.append('_subject', subject);
+        data.append('source', 'eligibility quiz - not eligible');
+        data.append('answers', JSON.stringify(answers));
+        var btn = signup.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        status.textContent = 'Sending…';
+        fetch(SIGNUP_ENDPOINT, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+          .then(function (r) {
+            if (!r.ok) throw new Error('bad status');
+            signup.innerHTML = '<p class="result-signup__title">You\'re on the list.</p><p class="result-signup__text">We\'ll email you if the EU Court ruling changes who qualifies.</p>';
+          })
+          .catch(function () {
+            btn.disabled = false;
+            status.textContent = 'Something went wrong. Please email team@citizenshipitalia.com instead.';
+          });
+      });
     }
 
     var copyBtn = container.querySelector('#quiz-copy-email');
@@ -564,12 +625,13 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
   if (!textEl) return;
 
   var messages = [
-    { threshold: 0,    html: '<strong>Not sure if you qualify?</strong> Free consultation — no commitment' },
-    { threshold: 0.30, html: '<strong>Find your route in 2 minutes</strong> Take the free eligibility quiz' },
-    { threshold: 0.62, html: '<strong>Ready to get started?</strong> Book your free 30-minute consultation' },
-    { threshold: 0.88, html: '<strong>Join 150+ families</strong> Check your eligibility today — it\'s free' }
+    { threshold: 0,    html: '<strong>Not sure if you qualify?</strong><span class="sticky-cta-bar__sub"> Free consultation — no commitment</span>' },
+    { threshold: 0.30, html: '<strong>Find your route in 2 minutes</strong><span class="sticky-cta-bar__sub"> Take the free eligibility quiz</span>' },
+    { threshold: 0.62, html: '<strong>Ready to get started?</strong><span class="sticky-cta-bar__sub"> Book your free 30-minute consultation</span>' },
+    { threshold: 0.88, html: '<strong>Join 150+ families</strong><span class="sticky-cta-bar__sub"> Check your eligibility today — it\'s free</span>' }
   ];
 
+  textEl.innerHTML = messages[0].html;
   var lastIdx = 0;
   function updateMsg() {
     var pageH = document.body.scrollHeight - window.innerHeight;
@@ -585,6 +647,37 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     }
   }
   window.addEventListener('scroll', updateMsg, { passive: true });
+})();
+
+// --- Sticky CTA visibility: appear after the hero, hide while the quiz or booking calendar is on screen ---
+(function () {
+  var bar = document.getElementById('sticky-cta');
+  if (!bar) return;
+  var hero = document.querySelector('.hero, .page-header');
+  var onScreen = {};
+  function threshold() {
+    if (hero) { var r = hero.getBoundingClientRect(); return r.bottom + window.scrollY - 80; }
+    return window.innerHeight * 0.6;
+  }
+  function update() {
+    var past = window.scrollY > threshold();
+    var blocked = Object.keys(onScreen).some(function (k) { return onScreen[k]; });
+    bar.classList.toggle('sticky-cta-bar--visible', past && !blocked);
+  }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { onScreen[e.target.id || e.target.className] = e.isIntersecting; });
+      update();
+    }, { threshold: 0.15 });
+    var watch = function () {
+      document.querySelectorAll('#eligibility-quiz, .quiz-wrapper, #calendly-section, .calendly-embed-section, #case-estimator').forEach(function (el) { io.observe(el); });
+    };
+    watch();
+    document.addEventListener('click', function () { setTimeout(watch, 300); }, true);
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
 })();
 
 // --- Lazy load images ---
@@ -606,3 +699,51 @@ if ('IntersectionObserver' in window) {
     imgObserver.observe(img);
   });
 }
+
+// --- Pricing page: case estimator (uses the published fee schedule) ---
+// Total = service fee (consulate package or legal fee) + €600 per applicant
+//       + translations: 2 per person in the line (birth + marriage), Italian ancestor down to applicant,
+//         + 1 for the Italian ancestor's naturalization record.
+(function () {
+  var root = document.getElementById('case-estimator');
+  if (!root) return;
+  var FEES = {
+    consulate: 2500,         // Administrative Package Assembly
+    legal: 4500,             // Court Case Application & Representation (court and 1948)
+    familyMember: 200,       // per additional immediate family member
+    cousin: 500,             // per additional first cousin
+    translation: 80,         // per document (up to 4 pages)
+    govFeeEur: 600,          // per applicant
+    eurToUsd: 650 / 600      // matches the ~$650 shown on this page
+  };
+  var $ = function (id) { return document.getElementById(id); };
+  var money = function (n) { return '$' + Math.round(n).toLocaleString('en-US'); };
+  var num = function (id) { var v = parseInt($(id).value, 10); return isNaN(v) || v < 0 ? 0 : Math.min(v, 20); };
+  var checked = function (name) { var el = root.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : ''; };
+
+  function calc() {
+    var route = checked('est-route');
+    var gen = parseInt(checked('est-gen'), 10) || 2;
+    var family = num('est-family'), cousins = num('est-cousins');
+    var applicants = 1 + family + cousins;
+    var service = (route === 'consulate' ? FEES.consulate : FEES.legal) +
+                  family * FEES.familyMember + cousins * FEES.cousin;
+    // Line: Italian ancestor + each generation down to the applicant = gen + 1 people, 2 records each,
+    // plus the ancestor's naturalization record. Each family member adds their own birth + marriage;
+    // each first cousin adds their own and their parent's.
+    var translations = (gen + 1) * 2 + 1 + family * 2 + cousins * 4;
+    var docs = translations * FEES.translation;
+    var govEur = applicants * FEES.govFeeEur;
+    var govUsd = govEur * FEES.eurToUsd;
+    $('est-service').textContent = money(service);
+    $('est-docs-label').textContent = 'Translations (' + translations + ' documents)';
+    $('est-docs').textContent = money(docs);
+    $('est-gov').textContent = '€' + govEur.toLocaleString('en-US') + ' (~' + money(govUsd) + ')';
+    $('est-total').textContent = money(service + docs + govUsd);
+    $('est-eur-note').textContent = 'for ' + applicants + (applicants === 1 ? ' applicant' : ' applicants') +
+      (route === 'consulate' ? ' · consulate route' : route === 'court' ? ' · court route' : ' · 1948 court case');
+  }
+
+  root.querySelectorAll('input').forEach(function (i) { i.addEventListener('input', calc); i.addEventListener('change', calc); });
+  calc();
+})();
