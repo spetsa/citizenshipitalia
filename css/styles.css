@@ -2825,38 +2825,23 @@ p {
   .quiz-option__sublabel { font-size: 0.8rem; }
 }
 
-/* 4. Pricing cards: horizontal scroll on mobile so all 3 are
-   accessible without extreme scroll depth.
-   Report §4.1 — "Tabbed or scrollable pricing on mobile" */
+/* 4. Pricing cards on phones: stack the three routes and show only the
+   average cost range (the "What's included" lists are hidden to keep it short). */
 @media (max-width: 767px) {
   .pricing-grid--scroll {
     display: flex !important;
-    flex-direction: row !important;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
+    flex-direction: column !important;
     gap: var(--space-md);
-    padding-bottom: var(--space-sm);
-    /* Show scroll hint via partial next card */
-    padding-right: 24px;
   }
-  .pricing-grid--scroll .pricing-card {
-    min-width: min(300px, 85vw);
-    flex-shrink: 0;
-    scroll-snap-align: start;
-  }
-  /* Scroll hint label */
-  .pricing-scroll-hint {
-    display: block;
-    text-align: center;
-    font-size: 0.8rem;
-    color: var(--gray-500);
-    margin-top: var(--space-sm);
-  }
+  .pricing-grid--scroll .pricing-card { min-width: 0; width: 100%; padding: 0; }
+  .pricing-grid--scroll .pricing-card__header { padding: var(--space-lg); border-bottom: 0; }
+  .pricing-grid--scroll .pricing-card__includes,
+  .pricing-grid--scroll .pricing-card__features { display: none; }
+  .pricing-grid--scroll .pricing-card__body { padding: 0 var(--space-lg) var(--space-lg); }
+  .pricing-grid--scroll .pricing-card--featured .pricing-card__body { padding-top: var(--space-lg); }
+  .pricing-grid--scroll .pricing-card__body .btn { margin-top: 0; width: 100%; justify-content: center; }
 }
-@media (min-width: 768px) {
-  .pricing-scroll-hint { display: none; }
-}
+.pricing-scroll-hint { display: none; }
 
 /* 5. Form inputs: 16px minimum to prevent iOS auto-zoom on focus
    Report §5.4 — "All inputs font-size at least 16px, min-height 48px" */
