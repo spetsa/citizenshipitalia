@@ -2000,6 +2000,36 @@ p {
   }
 }
 
+/* Any card in a grid that ends with a button: pin the button to the bottom so buttons line up across the row */
+.grid > .card:has(> .btn:last-child) { display: flex; flex-direction: column; }
+.grid > .card:has(> .btn:last-child) > .btn:last-child { margin-top: auto; }
+.grid > .card--feature > .btn:last-child { align-self: center; }
+.grid > .card:not(.card--feature) > .btn:last-child { align-self: flex-start; }
+.grid > .card:has(> .btn:last-child) > :nth-last-child(2) { margin-bottom: var(--space-lg); }
+
+/* Phones: wide content tables scroll inside their own box instead of widening the page */
+@media (max-width: 600px) {
+  main table { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  main table th, main table td { padding: 10px 12px !important; }
+}
+
+/* Pricing cards: equal height, with the CTA buttons aligned across cards */
+.pricing-grid { align-items: stretch; }
+.pricing-card { display: flex; flex-direction: column; }
+.pricing-card__body { flex: 1; display: flex; flex-direction: column; }
+.pricing-card__body > .btn { margin-top: auto; }
+
+/* Route cards (How it works page): keep the CTA buttons aligned at the bottom */
+.route-card {
+  display: flex;
+  flex-direction: column;
+}
+.route-card ul { margin-bottom: var(--space-lg); }
+.route-card > .btn {
+  margin-top: auto !important;
+  align-self: flex-start;
+}
+
 /* --- Responsive --- */
 @media (max-width: 1024px) {
   .card--feature { padding: var(--space-xl) var(--space-lg); }
