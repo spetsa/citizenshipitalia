@@ -43,11 +43,12 @@
   });
 
   // Mark current page link as active in mobile nav
-  var currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  var clean = function (p) { return (p || '').split('#')[0].replace(/\.html$/, '').replace(/^index$/, ''); };
+  var currentPath = clean(window.location.pathname.split('/').pop());
   mobileNav.querySelectorAll('a').forEach(function (link) {
     var href = link.getAttribute('href') || '';
-    var linkPage = href.split('/').pop();
-    if (linkPage === currentPath || (currentPath === '' && linkPage === 'index.html')) {
+    var linkPage = clean(href.replace(/\/$/, '').split('/').pop());
+    if (href.charAt(0) !== '#' && linkPage === currentPath) {
       link.classList.add('active');
     }
   });
@@ -463,7 +464,7 @@
     if (!window._calendlyListenerAttached) {
       window.addEventListener('message', function(event) {
         if (event.origin && event.origin.includes('calendly.com') && event.data && event.data.event === 'calendly.event_scheduled') {
-          window.location.href = 'thank-you.html';
+          window.location.href = 'thank-you';
         }
       });
       window._calendlyListenerAttached = true;
@@ -745,5 +746,24 @@ if ('IntersectionObserver' in window) {
   }
 
   root.querySelectorAll('input').forEach(function (i) { i.addEventListener('input', calc); i.addEventListener('change', calc); });
+  function syncSteppers() {
+    root.querySelectorAll('.est-stepper__btn').forEach(function (b) {
+      var inp = document.getElementById(b.getAttribute('data-for')); var v = parseInt(inp.value, 10) || 0;
+      b.disabled = b.getAttribute('data-step') === '-1' ? v <= +inp.min : v >= +inp.max;
+    });
+  }
+  root.querySelectorAll('.est-stepper__btn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var inp = document.getElementById(this.getAttribute('data-for'));
+      var v = (parseInt(inp.value, 10) || 0) + parseInt(this.getAttribute('data-step'), 10);
+      inp.value = Math.max(+inp.min, Math.min(+inp.max, v));
+      inp.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+  });
+  root.querySelectorAll('.est-stepper input').forEach(function (i) {
+    i.addEventListener('input', syncSteppers);
+    i.addEventListener('blur', function () { var v = parseInt(i.value, 10); i.value = isNaN(v) ? 0 : Math.max(+i.min, Math.min(+i.max, v)); syncSteppers(); calc(); });
+  });
+  syncSteppers();
   calc();
 })();
