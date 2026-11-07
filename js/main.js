@@ -83,9 +83,7 @@
   var answers = {};
   var stepHistory = [];
 
-  // EU Court update signup: paste a form endpoint here (e.g. a Formspree form URL like
-  // 'https://formspree.io/f/xxxxxxx'). While it is empty, the form falls back to a pre-filled email.
-  var SIGNUP_ENDPOINT = '';
+  // EU Court update signup: handled by the HubSpot signup handler at the end of this file.
 
   // Quiz data — built around Article 3-bis of Law 91/1992 (as amended by Law 74/2025), updated November 2026.
   // Entries may be functions so question text can adapt to earlier answers.
@@ -404,12 +402,13 @@
             '</span>' +
           '</div>' +
         '</div>' +
-        '<form class="result-signup" id="quiz-signup" novalidate>' +
+        '<form class="result-signup" id="quiz-signup" data-hs-signup="Eligibility quiz (not eligible result)" novalidate>' +
           '<p class="result-signup__title">Get notified if the EU Court ruling changes this</p>' +
           '<p class="result-signup__text">The EU Court of Justice is reviewing the 2025 law (case C-816/26). Leave your email and we\'ll let you know if the ruling opens a path for your family.</p>' +
           '<div class="result-signup__row">' +
             '<label for="quiz-signup-email" class="visually-hidden">Email address</label>' +
             '<input type="email" id="quiz-signup-email" name="email" required autocomplete="email" placeholder="you@example.com">' +
+            '<input type="text" name="company_website" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true">' +
             '<button type="submit" class="btn btn--gold btn--sm">Notify me</button>' +
           '</div>' +
           '<p class="result-signup__status" role="status" aria-live="polite"></p>' +
@@ -433,6 +432,7 @@
       : result.type === 'amber' ? 'Needs legal review'
       : 'Likely eligible';
 
+    window.ciQuizAnswers = answers;
     container.innerHTML =
       '<div class="quiz-result">' +
         '<div class="quiz-result__icon ' + iconClass + '">' + result.icon + '</div>' +
@@ -468,45 +468,6 @@
         }
       });
       window._calendlyListenerAttached = true;
-    }
-
-    var signup = container.querySelector('#quiz-signup');
-    if (signup) {
-      signup.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var input = signup.querySelector('input[type="email"]');
-        var status = signup.querySelector('.result-signup__status');
-        var email = (input.value || '').trim();
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-          status.textContent = 'Please enter a valid email address.';
-          input.focus();
-          return;
-        }
-        var subject = 'EU Court update request (quiz: not eligible)';
-        if (!SIGNUP_ENDPOINT) {
-          window.location.href = 'mailto:team@citizenshipitalia.com?subject=' + encodeURIComponent(subject) +
-            '&body=' + encodeURIComponent('Please let me know if the EU Court ruling (case C-816/26) changes my eligibility. My email: ' + email);
-          status.textContent = 'Your email app should open with the request ready to send.';
-          return;
-        }
-        var data = new FormData();
-        data.append('email', email);
-        data.append('_subject', subject);
-        data.append('source', 'eligibility quiz - not eligible');
-        data.append('answers', JSON.stringify(answers));
-        var btn = signup.querySelector('button[type="submit"]');
-        btn.disabled = true;
-        status.textContent = 'Sending…';
-        fetch(SIGNUP_ENDPOINT, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
-          .then(function (r) {
-            if (!r.ok) throw new Error('bad status');
-            signup.innerHTML = '<p class="result-signup__title">You\'re on the list.</p><p class="result-signup__text">We\'ll email you if the EU Court ruling changes who qualifies.</p>';
-          })
-          .catch(function () {
-            btn.disabled = false;
-            status.textContent = 'Something went wrong. Please email team@citizenshipitalia.com instead.';
-          });
-      });
     }
 
     var copyBtn = container.querySelector('#quiz-copy-email');
@@ -827,9 +788,9 @@ if ('IntersectionObserver' in window) {
   }
 
   // Notify-me signup on the not-eligible result
-  document.addEventListener('submit', function (e) {
-    if (e.target && e.target.id === 'quiz-signup') track('sign_up', { method: 'eu_court_notify', page_path: path });
-  }, true);
+  document.addEventListener('ci:signup', function (e) {
+    track('sign_up', { method: 'eu_court_notify', lead_source: (e.detail && e.detail.source) || '', page_path: path });
+  });
 
   // Calendly booking funnel (inline embed)
   window.addEventListener('message', function (ev) {
@@ -861,4 +822,66 @@ if ('IntersectionObserver' in window) {
       });
     }
   }
+})();
+
+// EU Court notify-me signups -> HubSpot form "EU Court ruling - notify me".
+// Any <form data-hs-signup="where it was shown"> with an email input is sent here.
+(function () {
+  var HS_PORTAL = '47559105';
+  var HS_FORM = '901ed9fe-60e6-41be-a452-61da5a68a77c';
+  function cookie(name) {
+    var m = document.cookie.match('(?:^|; )' + name + '=([^;]*)');
+    return m ? decodeURIComponent(m[1]) : '';
+  }
+  document.addEventListener('submit', function (e) {
+    var form = e.target;
+    if (!form || !form.hasAttribute || !form.hasAttribute('data-hs-signup')) return;
+    e.preventDefault();
+    var input = form.querySelector('input[type="email"]');
+    var status = form.querySelector('.result-signup__status');
+    var btn = form.querySelector('button[type="submit"]');
+    var trap = form.querySelector('input[name="company_website"]');
+    var email = (input.value || '').trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      status.textContent = 'Please enter a valid email address.';
+      input.focus();
+      return;
+    }
+    if (trap && trap.value) return;
+    var source = form.getAttribute('data-hs-signup');
+    var note = 'Wants an email when the EU Court of Justice rules on case C-816/26. Signed up from: ' + source + '.';
+    if (window.ciQuizAnswers && /quiz/i.test(source)) note += ' Quiz answers: ' + JSON.stringify(window.ciQuizAnswers);
+    if (!HS_FORM) {
+      window.location.href = 'mailto:team@citizenshipitalia.com?subject=' + encodeURIComponent('EU Court update request') +
+        '&body=' + encodeURIComponent('Please let me know when the EU Court rules on case C-816/26. My email: ' + email);
+      status.textContent = 'Your email app should open with the request ready to send.';
+      return;
+    }
+    var context = { pageUri: window.location.href, pageName: document.title };
+    var hutk = cookie('hubspotutk');
+    if (hutk) context.hutk = hutk;
+    btn.disabled = true;
+    status.textContent = 'Sending\u2026';
+    fetch('https://api.hsforms.com/submissions/v3/integration/submit/' + HS_PORTAL + '/' + HS_FORM, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fields: [
+          { objectTypeId: '0-1', name: 'email', value: email },
+          { objectTypeId: '0-1', name: 'message', value: note }
+        ],
+        context: context
+      })
+    })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HubSpot ' + r.status);
+        form.innerHTML = '<p class="result-signup__title">You\'re on the list.</p>' +
+          '<p class="result-signup__text">We\'ll email you when the EU Court rules and explain whether it changes who qualifies.</p>';
+        try { document.dispatchEvent(new CustomEvent('ci:signup', { detail: { source: source } })); } catch (err) {}
+      })
+      .catch(function () {
+        btn.disabled = false;
+        status.textContent = 'Something went wrong. Please email team@citizenshipitalia.com instead.';
+      });
+  });
 })();
