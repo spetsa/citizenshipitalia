@@ -22,12 +22,12 @@
   <url><loc>https://citizenshipitalia.com/resources/faq</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://citizenshipitalia.com/resources/apply-from-italy</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://citizenshipitalia.com/resources/minor-issue/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://citizenshipitalia.com/resources/court-vs-consulate/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://citizenshipitalia.com/resources/court-vs-consulate/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://citizenshipitalia.com/resources/consulate-appointment-guide/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
   <!-- Document guides -->
   <url><loc>https://citizenshipitalia.com/documents/apostille-and-translations/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://citizenshipitalia.com/documents/naturalisation-proof/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://citizenshipitalia.com/documents/naturalisation-proof/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Location pages -->
   <url><loc>https://citizenshipitalia.com/locations/united-states/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -42,24 +42,26 @@
   <url><loc>https://citizenshipitalia.com/resources/eu-court-case-c-816-26/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://citizenshipitalia.com/resources/constitutional-court-63-2026/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://citizenshipitalia.com/resources/reacquire-italian-citizenship/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://citizenshipitalia.com/resources/register-children-by-2029/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://citizenshipitalia.com/resources/register-children-by-2029/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://citizenshipitalia.com/resources/consulate-centralization/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://citizenshipitalia.com/resources/choosing-a-citizenship-service/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://citizenshipitalia.com/resources/choosing-a-citizenship-service/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://citizenshipitalia.com/documents/certificate-of-non-existence/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
   <url><loc>https://citizenshipitalia.com/resources/1948-case-cost/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://citizenshipitalia.com/resources/italian-citizenship-cost/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- U.S. consulate guides -->
-  <url><loc>https://citizenshipitalia.com/locations/united-states/new-york/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://citizenshipitalia.com/locations/united-states/chicago/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://citizenshipitalia.com/locations/united-states/los-angeles/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://citizenshipitalia.com/locations/united-states/san-francisco/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://citizenshipitalia.com/locations/united-states/boston/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://citizenshipitalia.com/locations/united-states/philadelphia/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://citizenshipitalia.com/locations/united-states/miami/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://citizenshipitalia.com/locations/united-states/houston/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://citizenshipitalia.com/locations/united-states/detroit/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://citizenshipitalia.com/locations/united-states/washington-dc/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://citizenshipitalia.com/locations/united-states/new-york/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://citizenshipitalia.com/locations/united-states/chicago/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://citizenshipitalia.com/locations/united-states/los-angeles/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://citizenshipitalia.com/locations/united-states/san-francisco/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://citizenshipitalia.com/locations/united-states/boston/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://citizenshipitalia.com/locations/united-states/philadelphia/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://citizenshipitalia.com/locations/united-states/miami/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://citizenshipitalia.com/locations/united-states/houston/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://citizenshipitalia.com/locations/united-states/detroit/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://citizenshipitalia.com/locations/united-states/washington-dc/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
+  <url><loc>https://citizenshipitalia.com/resources/italian-citizenship-through-mother/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://citizenshipitalia.com/documents/certified-translations/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
