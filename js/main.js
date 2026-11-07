@@ -767,3 +767,98 @@ if ('IntersectionObserver' in window) {
   syncSteppers();
   calc();
 })();
+
+// --- Analytics: conversion and behaviour events for Google Analytics 4 (and the Reddit pixel) ---
+// Event names follow GA4 recommended events where one exists (generate_lead, sign_up).
+(function () {
+  function track(name, params) {
+    params = params || {};
+    try { if (typeof window.gtag === 'function') window.gtag('event', name, params); } catch (e) {}
+  }
+  window.ciTrack = track;
+  var path = location.pathname;
+  function section(el) {
+    if (el.closest('.sticky-cta-bar')) return 'sticky_bar';
+    if (el.closest('.navbar, .mobile-nav')) return 'navigation';
+    if (el.closest('footer')) return 'footer';
+    if (el.closest('.hero, .page-header')) return 'hero';
+    var s = el.closest('section[id]'); if (s) return s.id;
+    if (el.closest('.consult-callout')) return 'article_callout';
+    if (el.closest('.estimator')) return 'estimator';
+    if (el.closest('.quiz-result')) return 'quiz_result';
+    return 'body';
+  }
+  function text(el) { return (el.textContent || '').replace(/\s+/g, ' ').replace(/[→+]\s*$/, '').trim().slice(0, 80); }
+
+  // Link clicks: contact methods, booking links, consultation CTAs
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (a) {
+      var href = a.getAttribute('href') || '';
+      if (href.indexOf('mailto:') === 0) track('contact', { contact_method: 'email', cta_section: section(a), page_path: path });
+      else if (href.indexOf('tel:') === 0) track('contact', { contact_method: 'phone', cta_section: section(a), page_path: path });
+      else if (href.indexOf('calendly.com') !== -1) track('book_call_click', { cta_text: text(a), cta_section: section(a), page_path: path });
+      else if (/check-eligibility(\.html)?(#.*)?$/.test(href)) track('cta_click', { cta_text: text(a), cta_section: section(a), page_path: path });
+      return;
+    }
+    var copy = e.target.closest && e.target.closest('#quiz-copy-email');
+    if (copy) { track('contact', { contact_method: 'email_copy', cta_section: 'quiz_result', page_path: path }); return; }
+    var q = e.target.closest && e.target.closest('.faq-item__question');
+    if (q) { setTimeout(function () { var item = q.closest('.faq-item'); if (item && item.classList.contains('open')) track('faq_open', { faq_question: text(q).replace(/\+$/, '').trim(), page_path: path }); }, 0); return; }
+    var opt = e.target.closest && e.target.closest('.quiz-option');
+    if (opt) {
+      if (!window._ciQuizStarted) { window._ciQuizStarted = true; track('quiz_start', { page_path: path }); }
+      track('quiz_answer', { quiz_answer: opt.getAttribute('data-value') || '', page_path: path });
+    }
+  }, true);
+
+  // Quiz result shown
+  var quiz = document.getElementById('quiz-dynamic');
+  if (quiz && window.MutationObserver) {
+    var lastResult = null;
+    new MutationObserver(function () {
+      var r = quiz.querySelector('.quiz-result');
+      if (!r) { lastResult = null; return; }
+      if (r === lastResult) return; lastResult = r;
+      var o = r.querySelector('.quiz-result__outcome');
+      var type = o ? (o.className.match(/quiz-result__outcome--(\w+)/) || [])[1] : '';
+      track('quiz_complete', { quiz_outcome: o ? text(o) : '', quiz_result_type: type || '', page_path: path });
+    }).observe(quiz, { childList: true, subtree: true });
+  }
+
+  // Notify-me signup on the not-eligible result
+  document.addEventListener('submit', function (e) {
+    if (e.target && e.target.id === 'quiz-signup') track('sign_up', { method: 'eu_court_notify', page_path: path });
+  }, true);
+
+  // Calendly booking funnel (inline embed)
+  window.addEventListener('message', function (ev) {
+    if (!ev.origin || ev.origin.indexOf('calendly.com') === -1 || !ev.data || typeof ev.data.event !== 'string') return;
+    var name = ev.data.event;
+    if (name === 'calendly.event_type_viewed') track('booking_view', { page_path: path });
+    else if (name === 'calendly.date_and_time_selected') track('booking_time_selected', { page_path: path });
+    else if (name === 'calendly.event_scheduled') {
+      track('generate_lead', { lead_source: 'calendly_booking', page_path: path, transport_type: 'beacon' });
+      try { if (typeof window.rdt === 'function') window.rdt('track', 'Lead'); } catch (e2) {}
+    }
+  });
+
+  // Cost estimator use (debounced; at most 5 per page view)
+  var est = document.getElementById('case-estimator');
+  if (est) {
+    var t, sent = 0;
+    est.addEventListener('input', schedule); est.addEventListener('change', schedule); est.addEventListener('click', function (e) { if (e.target.closest('.est-stepper__btn')) schedule(); });
+    function schedule() { clearTimeout(t); t = setTimeout(send, 1500); }
+    function send() {
+      if (sent >= 5) return; sent++;
+      var g = function (n) { var el = est.querySelector('input[name="' + n + '"]:checked'); return el ? el.value : ''; };
+      var total = (document.getElementById('est-total') || {}).textContent || '';
+      track('estimator_use', {
+        estimator_route: g('est-route'), estimator_generation: g('est-gen'),
+        estimator_family: +((document.getElementById('est-family') || {}).value || 0),
+        estimator_cousins: +((document.getElementById('est-cousins') || {}).value || 0),
+        estimate_total: +total.replace(/[^0-9.]/g, '') || 0, page_path: path
+      });
+    }
+  }
+})();
