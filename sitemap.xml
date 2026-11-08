@@ -3,11 +3,11 @@
 
   <!-- Core pages -->
   <url><loc>https://citizenshipitalia.com/</loc><lastmod>2026-11-02</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://citizenshipitalia.com/check-eligibility</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://citizenshipitalia.com/process</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://citizenshipitalia.com/check-eligibility</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://citizenshipitalia.com/process</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://citizenshipitalia.com/pricing</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://citizenshipitalia.com/our-team</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://citizenshipitalia.com/resources/</loc><lastmod>2026-11-02</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://citizenshipitalia.com/our-team</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://citizenshipitalia.com/resources/</loc><lastmod>2026-11-08</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
 
   <!-- Route pages -->
   <url><loc>https://citizenshipitalia.com/routes/court-atq/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
@@ -19,7 +19,7 @@
   <url><loc>https://citizenshipitalia.com/resources/citizenship-through-grandparents</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://citizenshipitalia.com/resources/how-to-get-started</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://citizenshipitalia.com/resources/documents-checklist</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://citizenshipitalia.com/resources/faq</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://citizenshipitalia.com/resources/faq</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://citizenshipitalia.com/resources/apply-from-italy</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://citizenshipitalia.com/resources/minor-issue/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://citizenshipitalia.com/resources/court-vs-consulate/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
@@ -30,10 +30,10 @@
   <url><loc>https://citizenshipitalia.com/documents/naturalisation-proof/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Location pages -->
-  <url><loc>https://citizenshipitalia.com/locations/united-states/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://citizenshipitalia.com/locations/united-states/</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Blog -->
-  <url><loc>https://citizenshipitalia.com/blog/</loc><lastmod>2026-11-02</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://citizenshipitalia.com/blog/</loc><lastmod>2026-11-08</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://citizenshipitalia.com/blog/law-74-2025-impact-2026/</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://citizenshipitalia.com/blog/consulate-wait-times-2026/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
@@ -68,4 +68,16 @@
   <url><loc>https://citizenshipitalia.com/resources/great-grandparent-italian-citizenship/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://citizenshipitalia.com/resources/ancestor-naturalization/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://citizenshipitalia.com/resources/glossary/</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- New guides (November 2026) -->
+  <url><loc>https://citizenshipitalia.com/resources/italian-passport/</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://citizenshipitalia.com/resources/aire-registration/</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://citizenshipitalia.com/resources/how-long-does-italian-citizenship-take/</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://citizenshipitalia.com/resources/benefits-of-italian-citizenship/</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://citizenshipitalia.com/resources/dual-citizenship-italy-us/</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://citizenshipitalia.com/resources/family-applications/</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://citizenshipitalia.com/locations/united-states/consulate-finder/</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://citizenshipitalia.com/resources/is-italy-ending-citizenship-by-descent/</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://citizenshipitalia.com/resources/italian-citizenship-scams/</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://citizenshipitalia.com/resources/italian-citizenship-by-marriage/</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

@@ -13,22 +13,19 @@
   <meta name="publish_date" content="2025-01-01">
   <meta name="last-modified" content="2026-04-11">
   <meta name="robots" content="noindex,follow">
-  <!-- Fonts: async load to avoid render-blocking -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+  <noscript></noscript>
+  <link rel="preload" href="fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtKky2F7g.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="dns-prefetch" href="https://cdn.inspectlet.com">
   <link rel="dns-prefetch" href="https://www.redditstatic.com">
-  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 </head>
 <body class="has-sticky-cta">
 
 <nav class="navbar navbar--solid" id="navbar">
   <div class="navbar__inner">
     <a href="./" class="navbar__logo">
-      <img src="logos/logo-text-white.webp" alt="Citizenship Italia" width="220" height="43">
+      <img src="logos/logo-text-white-440w.webp" alt="Citizenship Italia" width="220" height="43">
     </a>
     <button class="navbar__toggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -53,21 +50,21 @@
 <script src="js/main.js" defer></script>
 
   <!-- Reddit Pixel -->
-  <script>!function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','a2_ggh8xuvmmrhd');rdt('track', 'PageVisit');</script>
+  <script>!function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];(w.__ciLater=w.__ciLater||[]).push(function(){var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js";t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)})}}(window,document);rdt('init','a2_ggh8xuvmmrhd');rdt('track', 'PageVisit');</script>
   <!-- End Reddit Pixel -->
 
   <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DMT8Z9M1B4"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-DMT8Z9M1B4');</script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-DMT8Z9M1B4');(window.__ciLater=window.__ciLater||[]).push(function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-DMT8Z9M1B4';document.head.appendChild(s);});</script>
   <!-- End Google Analytics -->
 
   <!-- Ahrefs Analytics -->
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="kmCKKpjWzZBpYIgDoTAF6Q" defer></script>
 
   <!-- Begin Inspectlet -->
-  <script type="text/javascript" defer>(function(){window.__insp=window.__insp||[];__insp.push(['wid',1023748837]);var ldinsp=function(){if(typeof window.__inspld!="undefined")return;window.__inspld=1;var insp=document.createElement('script');insp.type='text/javascript';insp.async=true;insp.id="inspsync";insp.src=('https:'==document.location.protocol?'https':'http')+'://cdn.inspectlet.com/inspectlet.js?wid=1023748837&r='+Math.floor(new Date().getTime()/3600000);var x=document.getElementsByTagName('script')[0];x.parentNode.insertBefore(insp,x);};setTimeout(ldinsp,0);})();</script>
+  <script type="text/javascript" defer>(function(){window.__insp=window.__insp||[];__insp.push(['wid',1023748837]);var ldinsp=function(){if(typeof window.__inspld!="undefined")return;window.__inspld=1;var insp=document.createElement('script');insp.type='text/javascript';insp.async=true;insp.id="inspsync";insp.src=('https:'==document.location.protocol?'https':'http')+'://cdn.inspectlet.com/inspectlet.js?wid=1023748837&r='+Math.floor(new Date().getTime()/3600000);var x=document.getElementsByTagName('script')[0];x.parentNode.insertBefore(insp,x);};(window.__ciLater=window.__ciLater||[]).push(ldinsp);})();</script>
   <!-- End Inspectlet -->
 
 </main>
+<script>/*ci-later: loads analytics after the first interaction, or 2.5s after load*/(function(w){var q=w.__ciLater=w.__ciLater||[],ran=false;function run(){if(ran)return;ran=true;var f;while((f=q.shift()))try{f()}catch(e){}q.push=function(f){try{f()}catch(e){}return 0};}['pointerdown','keydown','scroll','touchstart'].forEach(function(e){w.addEventListener(e,run,{once:true,passive:true})});function later(){setTimeout(run,2500)}if(document.readyState==='complete')later();else w.addEventListener('load',later);})(window);</script>
 </body>
 </html>

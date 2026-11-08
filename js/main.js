@@ -9,12 +9,17 @@
   var navbar = document.querySelector('.navbar');
   if (!navbar) return;
 
+  // On the light (scrolled) bar, show the dark logo, which keeps the flag colours
+  var logo = navbar.querySelector('.navbar__logo img');
+  var light = logo ? logo.getAttribute('src') : '';
+  var LOGO_RE = /logo-text-white(-\d+w)?\.webp$/;
+  var dark = LOGO_RE.test(light) ? light.replace(LOGO_RE, 'logo-text.webp') : '';
+  if (dark) { navbar.classList.add('has-dark-logo'); new Image().src = dark; }
+
   function onScroll() {
-    if (window.scrollY > 40) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
+    var on = window.scrollY > 40;
+    navbar.classList.toggle('scrolled', on);
+    if (dark) { var want = on ? dark : light; if (logo.getAttribute('src') !== want) logo.setAttribute('src', want); }
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
