@@ -215,74 +215,59 @@
   function progressPct(stepKey) { return Math.min(90, stepIndex(stepKey) * 18); }
 
   // --- Result logic ---
-  var NOTE_REVIEW = ' Eligibility always depends on dates and documents, which we confirm on the call.';
-  var NOTE_1948   = ' Because your line passes through an Italian woman to a child born before 1948, this would be a 1948 case, which must be decided by an Italian court rather than a consulate.';
+  // Kept deliberately short: tell people where they likely stand and get them to the call.
+  var NOTE_COURT = ' Your case would go through an Italian court, which our lawyers handle for you.';
 
   function getResult() {
     var a = answers;
     var is1948 = a.line1948 === 'yes';
-    var unsure1948 = a.line1948 === 'unsure';
-    var routeLabel = is1948 ? '1948 Court Route' : 'Consulate Route (or municipality, if you relocate to Italy)';
+    var court = is1948 ? NOTE_COURT : '';
 
-    // 1. Grandfathered: case started by March 27, 2025 (old rules)
+    // 1. Case started before the 2025 cutoff (old rules)
     if (a.started === 'filed' || a.started === 'appt') {
-      var apptNote = a.started === 'appt'
-        ? ' Note: an appointment counts only if the consulate or municipality had communicated the date to you by 11:59 PM Rome time on March 27, 2025, and you submit your complete application on that date.'
-        : '';
       if (a.chain === 'yes') {
-        return { type: 'amber', bookable: true, icon: '🔍',
-          title: 'Your case may follow the old rules — but the chain needs review',
-          body: 'Because your case was started before the March 27, 2025 cutoff, it may be assessed under the pre-2025 rules, with no generational limit. However, a naturalization before the next generation was born usually breaks the citizenship chain, so we need to look at the exact dates and whether another line in your family works.' + apptNote,
+        return { type: 'amber', outcome: 'Likely eligible', bookable: true, icon: '🔍',
+          title: 'You may be eligible',
+          body: 'Because your case was started before the 2025 cutoff, the older rules may apply to you. A few dates need checking, so let\'s go through them together on a free call.',
           cta: 'Book a Free Case Review' };
       }
-      return { type: a.chain === 'unsure' || unsure1948 ? 'amber' : 'green', bookable: true, icon: '📋',
-        title: 'Your case may be assessed under the pre-2025 rules',
-        body: 'Because your case was started before the March 27, 2025 cutoff, it may follow the old rules, with no generational limit. Since the Court of Cassation\'s July 2026 ruling, an ancestor\'s naturalization while their child was a minor is also much less likely to be an obstacle.' + (is1948 ? NOTE_1948 : '') + apptNote + NOTE_REVIEW,
-        route: is1948 ? '1948 Court Route' : 'Pre-2025 rules (transitional)',
+      return { type: a.chain === 'unsure' || a.line1948 === 'unsure' ? 'amber' : 'green', outcome: 'Likely eligible', bookable: true, icon: '📋',
+        title: 'You\'re likely eligible',
+        body: 'Because your case was started before the 2025 cutoff, the older rules may apply to you. Book a free call and we\'ll confirm your route and next steps.' + court,
         cta: 'Book Your Free Consultation' };
     }
 
-    // 2. Article 3-bis(c): parent or grandparent with exclusively Italian citizenship
+    // 2. Parent or grandparent who held only Italian citizenship
     var meetsC = a.other_cit === 'never' || a.other_cit === 'after' || a.gp_check === 'yes';
     var maybeC = a.other_cit === 'unsure' || a.gp_check === 'unsure';
     if (meetsC) {
-      var who = a.gp_check === 'yes' ? 'grandparent' : rel();
-      var afterNote = (a.other_cit === 'after' && a.gp_check !== 'yes')
-        ? ' Because your ' + who + ' took another citizenship only after you were born, we\'ll confirm how the consulate assesses the dates in your case.'
-        : '';
-      return { type: unsure1948 ? 'amber' : 'green', bookable: true, icon: is1948 ? '⚖️' : '✅',
-        title: is1948 ? 'You may be eligible — 1948 court route' : 'You appear to meet the 2025 rules',
-        body: 'Under Article 3-bis (Law 74/2025), a ' + who + ' who held only Italian citizenship when you were born can qualify you, provided the citizenship chain down to you is unbroken.' + afterNote + (is1948 ? NOTE_1948 : '') + (unsure1948 ? ' We\'ll also check whether your line involves a 1948 case.' : '') + NOTE_REVIEW,
-        route: routeLabel,
+      return { type: a.line1948 === 'unsure' ? 'amber' : 'green', bookable: true, icon: is1948 ? '⚖️' : '✅',
+        title: 'You\'re likely eligible',
+        body: 'Based on your answers, you appear to qualify for Italian citizenship by descent. Book a free call and we\'ll confirm it and walk you through the next steps.' + court,
         cta: 'Book Your Free Consultation' };
     }
 
-    // 3. Article 3-bis(d): parent two-year residence
+    // 3. Parent lived in Italy for two years
     var res = a.parent_res || a.ggp_parent_res;
     if (res === 'yes') {
       return { type: 'green', bookable: true, icon: '🏠',
-        title: 'You may qualify through your parent\'s residence in Italy',
-        body: 'Under Article 3-bis(d), a parent who lived in Italy for at least two continuous years after becoming an Italian citizen, and before you were born, can qualify you. We\'ll confirm this with residence records (such as a certificato storico di residenza).' + (is1948 ? NOTE_1948 : '') + NOTE_REVIEW,
-        route: routeLabel,
+        title: 'You\'re likely eligible',
+        body: 'Based on your answers, you may qualify through your parent\'s time living in Italy. Book a free call and we\'ll confirm it with you.' + court,
         cta: 'Book Your Free Consultation' };
     }
 
-    // 4. Uncertain answers — worth a review
+    // 4. Unsure answers
     if (maybeC || res === 'unsure') {
       return { type: 'amber', bookable: true, icon: '🔍',
-        title: 'Possibly eligible — a few dates need confirming',
-        body: 'Your eligibility under the 2025 rules depends on details we can check together: whether your parent or grandparent ever held another citizenship before your birth, or whether your parent lived in Italy for two years after becoming a citizen. Book a free call and we\'ll review the records with you.',
+        title: 'You may be eligible',
+        body: 'A few details in your family history need checking. Book a free call and we\'ll go through them with you.',
         cta: 'Book a Free Case Review' };
     }
 
-    // 5. Not eligible under current law — explain honestly, point to what may change
-    var waitNote = a.started === 'waitlist'
-      ? ' Requesting an appointment or joining a waitlist before the cutoff does not, by itself, qualify for the old rules.'
-      : '';
+    // 5. Not eligible today
     return { type: 'red', bookable: false, icon: '⚖️',
-      title: 'Not eligible for a new application under current law',
-      body: 'Based on your answers, you don\'t appear to meet Article 3-bis, which since 2025 requires a parent or grandparent who held only Italian citizenship, or a parent who lived in Italy for two years after becoming a citizen.' + waitNote +
-        ' Two things could still matter: the EU Court of Justice is reviewing the law (case C-816/26), and former citizens born in Italy who lost citizenship before August 15, 1992 can reacquire it by declaration until December 31, 2027. If either may apply to your family, email us and we\'ll let you know where you stand.'
+      title: 'You likely don\'t qualify under the current rules',
+      body: 'Based on your answers, you don\'t appear to qualify right now. The rules are being challenged in court and could change, so leave your email below and we\'ll let you know. If a parent or grandparent was born in Italy and is still living, email us: there may be another route.'
     };
   }
 
@@ -408,8 +393,8 @@
           '</div>' +
         '</div>' +
         '<form class="result-signup" id="quiz-signup" data-hs-signup="Eligibility quiz (not eligible result)" novalidate>' +
-          '<p class="result-signup__title">Get notified if the EU Court ruling changes this</p>' +
-          '<p class="result-signup__text">The EU Court of Justice is reviewing the 2025 law (case C-816/26). Leave your email and we\'ll let you know if the ruling opens a path for your family.</p>' +
+          '<p class="result-signup__title">Get notified if the rules change</p>' +
+          '<p class="result-signup__text">Leave your email and we\'ll let you know if a court ruling opens a path for your family.</p>' +
           '<div class="result-signup__row">' +
             '<label for="quiz-signup-email" class="visually-hidden">Email address</label>' +
             '<input type="email" id="quiz-signup-email" name="email" required autocomplete="email" placeholder="you@example.com">' +
@@ -432,9 +417,9 @@
         '</div>';
     }
 
-    var outcome = result.type === 'red' ? 'Not eligible under current law'
-      : /pre-2025|old rules/i.test(result.title) ? 'Transitional case'
-      : result.type === 'amber' ? 'Needs legal review'
+    var outcome = result.outcome ? result.outcome
+      : result.type === 'red' ? 'Not eligible right now'
+      : result.type === 'amber' ? 'Possibly eligible'
       : 'Likely eligible';
 
     window.ciQuizAnswers = answers;
@@ -444,7 +429,7 @@
         '<span class="quiz-result__outcome quiz-result__outcome--' + result.type + '">' + outcome + '</span>' +
         '<h3>' + result.title + '</h3>' +
         '<p>' + result.body + '</p>' +
-        '<p class="quiz-result__disclaimer">This is a preliminary screening, not a final legal determination. Cases involving naturalization dates, a maternal line before 1948, filings before March 27, 2025 or other exceptions may need a full legal review.</p>' +
+        '<p class="quiz-result__disclaimer">This is a quick screening, not a legal decision. We confirm eligibility with your documents on the call.</p>' +
         ctaBlock +
         '<button class="quiz-result__restart" id="quiz-restart" type="button">↺ Start over</button>' +
       '</div>';
